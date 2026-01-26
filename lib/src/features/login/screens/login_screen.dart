@@ -1,16 +1,15 @@
 import 'package:aura_app/src/features/create_account/widgets/condition_terms.dart';
-import 'package:aura_app/src/features/create_account/widgets/social_button.dart';
 import 'package:aura_app/src/features/create_account/widgets/social_driver.dart';
+import 'package:aura_app/src/features/login/widgets/face_id_button.dart';
 import 'package:aura_app/src/shared/componants/auth_option.dart';
 import 'package:aura_app/src/shared/componants/custom_button.dart';
 import 'package:aura_app/src/shared/componants/text_form.dart';
+import 'package:aura_app/src/shared/routing/route_strings.dart';
 import 'package:aura_app/src/shared/themes/app_colors.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
-class CreateAccount extends StatelessWidget {
-  const CreateAccount({super.key});
+class LoginScreen extends StatelessWidget {
+  const LoginScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -41,20 +40,16 @@ class CreateAccount extends StatelessWidget {
 
             const SizedBox(height: 10),
             Text(
-              "Create your Aura",
+              "Welcome Back",
               style: Theme.of(context).textTheme.headlineMedium,
             ),
+            const SizedBox(height: 5),
             Text(
-              "Start your AI-powered investment journey",
+              "Your intelligent investement protofolio is ready",
               style: Theme.of(context).textTheme.bodySmall,
             ),
 
             const SizedBox(height: 40),
-            const AuraTextField(
-              label: "Full Name",
-              hintText: "Enter your full name",
-            ),
-            const SizedBox(height: 20),
             const AuraTextField(
               label: "Email Address",
               hintText: "name@example.com",
@@ -66,53 +61,33 @@ class CreateAccount extends StatelessWidget {
               isPassword: true,
               suffixIcon: Icons.visibility_outlined,
             ),
-            const SizedBox(height: 15),
-
-            const TermsAndConditionsWidget(),
-            const SizedBox(height: 30),
-            AuraButton(title: "Create Account", onPressed: () {}),
+            Align(
+              alignment: Alignment.centerRight,
+              child: TextButton(
+                onPressed: () {},
+                child: Text(
+                  "Forgot Password?",
+                  style: Theme.of(context).textTheme.bodySmall,
+                ),
+              ),
+            ),
+            const SizedBox(height: 25),
+            AuraButton(title: "Sign In", onPressed: () {}),
 
             const SizedBox(height: 20),
             AuthOptionWidget(
-              mainText: "Already have an account?",
-              actionText: "Log In",
+              mainText: "Don't have an account?",
+              actionText: "Sign Up",
               onTap: () {
-                print("Navigate to Login Page");
+                Navigator.pushReplacementNamed(context, Routes.createAccount);
               },
             ),
             const SizedBox(height: 30),
 
-            buildSocialDivider(context),
+            buildSocialDivider(context, "Or continue with"),
 
-            const SizedBox(height: 30),
-
-            Row(
-              children: [
-                Expanded(
-                  child: SocialLoginButton(
-                    label: "Google",
-                    icon: const FaIcon(
-                      FontAwesomeIcons.google,
-                      color: Colors.redAccent,
-                      size: 20,
-                    ),
-                    onTap: () {},
-                  ),
-                ),
-                const SizedBox(width: 15),
-                Expanded(
-                  child: SocialLoginButton(
-                    label: "Apple",
-                    icon: const Icon(
-                      CupertinoIcons.heart,
-                      color: Colors.white,
-                      size: 22,
-                    ),
-                    onTap: () {},
-                  ),
-                ),
-              ],
-            ),
+            const SizedBox(height: 20),
+            FaceIDButton(onPressed: () {}),
           ],
         ),
       ),

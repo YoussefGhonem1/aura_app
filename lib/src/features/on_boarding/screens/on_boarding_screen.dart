@@ -162,7 +162,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                   curve: Curves.easeInOut,
                 );
               } else {
-                Navigator.pushReplacementNamed(context, Routes.CreateAccount);
+                Navigator.pushReplacementNamed(context, Routes.login);
               }
             },
             style: ElevatedButton.styleFrom(
