@@ -1,20 +1,35 @@
 import 'package:aura_app/src/features/create_account/widgets/condition_terms.dart';
 import 'package:aura_app/src/features/create_account/widgets/social_button.dart';
 import 'package:aura_app/src/features/create_account/widgets/social_driver.dart';
+import 'package:aura_app/src/features/forget_password/widgets/build_validation_item.dart';
 import 'package:aura_app/src/shared/componants/auth_option.dart';
 import 'package:aura_app/src/shared/componants/custom_button.dart';
 import 'package:aura_app/src/shared/componants/text_form.dart';
 import 'package:aura_app/src/shared/routing/route_strings.dart';
 import 'package:aura_app/src/shared/themes/app_colors.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
-class CreateAccount extends StatelessWidget {
-  const CreateAccount({super.key});
+class CreateAccount extends StatefulWidget {
+  CreateAccount({super.key});
+
+  @override
+  State<CreateAccount> createState() => _CreateAccountState();
+}
+
+class _CreateAccountState extends State<CreateAccount> {
+  bool _hasEightChars = true;
+
+  bool _hasUppercase = true;
+
+  bool _hasNumber = true;
+
+  final TextEditingController _passwordController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
+    final bool passwordHasError =
+        !_hasEightChars || !_hasUppercase || !_hasNumber;
     return Scaffold(
       body: SingleChildScrollView(
         padding: const EdgeInsets.symmetric(horizontal: 24),
@@ -52,32 +67,40 @@ class CreateAccount extends StatelessWidget {
             ),
 
             const SizedBox(height: 40),
-            const AuraTextField(
-              label: "Full Name",
-              hintText: "Enter your full name",
-            ),
+            const AuraTextField(label: "Username", hintText: "Enter your name"),
             const SizedBox(height: 20),
             const AuraTextField(
               label: "Email Address",
               hintText: "name@example.com",
             ),
             const SizedBox(height: 20),
-            const AuraTextField(
+
+            AuraTextField(
               label: "Password",
-              hintText: "Create a password",
+              hintText: "Password",
               isPassword: true,
-              suffixIcon: Icons.visibility_outlined,
+              hasError: passwordHasError,
+              controller: _passwordController,
+              tooltipContent: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  buildValidationItem("At least 8 characters", _hasEightChars),
+                  buildValidationItem("One uppercase letter", _hasUppercase),
+                  buildValidationItem("One number", _hasNumber),
+                ],
+              ),
             ),
+
             const SizedBox(height: 15),
 
             const TermsAndConditionsWidget(),
             const SizedBox(height: 25),
-            AuraButton(title: "Create Account", onPressed: () {}),
+            AuraButton(title: "Create account", onPressed: () {}),
 
             const SizedBox(height: 20),
             AuthOptionWidget(
               mainText: "Already have an account?",
-              actionText: "Log In",
+              actionText: "Log in",
               onTap: () {
                 Navigator.pushReplacementNamed(context, Routes.login);
               },
@@ -105,8 +128,8 @@ class CreateAccount extends StatelessWidget {
                 Expanded(
                   child: SocialLoginButton(
                     label: "Apple",
-                    icon: const Icon(
-                      CupertinoIcons.heart,
+                    icon: Icon(
+                      FontAwesomeIcons.apple,
                       color: Colors.white,
                       size: 22,
                     ),
@@ -115,6 +138,7 @@ class CreateAccount extends StatelessWidget {
                 ),
               ],
             ),
+            const SizedBox(height: 20),
           ],
         ),
       ),

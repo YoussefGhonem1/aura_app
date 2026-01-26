@@ -1,4 +1,5 @@
 import 'package:aura_app/src/features/create_account/widgets/social_driver.dart';
+import 'package:aura_app/src/features/forget_password/widgets/build_validation_item.dart';
 import 'package:aura_app/src/features/login/widgets/face_id_button.dart';
 import 'package:aura_app/src/shared/componants/auth_option.dart';
 import 'package:aura_app/src/shared/componants/custom_button.dart';
@@ -7,11 +8,26 @@ import 'package:aura_app/src/shared/routing/route_strings.dart';
 import 'package:aura_app/src/shared/themes/app_colors.dart';
 import 'package:flutter/material.dart';
 
-class LoginScreen extends StatelessWidget {
-  const LoginScreen({super.key});
+class LoginScreen extends StatefulWidget {
+  LoginScreen({super.key});
+
+  @override
+  State<LoginScreen> createState() => _LoginScreenState();
+}
+
+class _LoginScreenState extends State<LoginScreen> {
+  bool _hasEightChars = true;
+
+  bool _hasUppercase = true;
+
+  bool _hasNumber = true;
+
+  final TextEditingController _passwordController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
+    final bool passwordHasError =
+        !_hasEightChars || !_hasUppercase || !_hasNumber;
     return Scaffold(
       body: SingleChildScrollView(
         padding: const EdgeInsets.symmetric(horizontal: 24),
@@ -54,14 +70,23 @@ class LoginScreen extends StatelessWidget {
               hintText: "name@example.com",
             ),
             const SizedBox(height: 20),
-            const AuraTextField(
+            AuraTextField(
               label: "Password",
-              hintText: "Create a password",
+              hintText: "Password",
               isPassword: true,
-              suffixIcon: Icons.visibility_outlined,
+              hasError: passwordHasError,
+              controller: _passwordController,
+              tooltipContent: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  buildValidationItem("At least 8 characters", _hasEightChars),
+                  buildValidationItem("One uppercase letter", _hasUppercase),
+                  buildValidationItem("One number", _hasNumber),
+                ],
+              ),
             ),
             Align(
-              alignment: Alignment.centerRight,
+              alignment: Alignment.centerLeft,
               child: TextButton(
                 onPressed: () {
                   Navigator.pushNamed(context, Routes.forgetPassword);
@@ -73,12 +98,12 @@ class LoginScreen extends StatelessWidget {
               ),
             ),
             const SizedBox(height: 25),
-            AuraButton(title: "Sign In", onPressed: () {}),
+            AuraButton(title: "Sign in", onPressed: () {}),
 
             const SizedBox(height: 20),
             AuthOptionWidget(
               mainText: "Don't have an account?",
-              actionText: "Sign Up",
+              actionText: "Sign up",
               onTap: () {
                 Navigator.pushReplacementNamed(context, Routes.createAccount);
               },

@@ -17,15 +17,15 @@ class AppRoutes {
       case Routes.onBoarding:
         return MaterialPageRoute(builder: (_) => const OnboardingScreen());
       case Routes.createAccount:
-        return MaterialPageRoute(builder: (_) => const CreateAccount());
+        return MaterialPageRoute(builder: (_) => CreateAccount());
       case Routes.login:
-        return MaterialPageRoute(builder: (_) => const LoginScreen());
+        return MaterialPageRoute(builder: (_) => LoginScreen());
       case Routes.forgetPassword:
         return MaterialPageRoute(builder: (_) => const ForgotPasswordScreen());
       case Routes.verifyEmail:
         return MaterialPageRoute(builder: (_) => const VerifyEmailScreen());
       case Routes.createNewPassword:
-        return MaterialPageRoute(builder: (_) => const CreateNewPasswordPage());
+        return MaterialPageRoute(builder: (_) => CreateNewPasswordPage());
       case Routes.successResetPassword:
         return MaterialPageRoute(builder: (_) => const SuccessPasswordScreen());
 

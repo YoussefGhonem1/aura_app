@@ -15,10 +15,15 @@ class CreateNewPasswordPage extends StatefulWidget {
 class _CreateNewPasswordPageState extends State<CreateNewPasswordPage> {
   bool _hasEightChars = true;
   bool _hasUppercase = true;
-  bool _hasNumber = false;
+  bool _hasNumber = true;
 
+  final TextEditingController _passwordController = TextEditingController();
+  final TextEditingController _confirmPasswordController =
+      TextEditingController();
   @override
   Widget build(BuildContext context) {
+    final bool passwordHasError =
+        !_hasEightChars || !_hasUppercase || !_hasNumber;
     return Scaffold(
       backgroundColor: AppColors.primaryColor,
       appBar: AppBar(
@@ -50,29 +55,50 @@ class _CreateNewPasswordPageState extends State<CreateNewPasswordPage> {
             ),
             const SizedBox(height: 40),
 
-            const AuraTextField(
+            AuraTextField(
               label: "New Password",
               hintText: "Enter new password",
               isPassword: true,
+              hasError: passwordHasError,
+              controller: _passwordController,
+              tooltipContent: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  buildValidationItem("At least 8 characters", _hasEightChars),
+                  buildValidationItem("One uppercase letter", _hasUppercase),
+                  buildValidationItem("One number", _hasNumber),
+                ],
+              ),
             ),
 
-            const SizedBox(height: 20),
-
-            buildValidationItem("At least 8 characters", _hasEightChars),
-            buildValidationItem("One uppercase letter", _hasUppercase),
-            buildValidationItem("One number", _hasNumber),
-
             const SizedBox(height: 30),
-
-            const AuraTextField(
+            AuraTextField(
               label: "Confirm Password",
               hintText: "Re-enter password",
               isPassword: true,
+              hasError: passwordHasError,
+              controller: _confirmPasswordController,
+              tooltipContent: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  buildValidationItem("At least 8 characters", _hasEightChars),
+                  buildValidationItem("One uppercase letter", _hasUppercase),
+                  buildValidationItem("One number", _hasNumber),
+                ],
+              ),
             ),
 
-            const SizedBox(height: 100),
+            const SizedBox(height: 50),
 
-            AuraButton(title: "Reset Password", onPressed: () {Navigator.pushReplacementNamed(context, Routes.successResetPassword); }),
+            AuraButton(
+              title: "Reset password",
+              onPressed: () {
+                Navigator.pushReplacementNamed(
+                  context,
+                  Routes.successResetPassword,
+                );
+              },
+            ),
 
             const SizedBox(height: 20),
 

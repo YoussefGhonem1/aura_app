@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class FaceIDButton extends StatelessWidget {
@@ -21,8 +20,7 @@ class FaceIDButton extends StatelessWidget {
         child: Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Icon(CupertinoIcons.lock, color: Colors.white, size: 22),
-            SizedBox(width: 10),
+            Image.asset('assets/icons/face_id.png', width: 50, height: 50),
             Text(
               'Sign in with FaceID',
               style: TextStyle(

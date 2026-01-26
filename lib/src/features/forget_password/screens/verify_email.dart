@@ -44,63 +44,65 @@ class _VerifyEmailScreenState extends State<VerifyEmailScreen> {
 
         centerTitle: true,
       ),
-      body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 24),
-        child: Column(
-          children: [
-            const SizedBox(height: 40),
-            buildAnimatedLockIcon(Icons.mark_email_read_outlined),
+      body: SingleChildScrollView(
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 24),
+          child: Column(
+            children: [
+              const SizedBox(height: 40),
+              buildAnimatedLockIcon(Icons.mark_email_read_outlined),
 
-            const SizedBox(height: 40),
-            Text(
-              "Verify Email",
-              style: Theme.of(context).textTheme.headlineMedium,
-            ),
-            const SizedBox(height: 5),
-            RichText(
-              textAlign: TextAlign.center,
-              text: TextSpan(
-                style: Theme.of(
-                  context,
-                ).textTheme.bodyMedium?.copyWith(color: AppColors.greyText),
-                children: [
-                  const TextSpan(text: "Please enter the code sent to \n"),
-                  TextSpan(
-                    text: "name@aura.ai",
-                    style: const TextStyle(
-                      color: Colors.white,
-                      fontWeight: FontWeight.bold,
+              const SizedBox(height: 40),
+              Text(
+                "Verify Email",
+                style: Theme.of(context).textTheme.headlineMedium,
+              ),
+              const SizedBox(height: 5),
+              RichText(
+                textAlign: TextAlign.center,
+                text: TextSpan(
+                  style: Theme.of(
+                    context,
+                  ).textTheme.bodyMedium?.copyWith(color: AppColors.greyText),
+                  children: [
+                    const TextSpan(text: "Please enter the code sent to \n"),
+                    TextSpan(
+                      text: "name*******@aura.ai",
+                      style: const TextStyle(
+                        color: Colors.white,
+                        fontWeight: FontWeight.bold,
+                      ),
                     ),
-                  ),
-                ],
+                  ],
+                ),
               ),
-            ),
 
-            const SizedBox(height: 40),
+              const SizedBox(height: 40),
 
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: List.generate(4, (index) => _buildOTPBox(index)),
-            ),
-
-            const SizedBox(height: 30),
-
-            Text(
-              "Resend code in 00:59",
-              style: TextStyle(
-                color: AppColors.secondaryColor,
-                fontWeight: FontWeight.w500,
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: List.generate(4, (index) => _buildOTPBox(index)),
               ),
-            ),
 
-            const SizedBox(height: 40),
-            AuraButton(
-              title: "Verify Code",
-              onPressed: () {
-                Navigator.pushNamed(context, Routes.createNewPassword);
-              },
-            ),
-          ],
+              const SizedBox(height: 30),
+
+              Text(
+                "Resend code in 00:59",
+                style: TextStyle(
+                  color: AppColors.secondaryColor,
+                  fontWeight: FontWeight.w500,
+                ),
+              ),
+
+              const SizedBox(height: 40),
+              AuraButton(
+                title: "Verify code",
+                onPressed: () {
+                  Navigator.pushNamed(context, Routes.createNewPassword);
+                },
+              ),
+            ],
+          ),
         ),
       ),
     );
