@@ -1,4 +1,3 @@
-import 'package:aura_app/src/features/create_account/widgets/condition_terms.dart';
 import 'package:aura_app/src/features/create_account/widgets/social_driver.dart';
 import 'package:aura_app/src/features/login/widgets/face_id_button.dart';
 import 'package:aura_app/src/shared/componants/auth_option.dart';
@@ -64,7 +63,9 @@ class LoginScreen extends StatelessWidget {
             Align(
               alignment: Alignment.centerRight,
               child: TextButton(
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.pushNamed(context, Routes.forgetPassword);
+                },
                 child: Text(
                   "Forgot Password?",
                   style: Theme.of(context).textTheme.bodySmall,
