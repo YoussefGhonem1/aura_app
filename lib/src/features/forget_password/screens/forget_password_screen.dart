@@ -53,7 +53,7 @@ class ForgotPasswordScreen extends StatelessWidget {
             const SizedBox(height: 30),
 
             AuraButton(
-              title: "Send reset link",
+              title: "Send reset code",
               onPressed: () {
                 Navigator.pushNamed(context, Routes.verifyEmail);
               },

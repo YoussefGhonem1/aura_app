@@ -39,7 +39,7 @@ class SuccessPasswordScreen extends StatelessWidget {
             const Spacer(),
 
             AuraButton(
-              title: "Get Started",
+              title: "Get started",
               onPressed: () {
                 Navigator.pushNamedAndRemoveUntil(
                   context,

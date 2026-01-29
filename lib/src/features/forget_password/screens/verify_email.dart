@@ -96,7 +96,7 @@ class _VerifyEmailScreenState extends State<VerifyEmailScreen> {
 
               const SizedBox(height: 40),
               AuraButton(
-                title: "Verify code",
+                title: "Verify",
                 onPressed: () {
                   Navigator.pushNamed(context, Routes.createNewPassword);
                 },
