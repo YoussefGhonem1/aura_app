@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-Widget buildSocialDivider(BuildContext context) {
+Widget buildSocialDivider(BuildContext context , String text) {
   return Row(
     children: [
       Expanded(
@@ -9,7 +9,7 @@ Widget buildSocialDivider(BuildContext context) {
       Padding(
         padding: EdgeInsets.symmetric(horizontal: 16),
         child: Text(
-          "Or sign up with",
+          text,
           style: Theme.of(context).textTheme.bodySmall,
         ),
       ),
