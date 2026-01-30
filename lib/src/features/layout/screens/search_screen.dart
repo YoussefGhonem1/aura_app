@@ -4,6 +4,8 @@ import 'package:aura_app/src/features/layout/widgets/build_section_header_search
 import 'package:aura_app/src/features/layout/widgets/build_trending_list_search.dart';
 import 'package:aura_app/src/features/layout/widgets/build_recent_searshes_list.dart';
 import 'package:aura_app/src/features/layout/widgets/search_bar.dart';
+import 'package:aura_app/src/features/stock_details/models/stock_details_model.dart';
+import 'package:aura_app/src/shared/routing/route_strings.dart';
 import 'package:aura_app/src/shared/themes/app_colors.dart';
 import 'package:flutter/material.dart';
 
@@ -98,8 +100,13 @@ class _AuraSearchExploreScreenState extends State<AuraSearchExploreScreen> {
   void _openStockDetails(int index) {
     final stock = trendingStocks[index];
     print('فتح تفاصيل السهم: ${stock['symbol']}');
+    final stockModel = StockModel.dummy(stock['symbol']);
 
-    // Navigator.push(context, MaterialPageRoute(builder: (context) => StockDetailsScreen(stock: stock)));
+    Navigator.pushNamed(
+      context,
+      Routes.StockDetailsScreen,
+      arguments: stockModel,
+    );
   }
 
   void toggleCompareMode() {

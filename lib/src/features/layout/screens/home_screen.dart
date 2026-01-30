@@ -30,7 +30,7 @@ class HomeScreen extends StatelessWidget {
               const SizedBox(height: 25),
               buildSectionTitle(context, "Top AI Picks"),
               const SizedBox(height: 8),
-              buildTopAIPicks(),
+              buildTopAIPicks(context),
               const SizedBox(height: 110),
             ],
           ),

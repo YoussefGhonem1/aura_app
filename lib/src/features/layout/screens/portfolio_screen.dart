@@ -31,7 +31,7 @@ class PortfolioScreen extends StatelessWidget {
               const SizedBox(height: 32),
               buildSectionTitle(context, "Current Holdings"),
               const SizedBox(height: 10),
-              buildHoldingsList(),
+              buildHoldingsList(context),
               const SizedBox(height: 100),
             ],
           ),

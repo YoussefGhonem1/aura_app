@@ -8,6 +8,8 @@ import 'package:aura_app/src/features/login/screens/login_screen.dart';
 import 'package:aura_app/src/features/no_internet/screens/no_internet_screen.dart';
 import 'package:aura_app/src/features/on_boarding/screens/on_boarding_screen.dart';
 import 'package:aura_app/src/features/splash/screens/splash_screen.dart';
+import 'package:aura_app/src/features/stock_details/models/stock_details_model.dart';
+import 'package:aura_app/src/features/stock_details/screens/stock_details_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:aura_app/src/shared/routing/route_strings.dart';
 
@@ -30,8 +32,13 @@ class AppRoutes {
         return MaterialPageRoute(builder: (_) => CreateNewPasswordPage());
       case Routes.successResetPassword:
         return MaterialPageRoute(builder: (_) => const SuccessPasswordScreen());
-      case Routes.NoInternetScreen:
+      case Routes.noInternetScreen:
         return MaterialPageRoute(builder: (_) => const NoInternetScreen());
+      case Routes.StockDetailsScreen:
+        final args = settings.arguments as StockModel;
+        return MaterialPageRoute(
+          builder: (_) => StockDetailsScreen(stock: args),
+        );
       case Routes.layoutScreen:
         return MaterialPageRoute(builder: (_) => const MainLayoutScreen());
 

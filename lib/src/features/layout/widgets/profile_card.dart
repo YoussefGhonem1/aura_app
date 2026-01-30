@@ -9,30 +9,17 @@ Widget buildUserProfileCard() {
           width: 70,
           height: 70,
           decoration: BoxDecoration(
-            gradient: LinearGradient(
-              colors: [AppColors.secondaryColor, AppColors.accentColor],
-              begin: Alignment.topLeft,
-              end: Alignment.bottomRight,
-            ),
             shape: BoxShape.circle,
-            boxShadow: [
-              BoxShadow(
-                color: AppColors.secondaryColor.withOpacity(0.5),
-                blurRadius: 8,
-                offset: const Offset(0, 2),
-              ),
-            ],
-          ),
-          child: const Center(
-            child: Text(
-              "AS",
-              style: TextStyle(
-                color: Colors.black,
-                fontSize: 24,
-                fontWeight: FontWeight.bold,
-              ),
+            border: Border.all(
+              color: AppColors.secondaryColor.withOpacity(0.3),
+              width: 2,
+            ),
+            image: const DecorationImage(
+              image: AssetImage('assets/images/official_photo.jpeg'),
+              fit: BoxFit.cover,
             ),
           ),
+          child: null,
         ),
         const SizedBox(height: 12),
         // Name

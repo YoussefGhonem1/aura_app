@@ -48,7 +48,7 @@ class _AuraAIRecommendationScreenState
               ),
               const SizedBox(height: 20),
               buildSectionTitle(context, "High Confidence Picks"),
-              buildHighConfidencePicks(),
+              buildHighConfidencePicks(context),
               const SizedBox(height: 20),
               buildSectionTitle(context, "Hot AI Signals"),
               buildQuickPicks(),
