@@ -22,7 +22,7 @@ Widget buildHoldingsList(BuildContext context) {
 
                 Navigator.pushNamed(
                   context,
-                  Routes.StockDetailsScreen,
+                  Routes.stockDetailsScreen,
                   arguments: stock,
                 );
               },

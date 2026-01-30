@@ -104,7 +104,7 @@ class _AuraSearchExploreScreenState extends State<AuraSearchExploreScreen> {
 
     Navigator.pushNamed(
       context,
-      Routes.StockDetailsScreen,
+      Routes.stockDetailsScreen,
       arguments: stockModel,
     );
   }
@@ -194,8 +194,16 @@ class _AuraSearchExploreScreenState extends State<AuraSearchExploreScreen> {
                 final selectedStocks = trendingStocks
                     .where((stock) => stock['isSelected'] as bool)
                     .toList();
-                print(
-                  'فتح شاشة المقارنة بين الأسهم: ${selectedStocks.map((s) => s['symbol']).join(' vs ')}',
+
+                if (selectedStocks.length != 2) {
+                  return;
+                }
+                final stock1 = StockModel.dummy(selectedStocks[0]['symbol']);
+                final stock2 = StockModel.dummy(selectedStocks[1]['symbol']);
+                Navigator.pushNamed(
+                  context,
+                  Routes.stocksCompareScreen,
+                  arguments: {'stock1': stock1, 'stock2': stock2},
                 );
               },
             ),

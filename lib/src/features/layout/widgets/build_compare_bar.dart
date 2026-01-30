@@ -26,10 +26,10 @@ Widget buildCompareBar({
         border: Border.all(color: AppColors.secondaryColor.withOpacity(0.3)),
         boxShadow: [
           BoxShadow(
-            color: Colors.black.withOpacity(0.3),
-            blurRadius: 20,
+            color: AppColors.secondaryColor.withOpacity(0.25),
+            blurRadius: 10,
             spreadRadius: 2,
-            offset: const Offset(0, 4),
+            offset: const Offset(0, 2),
           ),
         ],
       ),

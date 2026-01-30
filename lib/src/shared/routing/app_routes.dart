@@ -10,6 +10,7 @@ import 'package:aura_app/src/features/on_boarding/screens/on_boarding_screen.dar
 import 'package:aura_app/src/features/splash/screens/splash_screen.dart';
 import 'package:aura_app/src/features/stock_details/models/stock_details_model.dart';
 import 'package:aura_app/src/features/stock_details/screens/stock_details_screen.dart';
+import 'package:aura_app/src/features/stocks_compare/screens/stocks_compare_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:aura_app/src/shared/routing/route_strings.dart';
 
@@ -18,29 +19,48 @@ class AppRoutes {
     switch (settings.name) {
       case Routes.initial:
         return MaterialPageRoute(builder: (_) => const MainLayoutScreen());
+
       case Routes.onBoarding:
         return MaterialPageRoute(builder: (_) => const OnboardingScreen());
+
       case Routes.createAccount:
         return MaterialPageRoute(builder: (_) => CreateAccount());
+
       case Routes.login:
         return MaterialPageRoute(builder: (_) => LoginScreen());
+
       case Routes.forgetPassword:
         return MaterialPageRoute(builder: (_) => const ForgotPasswordScreen());
+
       case Routes.verifyEmail:
         return MaterialPageRoute(builder: (_) => const VerifyEmailScreen());
+
       case Routes.createNewPassword:
         return MaterialPageRoute(builder: (_) => CreateNewPasswordPage());
+
       case Routes.successResetPassword:
         return MaterialPageRoute(builder: (_) => const SuccessPasswordScreen());
+
       case Routes.noInternetScreen:
         return MaterialPageRoute(builder: (_) => const NoInternetScreen());
-      case Routes.StockDetailsScreen:
+
+      case Routes.stockDetailsScreen:
         final args = settings.arguments as StockModel;
         return MaterialPageRoute(
           builder: (_) => StockDetailsScreen(stock: args),
         );
+
       case Routes.layoutScreen:
         return MaterialPageRoute(builder: (_) => const MainLayoutScreen());
+
+      case Routes.stocksCompareScreen:
+        final args = settings.arguments as Map<String, StockModel>;
+        return MaterialPageRoute(
+          builder: (_) => StockComparisonScreen(
+            stock1: args['stock1']!,
+            stock2: args['stock2']!,
+          ),
+        );
 
       default:
         return MaterialPageRoute(

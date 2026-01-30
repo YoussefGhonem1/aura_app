@@ -9,5 +9,6 @@ class Routes {
   static const String successResetPassword = '/success_reset_password';
   static const String noInternetScreen = '/no_internet_screen';
   static const String layoutScreen = '/layout_screen';
-  static const String StockDetailsScreen = '/stock_details_screen';
+  static const String stockDetailsScreen = '/stock_details_screen';
+  static const String stocksCompareScreen = '/stocks_compare_screen';
 }
