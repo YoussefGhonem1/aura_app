@@ -1,0 +1,44 @@
+import 'package:aura_app/src/shared/themes/app_colors.dart';
+import 'package:flutter/material.dart';
+
+Widget buildTopBar() {
+  return Column(
+    crossAxisAlignment: CrossAxisAlignment.start,
+    children: [
+      Row(
+        children: [
+          const CircleAvatar(
+            radius: 18,
+            backgroundColor: AppColors.secondaryColor,
+            child: Icon(Icons.auto_awesome, color: Colors.white),
+          ),
+          const SizedBox(width: 10),
+          const Text(
+            "Aura AI",
+            style: TextStyle(
+              color: Colors.white,
+              fontSize: 18,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
+          const Spacer(),
+          Icon(
+            Icons.notifications_none,
+            color: Colors.white.withOpacity(0.8),
+            size: 24,
+          ),
+        ],
+      ),
+      const SizedBox(height: 12),
+      Text(
+        "MARKET ANALYSIS UPDATED 2M AGO",
+        style: TextStyle(
+          color: AppColors.secondaryColor.withOpacity(0.7),
+          fontSize: 11,
+          fontWeight: FontWeight.w600,
+          letterSpacing: 0.5,
+        ),
+      ),
+    ],
+  );
+}

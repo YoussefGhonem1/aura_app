@@ -7,4 +7,7 @@ class Routes {
   static const String verifyEmail = '/verify_email';
   static const String createNewPassword = '/create_new_password';
   static const String successResetPassword = '/success_reset_password';
+  static const String noInternetScreen = '/no_internet_screen';
+  static const String layoutScreen = '/layout_screen';
+  static const String StockDetailsScreen = '/stock_details_screen';
 }
