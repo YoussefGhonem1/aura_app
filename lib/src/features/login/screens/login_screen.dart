@@ -98,7 +98,12 @@ class _LoginScreenState extends State<LoginScreen> {
               ),
             ),
             const SizedBox(height: 25),
-            AuraButton(title: "Sign in", onPressed: () {}),
+            AuraButton(
+              title: "Sign in",
+              onPressed: () {
+                Navigator.pushReplacementNamed(context, Routes.layoutScreen);
+              },
+            ),
 
             const SizedBox(height: 20),
             AuthOptionWidget(
