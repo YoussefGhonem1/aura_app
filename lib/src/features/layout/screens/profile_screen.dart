@@ -1,5 +1,6 @@
 import 'package:aura_app/src/features/layout/widgets/profile_card.dart';
 import 'package:aura_app/src/features/layout/widgets/setting_item.dart';
+import 'package:aura_app/src/shared/routing/route_strings.dart';
 import 'package:flutter/material.dart';
 import 'package:aura_app/src/shared/themes/app_colors.dart';
 
@@ -11,53 +12,54 @@ class ProfileScreen extends StatefulWidget {
 }
 
 class _ProfileScreenState extends State<ProfileScreen> {
-  final List<Map<String, dynamic>> settingsItems = [
-    {
-      'title': 'Personal Info',
-      'icon': Icons.person_outline_rounded,
-      'subtitle': 'Manage your personal information',
-      'onTap': () => print('Navigate to Personal Info'),
-    },
-    {
-      'title': 'Analyzes',
-      'icon': Icons.analytics_outlined,
-      'subtitle': 'View your analysis history',
-      'onTap': () => print('Navigate to Analyzes'),
-    },
-    {
-      'title': 'Transaction History',
-      'icon': Icons.history_rounded,
-      'subtitle': 'Track all your transactions',
-      'onTap': () => print('Navigate to Transaction History'),
-    },
-    {
-      'title': 'Investment Preferences',
-      'icon': Icons.tune_rounded,
-      'subtitle': 'Customize your investment settings',
-      'onTap': () => print('Navigate to Investment Preferences'),
-    },
-    {
-      'title': 'Notification Settings',
-      'icon': Icons.notifications_outlined,
-      'subtitle': 'Manage your notification preferences',
-      'onTap': () => print('Navigate to Notification Settings'),
-    },
-    {
-      'title': 'Legal & Support',
-      'icon': Icons.description_outlined,
-      'subtitle': 'Terms, privacy, and support',
-      'onTap': () => print('Navigate to Legal & Support'),
-    },
-    {
-      'title': 'Aura AI',
-      'icon': Icons.auto_awesome_rounded,
-      'subtitle': 'Configure AI preferences',
-      'onTap': () => print('Navigate to Aura AI'),
-    },
-  ];
-
   @override
   Widget build(BuildContext context) {
+    final List<Map<String, dynamic>> settingsItems = [
+      {
+        'title': 'Personal Info',
+        'icon': Icons.person_outline_rounded,
+        'subtitle': 'Manage your personal information',
+        'onTap': () => Navigator.pushNamed(context, Routes.personalInfoScreen),
+      },
+      {
+        'title': 'Analyzes',
+        'icon': Icons.analytics_outlined,
+        'subtitle': 'View your analysis history',
+        'onTap': () => Navigator.pushNamed(context, Routes.analysisScreen),
+      },
+      {
+        'title': 'Transaction History',
+        'icon': Icons.history_rounded,
+        'subtitle': 'Track all your transactions',
+        'onTap': () =>
+            Navigator.pushNamed(context, Routes.transactionHistoryScreen),
+      },
+      {
+        'title': 'Investment Preferences',
+        'icon': Icons.tune_rounded,
+        'subtitle': 'Customize your investment settings',
+        'onTap': () =>
+            Navigator.pushNamed(context, Routes.investmentPreferencesScreen),
+      },
+      {
+        'title': 'Smart Automations',
+        'icon': Icons.auto_awesome_rounded,
+        'subtitle': 'Set up automated investment strategies',
+        'onTap': () => Navigator.pushNamed(context, Routes.smartAutomationScreen),
+      },
+      {
+        'title': 'Notification Settings',
+        'icon': Icons.notifications_outlined,
+        'subtitle': 'Manage your notification preferences',
+        'onTap': () => Navigator.pushNamed(context, Routes.notificationSettingsScreen),
+      },
+      {
+        'title': 'Legal & Support',
+        'icon': Icons.description_outlined,
+        'subtitle': 'Terms, privacy, and support',
+        'onTap': () => Navigator.pushNamed(context, Routes.legalSupportScreenEnhanced),
+      },
+    ];
     return Scaffold(
       backgroundColor: AppColors.primaryColor,
       body: SafeArea(

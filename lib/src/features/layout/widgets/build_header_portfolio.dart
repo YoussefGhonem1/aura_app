@@ -1,3 +1,4 @@
+import 'package:aura_app/src/features/layout/widgets/build_header_home.dart';
 import 'package:aura_app/src/shared/themes/app_colors.dart';
 import 'package:flutter/material.dart';
 
@@ -45,35 +46,7 @@ Widget buildHeaderPortfolio(BuildContext context) {
         ],
       ),
       // Notification icon
-      Stack(
-        children: [
-          Container(
-            padding: const EdgeInsets.all(8),
-            decoration: BoxDecoration(
-              color: AppColors.cardColor,
-              borderRadius: BorderRadius.circular(10),
-              border: Border.all(color: Colors.white.withOpacity(0.05)),
-            ),
-            child: const Icon(
-              Icons.notifications_none_rounded,
-              color: Colors.white,
-              size: 20,
-            ),
-          ),
-          Positioned(
-            right: 6,
-            top: 6,
-            child: Container(
-              height: 6,
-              width: 6,
-              decoration: const BoxDecoration(
-                color: AppColors.secondaryColor,
-                shape: BoxShape.circle,
-              ),
-            ),
-          ),
-        ],
-      ),
+      buildNotificationIcon(context),
     ],
   );
 }

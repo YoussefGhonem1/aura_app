@@ -23,13 +23,11 @@ Widget buildCompareBar({
       decoration: BoxDecoration(
         color: AppColors.cardColor,
         borderRadius: BorderRadius.circular(20),
-        border: Border.all(color: AppColors.secondaryColor.withOpacity(0.3)),
+        border: Border.all(color: AppColors.secondaryColor.withOpacity(0.2)),
         boxShadow: [
           BoxShadow(
-            color: Colors.black.withOpacity(0.3),
-            blurRadius: 20,
-            spreadRadius: 2,
-            offset: const Offset(0, 4),
+            color: AppColors.secondaryColor.withOpacity(0.2),
+            blurRadius: 5,
           ),
         ],
       ),

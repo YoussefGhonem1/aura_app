@@ -1,4 +1,6 @@
+import 'package:aura_app/src/shared/routing/route_strings.dart';
 import 'package:aura_app/src/shared/themes/app_colors.dart';
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 
 class TermsAndConditionsWidget extends StatefulWidget {
@@ -47,6 +49,13 @@ class _TermsAndConditionsWidgetState extends State<TermsAndConditionsWidget> {
                     color: AppColors.secondaryColor,
                     fontWeight: FontWeight.w600,
                   ),
+                  recognizer: TapGestureRecognizer()
+                    ..onTap = () {
+                    Navigator.pushNamed(
+                            context,
+                            Routes.termsOfServiceScreenEnhanced,
+                          );
+                    },
                 ),
                 const TextSpan(text: " and "),
                 TextSpan(
@@ -55,6 +64,13 @@ class _TermsAndConditionsWidgetState extends State<TermsAndConditionsWidget> {
                     color: AppColors.secondaryColor,
                     fontWeight: FontWeight.w600,
                   ),
+                  recognizer: TapGestureRecognizer()
+                    ..onTap = () {
+                      Navigator.pushNamed(
+                            context,
+                            Routes.privacyPolicyScreenEnhanced,
+                          );
+                    },
                 ),
                 const TextSpan(text: "."),
               ],

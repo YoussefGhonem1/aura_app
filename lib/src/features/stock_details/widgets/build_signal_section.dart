@@ -1,17 +1,19 @@
 import 'package:aura_app/src/features/stock_details/models/stock_details_model.dart';
+import 'package:aura_app/src/shared/routing/route_strings.dart';
 import 'package:aura_app/src/shared/themes/app_colors.dart';
 import 'package:flutter/material.dart';
 
 Widget auraSignalSection({
   required StockModel stock,
   required Color Function(String) getAuraSignalColor,
+  required BuildContext context,
 }) {
   final Color signalColor = getAuraSignalColor(stock.auraSignal);
   double progress = stock.auraScore / 100;
 
   return Container(
     margin: const EdgeInsets.symmetric(horizontal: 20, vertical: 12),
-    padding: const EdgeInsets.all(20),
+    padding: const EdgeInsets.only(top: 20, left: 20, right: 20, bottom: 10),
     decoration: BoxDecoration(
       color: AppColors.cardColor,
       borderRadius: BorderRadius.circular(24),
@@ -181,6 +183,33 @@ Widget auraSignalSection({
               ),
             ),
           ],
+        ),
+        const SizedBox(height: 10),
+
+        Align(
+          alignment: Alignment.centerRight,
+          child: TextButton.icon(
+            onPressed: () {
+
+                Navigator.pushNamed(
+                  context,
+                  Routes.recommendationReasonScreen,
+                  arguments: stock,
+                );
+            },
+            icon: Icon(Icons.arrow_forward_ios, size: 14, color: signalColor),
+            label: Text(
+              'View full analysis',
+              style: TextStyle(
+                color: signalColor,
+                fontWeight: FontWeight.w600,
+                fontSize: 13,
+              ),
+            ),
+            style: TextButton.styleFrom(
+              padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+            ),
+          ),
         ),
       ],
     ),

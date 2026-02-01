@@ -1,7 +1,8 @@
+import 'package:aura_app/src/features/layout/widgets/build_header_home.dart';
 import 'package:aura_app/src/shared/themes/app_colors.dart';
 import 'package:flutter/material.dart';
 
-Widget buildTopBar() {
+Widget buildTopBar(BuildContext context) {
   return Column(
     crossAxisAlignment: CrossAxisAlignment.start,
     children: [
@@ -22,14 +23,10 @@ Widget buildTopBar() {
             ),
           ),
           const Spacer(),
-          Icon(
-            Icons.notifications_none,
-            color: Colors.white.withOpacity(0.8),
-            size: 24,
-          ),
+          buildNotificationIcon(context),
         ],
       ),
-      const SizedBox(height: 12),
+      const SizedBox(height: 10),
       Text(
         "MARKET ANALYSIS UPDATED 2M AGO",
         style: TextStyle(

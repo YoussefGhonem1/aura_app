@@ -63,6 +63,7 @@ class _AuraTextFieldState extends State<AuraTextField> {
                 key: _tooltipKey,
                 triggerMode: TooltipTriggerMode.manual,
                 verticalOffset: -140,
+                margin: const EdgeInsets.symmetric(horizontal: 20),
                 decoration: BoxDecoration(
                   color: AppColors.cardColor,
                   borderRadius: BorderRadius.circular(12),
@@ -74,7 +75,7 @@ class _AuraTextFieldState extends State<AuraTextField> {
                 ),
                 richMessage: WidgetSpan(
                   child: Padding(
-                    padding: const EdgeInsets.all(8.0),
+                    padding: const EdgeInsets.only(top: 8),
                     child: widget.tooltipContent!,
                   ),
                 ),
