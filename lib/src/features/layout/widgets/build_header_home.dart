@@ -1,3 +1,4 @@
+import 'package:aura_app/src/shared/routing/route_strings.dart';
 import 'package:aura_app/src/shared/themes/app_colors.dart';
 import 'package:flutter/material.dart';
 
@@ -28,7 +29,7 @@ Widget buildHeader(BuildContext context) {
             children: [
               Icon(Icons.search_rounded, color: Colors.white, size: 24),
               const SizedBox(width: 12),
-              buildNotificationIcon(),
+              buildNotificationIcon(context),
             ],
           ),
         ],
@@ -56,29 +57,36 @@ Widget buildHeader(BuildContext context) {
   );
 }
 
-Widget buildNotificationIcon() {
-  return Stack(
-    children: [
-      Container(
-        padding: const EdgeInsets.all(10),
-        child: const Icon(
-          Icons.notifications_none_rounded,
-          color: Colors.white,
-          size: 26,
-        ),
-      ),
-      Positioned(
-        right: 12,
-        top: 12,
-        child: Container(
-          height: 8,
-          width: 8,
-          decoration: const BoxDecoration(
-            color: AppColors.secondaryColor,
-            shape: BoxShape.circle,
+Widget buildNotificationIcon(BuildContext context) {
+  return InkWell(
+    borderRadius: BorderRadius.circular(30),
+    onTap: () {
+Navigator.pushNamed(context, Routes.notificationsScreen);
+    },
+    child: Stack(
+      children: [
+        Container(
+          padding: const EdgeInsets.all(10),
+          child: const Icon(
+            Icons.notifications_none_rounded,
+            color: Colors.white,
+            size: 26,
           ),
         ),
-      ),
-    ],
+        Positioned(
+          right: 12,
+          top: 12,
+          child: Container(
+            height: 8,
+            width: 8,
+            decoration: const BoxDecoration(
+              color: AppColors.secondaryColor,
+              shape: BoxShape.circle,
+            ),
+          ),
+        ),
+      ],
+    ),
   );
 }
+

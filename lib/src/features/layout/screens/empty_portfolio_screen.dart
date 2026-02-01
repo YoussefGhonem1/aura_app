@@ -46,7 +46,7 @@ class EmptyPortfolioScreen extends StatelessWidget {
                     ),
                   ),
                   // Notification icon
-                  buildNotificationIcon(),
+                  buildNotificationIcon(context),
                 ],
               ),
             ),

@@ -38,7 +38,7 @@ class _AuraAIRecommendationScreenState
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              buildTopBar(),
+              buildTopBar(context),
               const SizedBox(height: 24),
               buildMainAICard(context),
               const SizedBox(height: 28),

@@ -307,9 +307,7 @@ class _MainAICardState extends State<MainAICard> with TickerProviderStateMixin {
                             color: Colors.transparent,
                             borderRadius: BorderRadius.circular(12),
                             child: InkWell(
-                              onTap: () {
-                                // Handle view analysis tap
-                              },
+                              onTap: () {},
                               borderRadius: BorderRadius.circular(12),
                               child: Center(
                                 child: Row(
@@ -369,25 +367,20 @@ class _AnimatedBackgroundPainter extends CustomPainter {
 
   @override
   void paint(Canvas canvas, Size size) {
-    // الشبكة تتحرك لليمين باستمرار
     final spacing = 40.0;
     final gridSpeed = 50.0;
 
-    // نستخدم modulo للشبكة فقط
     final offsetX = (animationValue * gridSpeed) % spacing;
     final offsetY = (animationValue * gridSpeed * 0.6) % spacing;
 
-    // خطوط أفقية
     for (double i = -offsetY; i < size.height + spacing * 2; i += spacing) {
       canvas.drawLine(Offset(0, i), Offset(size.width, i), _gridPaint);
     }
 
-    // خطوط عمودية
     for (double i = -offsetX; i < size.width + spacing * 2; i += spacing) {
       canvas.drawLine(Offset(i, 0), Offset(i, size.height), _gridPaint);
     }
 
-    // النقاط - تستخدم نفس المنطق
     final pointSpeed = 10.0;
     final pointOffset = animationValue * pointSpeed;
 
@@ -395,7 +388,6 @@ class _AnimatedBackgroundPainter extends CustomPainter {
       final baseX = (i * 37.0);
       final baseY = (i * 29.0) % size.height;
 
-      // تتحرك لليمين باستمرار
       final x = (baseX + pointOffset * 20) % (size.width * 3);
       final adjustedY = baseY * 0.7;
 
@@ -412,26 +404,22 @@ class _AnimatedBackgroundPainter extends CustomPainter {
       }
     }
 
-    // ******************* التعديل هنا *******************
-    // نرسم خطاً طويلاً جداً يتجاوز حدود الشاشة
     final lineSpeed = 15.0;
     final lineOffset = animationValue * lineSpeed;
 
-    // الخط الرئيسي - نرسمه 3 أضعاف عرض الشاشة
     final path = Path();
     final amplitude = 40.0;
     final frequency = 0.02;
 
-    // نرسم من -width إلى width * 2 (3 أضعاف الشاشة)
     for (double x = -size.width; x < size.width * 2; x += 2) {
-      final adjustedX = x + lineOffset * 10; // نضيف lineOffset بدلاً من نزعه
+      final adjustedX = x + lineOffset * 10;
       final y =
           size.height * 0.3 +
           amplitude * sin(adjustedX * frequency) +
           8 * cos(adjustedX * frequency * 0.7);
 
       if (x == -size.width) {
-        path.moveTo(x + size.width, y); // نضبط الإحداثيات
+        path.moveTo(x + size.width, y);
       } else {
         path.lineTo(x + size.width, y);
       }
@@ -444,10 +432,9 @@ class _AnimatedBackgroundPainter extends CustomPainter {
 
     canvas.drawPath(path, animatedLinePaint);
 
-    // الخط الثاني - نفس الفكرة
     final path2 = Path();
     for (double x = -size.width; x < size.width * 2; x += 2) {
-      final adjustedX = x + lineOffset * 13; // سرعة مختلفة قليلاً
+      final adjustedX = x + lineOffset * 13;
       final y =
           size.height * 0.4 +
           amplitude * 0.7 * sin(adjustedX * frequency * 1.2) +
@@ -467,7 +454,6 @@ class _AnimatedBackgroundPainter extends CustomPainter {
 
     canvas.drawPath(path2, secondLinePaint);
 
-    // الخط الثالث - خط صاعد
     final path3 = Path();
     for (double x = -size.width; x < size.width * 2; x += 2) {
       final adjustedX = x + lineOffset * 7;
@@ -490,9 +476,7 @@ class _AnimatedBackgroundPainter extends CustomPainter {
       ..style = PaintingStyle.stroke;
 
     canvas.drawPath(path3, trendLinePaint);
-    // ******************* نهاية التعديل *******************
 
-    // تأثير تدرج خلفي
     final gradient = Paint()
       ..shader = LinearGradient(
         colors: [

@@ -6,8 +6,8 @@ Widget buildUserProfileCard() {
     child: Column(
       children: [
         Container(
-          width: 70,
-          height: 70,
+          width: 100,
+          height: 100,
           decoration: BoxDecoration(
             shape: BoxShape.circle,
             border: Border.all(

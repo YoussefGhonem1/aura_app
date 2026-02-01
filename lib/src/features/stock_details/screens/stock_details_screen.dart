@@ -191,6 +191,7 @@ class _StockDetailsScreenState extends State<StockDetailsScreen> {
               ),
               SizedBox(height: 22),
               auraSignalSection(
+                context: context,
                 stock: widget.stock,
                 getAuraSignalColor: getAuraSignalColor,
               ),
@@ -204,7 +205,7 @@ class _StockDetailsScreenState extends State<StockDetailsScreen> {
           ),
         ),
       ),
-      bottomNavigationBar: buildBottomActions(widget.stock),
+      bottomNavigationBar: buildBottomActions(widget.stock, context),
     );
   }
 }
