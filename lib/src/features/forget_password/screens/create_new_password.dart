@@ -1,4 +1,5 @@
 import 'package:aura_app/src/features/forget_password/widgets/build_validation_item.dart';
+import 'package:aura_app/src/core/extensions/localization_extension.dart';
 import 'package:aura_app/src/shared/componants/custom_button.dart';
 import 'package:aura_app/src/shared/componants/text_form.dart';
 import 'package:aura_app/src/shared/routing/route_strings.dart';
@@ -34,7 +35,7 @@ class _CreateNewPasswordPageState extends State<CreateNewPasswordPage> {
           onPressed: () => Navigator.pop(context),
         ),
         title: Text(
-          "Create New Password",
+          context.tr('Create New Password', 'إنشاء كلمة مرور جديدة'),
           style: Theme.of(context).textTheme.headlineSmall?.copyWith(
             color: Colors.white,
             fontWeight: FontWeight.bold,
@@ -49,41 +50,68 @@ class _CreateNewPasswordPageState extends State<CreateNewPasswordPage> {
           children: [
             const SizedBox(height: 20),
             Text(
-              "Your new password must be different from previously used passwords.",
+              context.tr(
+                'Your new password must be different from previously used passwords.',
+                'يجب أن تكون كلمة المرور الجديدة مختلفة عن كلمات المرور السابقة.',
+              ),
               textAlign: TextAlign.center,
               style: Theme.of(context).textTheme.bodySmall,
             ),
             const SizedBox(height: 40),
 
             AuraTextField(
-              label: "New Password",
-              hintText: "Enter new password",
+              label: context.tr('New Password', 'كلمة المرور الجديدة'),
+              hintText: context.tr(
+                'Enter new password',
+                'أدخل كلمة المرور الجديدة',
+              ),
               isPassword: true,
               hasError: passwordHasError,
               controller: _passwordController,
               tooltipContent: Column(
                 mainAxisSize: MainAxisSize.min,
                 children: [
-                  buildValidationItem("At least 8 characters", _hasEightChars),
-                  buildValidationItem("One uppercase letter", _hasUppercase),
-                  buildValidationItem("One number", _hasNumber),
+                  buildValidationItem(
+                    context.tr('At least 8 characters', '8 أحرف على الأقل'),
+                    _hasEightChars,
+                  ),
+                  buildValidationItem(
+                    context.tr('One uppercase letter', 'حرف كبير واحد'),
+                    _hasUppercase,
+                  ),
+                  buildValidationItem(
+                    context.tr('One number', 'رقم واحد'),
+                    _hasNumber,
+                  ),
                 ],
               ),
             ),
 
             const SizedBox(height: 30),
             AuraTextField(
-              label: "Confirm Password",
-              hintText: "Re-enter password",
+              label: context.tr('Confirm Password', 'تأكيد كلمة المرور'),
+              hintText: context.tr(
+                'Re-enter password',
+                'أعد إدخال كلمة المرور',
+              ),
               isPassword: true,
               hasError: passwordHasError,
               controller: _confirmPasswordController,
               tooltipContent: Column(
                 mainAxisSize: MainAxisSize.min,
                 children: [
-                  buildValidationItem("At least 8 characters", _hasEightChars),
-                  buildValidationItem("One uppercase letter", _hasUppercase),
-                  buildValidationItem("One number", _hasNumber),
+                  buildValidationItem(
+                    context.tr('At least 8 characters', '8 أحرف على الأقل'),
+                    _hasEightChars,
+                  ),
+                  buildValidationItem(
+                    context.tr('One uppercase letter', 'حرف كبير واحد'),
+                    _hasUppercase,
+                  ),
+                  buildValidationItem(
+                    context.tr('One number', 'رقم واحد'),
+                    _hasNumber,
+                  ),
                 ],
               ),
             ),
@@ -91,7 +119,7 @@ class _CreateNewPasswordPageState extends State<CreateNewPasswordPage> {
             const SizedBox(height: 50),
 
             AuraButton(
-              title: "Reset password",
+              title: context.tr('Reset password', 'إعادة تعيين كلمة المرور'),
               onPressed: () {
                 Navigator.pushReplacementNamed(
                   context,
@@ -122,7 +150,10 @@ class _CreateNewPasswordPageState extends State<CreateNewPasswordPage> {
                     ),
                     const SizedBox(width: 6),
                     Text(
-                      "END-TO-END ENCRYPTED",
+                      context.tr(
+                        'END-TO-END ENCRYPTED',
+                        'تشفير شامل من الطرف للطرف',
+                      ),
                       style: TextStyle(
                         color: Colors.white.withOpacity(0.6),
                         fontSize: 10,

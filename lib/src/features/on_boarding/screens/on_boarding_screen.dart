@@ -1,4 +1,5 @@
 import 'package:aura_app/src/features/on_boarding/models/on_boarding_model.dart';
+import 'package:aura_app/src/core/extensions/localization_extension.dart';
 import 'package:aura_app/src/shared/routing/route_strings.dart';
 import 'package:aura_app/src/shared/themes/app_colors.dart';
 import 'package:flutter/material.dart';
@@ -14,27 +15,33 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
   final PageController _pageController = PageController();
   int _currentPage = 0;
 
-  final List<OnboardingData> _pages = [
+  List<OnboardingData> _pages(BuildContext context) => [
     OnboardingData(
       image: 'assets/images/onboarding1.jpeg',
-      title: 'Smarter ',
-      highlightText: 'Forecasting',
-      description:
-          'Aura uses advanced AI to predict market trends before they happen.',
+      title: context.tr('Smarter ', 'تنبؤ '),
+      highlightText: context.tr('Forecasting', 'أذكى'),
+      description: context.tr(
+        'Aura uses advanced AI to predict market trends before they happen.',
+        'يستخدم Aura ذكاءً اصطناعيًا متقدمًا للتنبؤ باتجاهات السوق قبل حدوثها.',
+      ),
     ),
     OnboardingData(
       image: 'assets/images/onboarding2.png',
-      title: 'Market ',
-      highlightText: 'Pulse',
-      description:
-          'We analyze global sentiment to give you the full story behind the price.',
+      title: context.tr('Market ', 'نبض '),
+      highlightText: context.tr('Pulse', 'السوق'),
+      description: context.tr(
+        'We analyze global sentiment to give you the full story behind the price.',
+        'نحلل معنويات السوق العالمية لنمنحك الصورة الكاملة خلف حركة السعر.',
+      ),
     ),
     OnboardingData(
       image: 'assets/images/onboarding3.jpeg',
-      title: 'Smart ',
-      highlightText: 'Portfolio',
-      description:
-          'Receive real-time buy and sell signals tailored to your risk profile.',
+      title: context.tr('Smart ', 'محفظة '),
+      highlightText: context.tr('Portfolio', 'ذكية'),
+      description: context.tr(
+        'Receive real-time buy and sell signals tailored to your risk profile.',
+        'استقبل إشارات شراء وبيع فورية مصممة حسب مستوى المخاطر لديك.',
+      ),
     ),
   ];
 
@@ -47,17 +54,17 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
             children: [
               const SizedBox(height: 60),
               Opacity(
-                opacity: _currentPage == _pages.length - 1 ? 0.0 : 1.0,
+                opacity: _currentPage == _pages(context).length - 1 ? 0.0 : 1.0,
                 child: AbsorbPointer(
-                  absorbing: _currentPage == _pages.length - 1,
+                  absorbing: _currentPage == _pages(context).length - 1,
                   child: Align(
                     alignment: Alignment.centerRight,
                     child: TextButton(
                       onPressed: () {
-                        _pageController.jumpToPage(_pages.length - 1);
+                        _pageController.jumpToPage(_pages(context).length - 1);
                       },
                       child: Text(
-                        "Skip",
+                        context.tr('Skip', 'تخطي'),
                         style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                           color: AppColors.greyText,
                         ),
@@ -71,9 +78,9 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                   controller: _pageController,
                   onPageChanged: (index) =>
                       setState(() => _currentPage = index),
-                  itemCount: _pages.length,
+                  itemCount: _pages(context).length,
                   itemBuilder: (context, index) =>
-                      _buildPageContent(_pages[index]),
+                      _buildPageContent(_pages(context)[index]),
                 ),
               ),
               _buildBottomControls(),
@@ -149,14 +156,17 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
       children: [
         Row(
           mainAxisAlignment: MainAxisAlignment.center,
-          children: List.generate(_pages.length, (index) => _buildDot(index)),
+          children: List.generate(
+            _pages(context).length,
+            (index) => _buildDot(index),
+          ),
         ),
         const SizedBox(height: 40),
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 30),
           child: ElevatedButton(
             onPressed: () {
-              if (_currentPage < _pages.length - 1) {
+              if (_currentPage < _pages(context).length - 1) {
                 _pageController.nextPage(
                   duration: const Duration(milliseconds: 500),
                   curve: Curves.easeInOut,
@@ -174,7 +184,9 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
               ),
             ),
             child: Text(
-              _currentPage == _pages.length - 1 ? "Get Started" : "Next",
+              _currentPage == _pages(context).length - 1
+                  ? context.tr('Get Started', 'ابدأ الآن')
+                  : context.l10n.next,
               style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
             ),
           ),

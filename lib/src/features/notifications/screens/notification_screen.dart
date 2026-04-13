@@ -1,5 +1,6 @@
 import 'package:aura_app/src/features/notifications/widgets/build_alert_card.dart';
 import 'package:aura_app/src/features/notifications/widgets/build_displayed_card.dart';
+import 'package:aura_app/src/core/extensions/localization_extension.dart';
 import 'package:flutter/material.dart';
 import 'package:aura_app/src/shared/themes/app_colors.dart';
 
@@ -28,8 +29,8 @@ class _NotificationsScreenState extends State<NotificationsScreen> {
               const SizedBox(height: 12),
               _buildTabs(),
               const SizedBox(height: 24),
-              const Text(
-                "TODAY",
+              Text(
+                context.tr('TODAY', 'اليوم'),
                 style: TextStyle(
                   color: AppColors.greyText,
                   fontSize: 12,
@@ -39,8 +40,8 @@ class _NotificationsScreenState extends State<NotificationsScreen> {
               const SizedBox(height: 16),
               _alertsSection(),
               const SizedBox(height: 32),
-              const Text(
-                "YESTERDAY",
+              Text(
+                context.tr('YESTERDAY', 'الأمس'),
                 style: TextStyle(
                   color: AppColors.greyText,
                   fontSize: 12,
@@ -50,10 +51,10 @@ class _NotificationsScreenState extends State<NotificationsScreen> {
               const SizedBox(height: 16),
               _disabledCardsSection(),
               const SizedBox(height: 40),
-              const Center(
+              Center(
                 child: Text(
-                  "End of notifications",
-                  style: TextStyle(color: AppColors.greyText),
+                  context.tr('End of notifications', 'نهاية الإشعارات'),
+                  style: const TextStyle(color: AppColors.greyText),
                 ),
               ),
 
@@ -90,8 +91,8 @@ class _NotificationsScreenState extends State<NotificationsScreen> {
           ),
         ),
       ),
-      title: const Text(
-        "Notifications",
+      title: Text(
+        context.l10n.notifications,
         style: TextStyle(
           color: AppColors.white,
           fontSize: 20,
@@ -101,9 +102,12 @@ class _NotificationsScreenState extends State<NotificationsScreen> {
       actions: [
         TextButton(
           onPressed: () {},
-          child: const Text(
-            "Mark all read  ",
-            style: TextStyle(color: AppColors.secondaryColor, fontSize: 14),
+          child: Text(
+            context.tr('Mark all read', 'تحديد الكل كمقروء'),
+            style: const TextStyle(
+              color: AppColors.secondaryColor,
+              fontSize: 14,
+            ),
           ),
         ),
       ],
@@ -117,8 +121,10 @@ class _NotificationsScreenState extends State<NotificationsScreen> {
           symbol: "TSLA",
           badge: "STRONG BUY",
           badgeColor: Colors.green,
-          description:
-              "AI detects a bullish breakout pattern. Volume spike confirmed.",
+          description: context.tr(
+            'AI detects a bullish breakout pattern. Volume spike confirmed.',
+            'اكتشف الذكاء الاصطناعي نمط اختراق صاعد. تم تأكيد ارتفاع حجم التداول.',
+          ),
           match: "98% Match",
           time: "2m ago",
           icon: Icons.trending_up,
@@ -128,8 +134,10 @@ class _NotificationsScreenState extends State<NotificationsScreen> {
           symbol: "NVDA",
           badge: "STOPLOSS",
           badgeColor: Colors.red,
-          description:
-              "Price dropped below \$450 support level. Recommended exit.",
+          description: context.tr(
+            'Price dropped below \$450 support level. Recommended exit.',
+            'انخفض السعر أسفل مستوى الدعم 450 دولارًا. يوصى بالخروج.',
+          ),
           match: "92% Match",
           time: "1h ago",
           icon: Icons.trending_down,
@@ -139,7 +147,10 @@ class _NotificationsScreenState extends State<NotificationsScreen> {
           symbol: "AMD",
           badge: "VOLATILE",
           badgeColor: Colors.orange,
-          description: "Unusual options activity detected...",
+          description: context.tr(
+            'Unusual options activity detected...',
+            'تم اكتشاف نشاط غير معتاد في عقود الخيارات...',
+          ),
           match: null,
           time: "4h ago",
           icon: Icons.notifications_active,
@@ -153,10 +164,19 @@ class _NotificationsScreenState extends State<NotificationsScreen> {
       children: [
         disabledCard(
           "SPY",
-          "Market closed with bearish sentiment. Moving averages crossing.",
+          context.tr(
+            'Market closed with bearish sentiment. Moving averages crossing.',
+            'أغلق السوق بمشاعر هبوطية مع تقاطع المتوسطات المتحركة.',
+          ),
         ),
         SizedBox(height: 16),
-        disabledCard("Watchlist", "Weekly report available for your AI..."),
+        disabledCard(
+          context.tr('Watchlist', 'قائمة المتابعة'),
+          context.tr(
+            'Weekly report available for your AI...',
+            'التقرير الأسبوعي متاح لذكائك الاصطناعي...',
+          ),
+        ),
       ],
     );
   }
@@ -169,7 +189,10 @@ class _NotificationsScreenState extends State<NotificationsScreen> {
         borderRadius: BorderRadius.circular(12),
       ),
       child: Row(
-        children: [_tabItem("AI Alerts", 0), _tabItem("Market News", 1)],
+        children: [
+          _tabItem(context.tr('AI Alerts', 'تنبيهات الذكاء الاصطناعي'), 0),
+          _tabItem(context.tr('Market News', 'أخبار السوق'), 1),
+        ],
       ),
     );
   }

@@ -1,6 +1,7 @@
 import 'package:aura_app/src/features/legal_support/widgets/build_menu_item.dart';
 import 'package:aura_app/src/features/legal_support/widgets/build_version_card.dart';
 import 'package:aura_app/src/features/legal_support/widgets/buils_card_section.dart';
+import 'package:aura_app/src/core/extensions/localization_extension.dart';
 import 'package:aura_app/src/features/smart_automation/widgets/build_appbar.dart';
 import 'package:aura_app/src/shared/routing/route_strings.dart';
 import 'package:flutter/material.dart';
@@ -11,7 +12,10 @@ class LegalSupportScreenEnhanced extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: buildAppBar(context, "Legal & Support"),
+      appBar: buildAppBar(
+        context,
+        context.tr('Legal & Support', 'القانوني والدعم'),
+      ),
 
       body: SingleChildScrollView(
         child: Column(
@@ -22,10 +26,13 @@ class LegalSupportScreenEnhanced extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   buildSectionCard(
-                    title: "LEGAL",
+                    title: context.tr('LEGAL', 'قانوني'),
                     items: [
                       buildMenuItemWithIcon(
-                        title: "Disclaimer & AI Ethics",
+                        title: context.tr(
+                          'Disclaimer & AI Ethics',
+                          'إخلاء المسؤولية وأخلاقيات الذكاء الاصطناعي',
+                        ),
                         icon: Icons.gavel_rounded,
                         onTap: () {
                           Navigator.pushNamed(
@@ -35,7 +42,7 @@ class LegalSupportScreenEnhanced extends StatelessWidget {
                         },
                       ),
                       buildMenuItemWithIcon(
-                        title: "Terms of Service",
+                        title: context.l10n.termsOfService,
                         icon: Icons.description_rounded,
                         onTap: () {
                           Navigator.pushNamed(
@@ -45,7 +52,7 @@ class LegalSupportScreenEnhanced extends StatelessWidget {
                         },
                       ),
                       buildMenuItemWithIcon(
-                        title: "Privacy Policy",
+                        title: context.l10n.privacyPolicy,
                         icon: Icons.lock_rounded,
                         onTap: () {
                           Navigator.pushNamed(
@@ -61,10 +68,10 @@ class LegalSupportScreenEnhanced extends StatelessWidget {
 
                   // SUPPORT Section
                   buildSectionCard(
-                    title: "SUPPORT",
+                    title: context.tr('SUPPORT', 'الدعم'),
                     items: [
                       buildMenuItemWithIcon(
-                        title: "Help Center",
+                        title: context.l10n.helpCenter,
                         icon: Icons.help_center_rounded,
                         onTap: () {
                           Navigator.pushNamed(
@@ -74,7 +81,7 @@ class LegalSupportScreenEnhanced extends StatelessWidget {
                         },
                       ),
                       buildMenuItemWithIcon(
-                        title: "Contact Us",
+                        title: context.l10n.contactUs,
                         icon: Icons.mail_rounded,
                         onTap: () {
                           Navigator.pushNamed(
@@ -84,7 +91,7 @@ class LegalSupportScreenEnhanced extends StatelessWidget {
                         },
                       ),
                       buildMenuItemWithIcon(
-                        title: "Report a Bug",
+                        title: context.l10n.reportBug,
                         icon: Icons.bug_report_rounded,
                         onTap: () {
                           Navigator.pushNamed(

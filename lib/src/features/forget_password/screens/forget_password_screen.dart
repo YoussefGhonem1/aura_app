@@ -1,4 +1,5 @@
 import 'package:aura_app/src/features/forget_password/widgets/animated_icon.dart';
+import 'package:aura_app/src/core/extensions/localization_extension.dart';
 import 'package:aura_app/src/shared/componants/auth_option.dart';
 import 'package:aura_app/src/shared/componants/custom_button.dart';
 import 'package:aura_app/src/shared/componants/text_form.dart';
@@ -32,28 +33,31 @@ class ForgotPasswordScreen extends StatelessWidget {
             const SizedBox(height: 40),
 
             Text(
-              "Forgot Password?",
+              context.l10n.forgetPassword,
               style: Theme.of(context).textTheme.headlineMedium,
             ),
             const SizedBox(height: 5),
             Text(
-              "Enter your email address and we will send you a link to reset your password.",
+              context.tr(
+                'Enter your email address and we will send you a link to reset your password.',
+                'أدخل بريدك الإلكتروني وسنرسل لك رابطًا لإعادة تعيين كلمة المرور.',
+              ),
               textAlign: TextAlign.center,
               style: Theme.of(context).textTheme.bodySmall,
             ),
 
             const SizedBox(height: 40),
 
-            const AuraTextField(
-              label: "Email Address",
-              hintText: "name@example.com",
+            AuraTextField(
+              label: context.tr('Email Address', 'البريد الإلكتروني'),
+              hintText: context.tr('name@example.com', 'name@example.com'),
               suffixIcon: Icons.email_outlined,
             ),
 
             const SizedBox(height: 30),
 
             AuraButton(
-              title: "Send reset code",
+              title: context.tr('Send reset code', 'إرسال رمز التعيين'),
               onPressed: () {
                 Navigator.pushNamed(context, Routes.verifyEmail);
               },
@@ -62,8 +66,11 @@ class ForgotPasswordScreen extends StatelessWidget {
             const Spacer(),
 
             AuthOptionWidget(
-              mainText: "Remember your password?",
-              actionText: "Log in",
+              mainText: context.tr(
+                'Remember your password?',
+                'تتذكر كلمة المرور؟',
+              ),
+              actionText: context.tr('Log in', 'تسجيل الدخول'),
               onTap: () {
                 Navigator.pop(context);
               },

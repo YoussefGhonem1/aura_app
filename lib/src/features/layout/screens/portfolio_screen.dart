@@ -4,6 +4,7 @@ import 'package:aura_app/src/features/layout/widgets/build_header_portfolio.dart
 import 'package:aura_app/src/features/layout/widgets/build_holding_list_portfolio.dart';
 import 'package:aura_app/src/features/layout/widgets/build_section_title.dart';
 import 'package:aura_app/src/features/layout/widgets/build_total_net_card.dart';
+import 'package:aura_app/src/core/extensions/localization_extension.dart';
 import 'package:aura_app/src/shared/themes/app_colors.dart';
 import 'package:flutter/material.dart';
 
@@ -29,7 +30,10 @@ class PortfolioScreen extends StatelessWidget {
               const SizedBox(height: 32),
               buildAssetAllocationChart(context),
               const SizedBox(height: 32),
-              buildSectionTitle(context, "Current Holdings"),
+              buildSectionTitle(
+                context,
+                context.tr('Current Holdings', 'الحيازات الحالية'),
+              ),
               const SizedBox(height: 10),
               buildHoldingsList(context),
               const SizedBox(height: 100),

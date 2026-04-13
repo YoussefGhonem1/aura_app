@@ -1,4 +1,5 @@
 import 'package:aura_app/src/features/forget_password/widgets/animated_icon.dart';
+import 'package:aura_app/src/core/extensions/localization_extension.dart';
 import 'package:aura_app/src/shared/componants/custom_button.dart';
 import 'package:aura_app/src/shared/routing/route_strings.dart';
 import 'package:flutter/material.dart';
@@ -23,12 +24,15 @@ class SuccessPasswordScreen extends StatelessWidget {
             const SizedBox(height: 40),
 
             Text(
-              "Password Reset!",
+              context.tr('Password Reset!', 'تمت إعادة تعيين كلمة المرور!'),
               style: Theme.of(context).textTheme.headlineMedium,
             ),
             const SizedBox(height: 16),
             Text(
-              "Your password has been successfully reset. You can now log in to manage your portfolio with Aura AI.",
+              context.tr(
+                'Your password has been successfully reset. You can now log in to manage your portfolio with Aura AI.',
+                'تمت إعادة تعيين كلمة المرور بنجاح. يمكنك الآن تسجيل الدخول لإدارة محفظتك مع Aura AI.',
+              ),
               textAlign: TextAlign.center,
               style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                 color: AppColors.greyText,
@@ -39,7 +43,7 @@ class SuccessPasswordScreen extends StatelessWidget {
             const Spacer(),
 
             AuraButton(
-              title: "Get started",
+              title: context.tr('Get started', 'ابدأ الآن'),
               onPressed: () {
                 Navigator.pushNamedAndRemoveUntil(
                   context,

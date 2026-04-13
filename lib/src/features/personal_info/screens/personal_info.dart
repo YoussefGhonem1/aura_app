@@ -1,4 +1,5 @@
 import 'package:aura_app/src/features/personal_info/widgets/info_field.dart';
+import 'package:aura_app/src/core/extensions/localization_extension.dart';
 import 'package:aura_app/src/features/smart_automation/widgets/build_appbar.dart';
 import 'package:aura_app/src/shared/themes/app_colors.dart';
 import 'package:flutter/material.dart';
@@ -9,16 +10,16 @@ class PersonalInfoScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: buildAppBar(context, "Personal Info"),
+      appBar: buildAppBar(context, context.l10n.personalInfo),
       body: const SingleChildScrollView(
         padding: EdgeInsets.all(16),
         child: PersonalInfoContent(),
       ),
-      bottomNavigationBar: _buildBottomButton(),
+      bottomNavigationBar: _buildBottomButton(context),
     );
   }
 
-  static Widget _buildBottomButton() {
+  static Widget _buildBottomButton(BuildContext context) {
     return Container(
       padding: const EdgeInsets.all(16),
       color: AppColors.primaryColor,
@@ -31,19 +32,23 @@ class PersonalInfoScreen extends StatelessWidget {
             borderRadius: BorderRadius.circular(12),
           ),
         ),
-        child: const Row(
+        child: Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Text(
-              "Save Changes",
-              style: TextStyle(
+              context.tr('Save Changes', 'حفظ التغييرات'),
+              style: const TextStyle(
                 color: AppColors.primaryColor,
                 fontSize: 16,
                 fontWeight: FontWeight.bold,
               ),
             ),
-            SizedBox(width: 8),
-            Icon(Icons.arrow_forward, color: AppColors.primaryColor, size: 18),
+            const SizedBox(width: 8),
+            const Icon(
+              Icons.arrow_forward,
+              color: AppColors.primaryColor,
+              size: 18,
+            ),
           ],
         ),
       ),
@@ -144,9 +149,9 @@ class ProfilePhotoSection extends StatelessWidget {
         /// Change Photo Button
         TextButton(
           onPressed: onChangePhoto,
-          child: const Text(
-            "Change Photo",
-            style: TextStyle(
+          child: Text(
+            context.tr('Change Photo', 'تغيير الصورة'),
+            style: const TextStyle(
               color: AppColors.secondaryColor,
               fontSize: 16,
               fontWeight: FontWeight.w600,
@@ -166,13 +171,25 @@ class PersonalInfoForm extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        InfoField(label: "Full Name", value: "Youssef Ghonem"),
+        InfoField(
+          label: context.tr('Full Name', 'الاسم الكامل'),
+          value: 'Youssef Ghonem',
+        ),
         const SizedBox(height: 20),
-        InfoField(label: "Email Address", value: "youssef.ahmed@example.com"),
+        InfoField(
+          label: context.tr('Email Address', 'البريد الإلكتروني'),
+          value: 'youssef.ahmed@example.com',
+        ),
         const SizedBox(height: 20),
-        InfoField(label: "Phone Number", value: "+20 1014395851"),
+        InfoField(
+          label: context.tr('Phone Number', 'رقم الهاتف'),
+          value: '+20 1014395851',
+        ),
         const SizedBox(height: 20),
-        InfoField(label: "Country / Region", value: "Egypt"),
+        InfoField(
+          label: context.tr('Country / Region', 'الدولة / المنطقة'),
+          value: context.tr('Egypt', 'مصر'),
+        ),
       ],
     );
   }

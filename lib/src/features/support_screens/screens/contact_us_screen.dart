@@ -1,4 +1,5 @@
 import 'package:aura_app/src/features/smart_automation/widgets/build_appbar.dart';
+import 'package:aura_app/src/core/extensions/localization_extension.dart';
 import 'package:aura_app/src/shared/themes/app_colors.dart';
 import 'package:flutter/material.dart';
 
@@ -9,7 +10,7 @@ class ContactUsScreenEnhanced extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: AppColors.primaryColor,
-      appBar: buildAppBar(context, "Contact Us"),
+      appBar: buildAppBar(context, context.l10n.contactUs),
       body: SingleChildScrollView(
         child: Column(
           children: [
@@ -44,8 +45,8 @@ class ContactUsScreenEnhanced extends StatelessWidget {
                     ),
                   ),
                   const SizedBox(height: 20),
-                  const Text(
-                    "How can we help you?",
+                  Text(
+                    context.tr('How can we help you?', 'كيف يمكننا مساعدتك؟'),
                     style: TextStyle(
                       color: AppColors.white,
                       fontSize: 28,
@@ -54,8 +55,11 @@ class ContactUsScreenEnhanced extends StatelessWidget {
                     textAlign: TextAlign.center,
                   ),
                   const SizedBox(height: 12),
-                  const Text(
-                    "Choose your preferred channel to get in touch with our team.",
+                  Text(
+                    context.tr(
+                      'Choose your preferred channel to get in touch with our team.',
+                      'اختر القناة المناسبة للتواصل مع فريقنا.',
+                    ),
                     style: TextStyle(
                       color: AppColors.greyText,
                       fontSize: 16,
@@ -77,22 +81,25 @@ class ContactUsScreenEnhanced extends StatelessWidget {
                     icon: Icons.chat_bubble_rounded,
                     iconBgColor: Colors.green.withOpacity(0.2),
                     iconColor: Colors.green,
-                    title: "Live Chat",
-                    subtitle: "Chat with our experts",
+                    title: context.tr('Live Chat', 'دردشة مباشرة'),
+                    subtitle: context.tr(
+                      'Chat with our experts',
+                      'تحدث مع خبرائنا',
+                    ),
                     details: [
                       _buildDetailItem(
                         icon: Icons.schedule_rounded,
-                        text: "< 2 MINS",
+                        text: context.tr('< 2 MINS', 'أقل من دقيقتين'),
                         color: AppColors.greyText,
                       ),
                       _buildDetailItem(
                         icon: Icons.circle,
-                        text: "Online",
+                        text: context.tr('Online', 'متصل'),
                         color: Colors.green,
                         isStatus: true,
                       ),
                     ],
-                    buttonText: "Start Chat",
+                    buttonText: context.tr('Start Chat', 'ابدأ الدردشة'),
                     buttonColor: Colors.green,
                     onTap: () {
                       // Open live chat
@@ -105,16 +112,16 @@ class ContactUsScreenEnhanced extends StatelessWidget {
                     icon: Icons.email_rounded,
                     iconBgColor: Colors.blue.withOpacity(0.2),
                     iconColor: Colors.blue,
-                    title: "Email Support",
+                    title: context.tr('Email Support', 'الدعم عبر البريد'),
                     subtitle: "support@aura.app",
                     details: [
                       _buildDetailItem(
                         icon: Icons.schedule_rounded,
-                        text: "24 hours",
+                        text: context.tr('24 hours', '24 ساعة'),
                         color: AppColors.greyText,
                       ),
                     ],
-                    buttonText: "Send Email",
+                    buttonText: context.tr('Send Email', 'إرسال بريد'),
                     buttonColor: Colors.blue,
                     onTap: () {
                       // Open email composer
@@ -127,16 +134,19 @@ class ContactUsScreenEnhanced extends StatelessWidget {
                     icon: Icons.public_rounded,
                     iconBgColor: Colors.purple.withOpacity(0.2),
                     iconColor: Colors.purple,
-                    title: "Social Media",
-                    subtitle: "@aura_app on Twitter/X",
+                    title: context.tr('Social Media', 'وسائل التواصل'),
+                    subtitle: context.tr(
+                      '@aura_app on Twitter/X',
+                      '@aura_app على تويتر/X',
+                    ),
                     details: [
                       _buildDetailItem(
                         icon: Icons.schedule_rounded,
-                        text: "4 hours",
+                        text: context.tr('4 hours', '4 ساعات'),
                         color: AppColors.greyText,
                       ),
                     ],
-                    buttonText: "Follow Us",
+                    buttonText: context.tr('Follow Us', 'تابعنا'),
                     buttonColor: Colors.purple,
                     onTap: () {
                       // Open social media
@@ -149,10 +159,16 @@ class ContactUsScreenEnhanced extends StatelessWidget {
                     icon: Icons.help_center_rounded,
                     iconBgColor: AppColors.secondaryColor.withOpacity(0.2),
                     iconColor: AppColors.secondaryColor,
-                    title: "Help Center",
-                    subtitle: "Browse common FAQs",
+                    title: context.l10n.helpCenter,
+                    subtitle: context.tr(
+                      'Browse common FAQs',
+                      'تصفح الأسئلة الشائعة',
+                    ),
                     details: const [],
-                    buttonText: "Browse FAQs",
+                    buttonText: context.tr(
+                      'Browse FAQs',
+                      'تصفح الأسئلة الشائعة',
+                    ),
                     buttonColor: AppColors.secondaryColor,
                     onTap: () {
                       // Open help center
@@ -199,8 +215,8 @@ class ContactUsScreenEnhanced extends StatelessWidget {
                         ),
                       ),
                       const SizedBox(width: 12),
-                      const Text(
-                        "OTHER WAYS TO CONTACT",
+                      Text(
+                        context.tr('OTHER WAYS TO CONTACT', 'طرق تواصل أخرى'),
                         style: TextStyle(
                           color: AppColors.greyText,
                           fontSize: 12,
@@ -215,8 +231,11 @@ class ContactUsScreenEnhanced extends StatelessWidget {
                   // Phone Number
                   _buildContactMethod(
                     icon: Icons.phone_in_talk_rounded,
-                    title: "Call us",
-                    description: "Speak directly with our support team",
+                    title: context.tr('Call us', 'اتصل بنا'),
+                    description: context.tr(
+                      'Speak directly with our support team',
+                      'تحدث مباشرة مع فريق الدعم',
+                    ),
                     actionText: "+1 (555) 123-4567",
                     actionIcon: Icons.phone_rounded,
                     onTap: () {
@@ -235,8 +254,11 @@ class ContactUsScreenEnhanced extends StatelessWidget {
                   // Office Address
                   _buildContactMethod(
                     icon: Icons.business_rounded,
-                    title: "Office",
-                    description: "Visit our headquarters",
+                    title: context.tr('Office', 'المكتب'),
+                    description: context.tr(
+                      'Visit our headquarters',
+                      'زر مقرنا الرئيسي',
+                    ),
                     actionText: "123 Tech Street, San ",
                     actionIcon: Icons.map_rounded,
                     onTap: () {
@@ -255,9 +277,15 @@ class ContactUsScreenEnhanced extends StatelessWidget {
                   // Business Hours
                   _buildContactMethod(
                     icon: Icons.access_time_rounded,
-                    title: "Business Hours",
-                    description: "When we're available",
-                    actionText: "Mon-Fri: 9AM-6PM PST",
+                    title: context.tr('Business Hours', 'ساعات العمل'),
+                    description: context.tr(
+                      'When we\'re available',
+                      'مواعيد التوفر',
+                    ),
+                    actionText: context.tr(
+                      'Mon-Fri: 9AM-6PM PST',
+                      'الإثنين-الجمعة: 9ص-6م',
+                    ),
                     actionIcon: Icons.schedule_rounded,
                     onTap: () {},
                   ),
@@ -271,7 +299,10 @@ class ContactUsScreenEnhanced extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.all(16),
               child: Text(
-                "We typically respond within 24 hours on business days",
+                context.tr(
+                  'We typically respond within 24 hours on business days',
+                  'نرد عادة خلال 24 ساعة في أيام العمل',
+                ),
                 style: TextStyle(
                   color: AppColors.greyText.withOpacity(0.7),
                   fontSize: 12,

@@ -1,6 +1,7 @@
 import 'package:aura_app/src/features/smart_automation/widgets/build_appbar.dart';
 import 'package:aura_app/src/features/smart_automation/widgets/build_order_value_card.dart';
 import 'package:aura_app/src/features/smart_automation/widgets/build_set_automation_button.dart';
+import 'package:aura_app/src/core/extensions/localization_extension.dart';
 import 'package:aura_app/src/shared/themes/app_colors.dart';
 import 'package:flutter/material.dart';
 
@@ -29,7 +30,7 @@ class _SmartAutomationScreenState extends State<SmartAutomationScreen> {
     return Scaffold(
       appBar: buildAppBar(
         context,
-        "Smart Automation",
+        context.tr('Smart Automation', 'الأتمتة الذكية'),
         actions: [
           IconButton(
             onPressed: () {},
@@ -46,19 +47,19 @@ class _SmartAutomationScreenState extends State<SmartAutomationScreen> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            _label("Stock Selector"),
+            _label(context.tr('Stock Selector', 'اختيار السهم')),
             _dropdown(),
 
             const SizedBox(height: 24),
-            _label("Action"),
+            _label(context.tr('Action', 'الإجراء')),
             _actionToggle(),
 
             const SizedBox(height: 24),
-            _label("Target Price"),
+            _label(context.tr('Target Price', 'السعر المستهدف')),
             _priceInput(),
 
             const SizedBox(height: 24),
-            _label("Quantity"),
+            _label(context.tr('Quantity', 'الكمية')),
             _quantityInput(),
 
             const SizedBox(height: 24),
@@ -68,9 +69,12 @@ class _SmartAutomationScreenState extends State<SmartAutomationScreen> {
             setAutomationButton(),
 
             const SizedBox(height: 16),
-            const Text(
-              "By setting this automation, Aura AI will monitor market conditions to execute your order at the target price.",
-              style: TextStyle(
+            Text(
+              context.tr(
+                'By setting this automation, Aura AI will monitor market conditions to execute your order at the target price.',
+                'عند ضبط هذه الأتمتة، سيقوم Aura AI بمراقبة ظروف السوق لتنفيذ أمرك عند السعر المستهدف.',
+              ),
+              style: const TextStyle(
                 color: AppColors.greyText,
                 fontSize: 12,
                 height: 1.4,
@@ -209,15 +213,15 @@ class _SmartAutomationScreenState extends State<SmartAutomationScreen> {
   Widget _quantityInput() {
     return _inputField(
       controller: _quantityController,
-      hint: "Shares",
+      hint: context.tr('Shares', 'أسهم'),
       suffixWidget: GestureDetector(
         onTap: () => setState(() => _quantityController.text = "100"),
         child: Column(
           children: [
             SizedBox(height: 12),
-            const Text(
-              "MAX",
-              style: TextStyle(
+            Text(
+              context.tr('MAX', 'الحد الأقصى'),
+              style: const TextStyle(
                 color: AppColors.secondaryColor,
                 fontWeight: FontWeight.bold,
               ),

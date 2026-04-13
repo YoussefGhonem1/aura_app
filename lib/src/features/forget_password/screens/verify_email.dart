@@ -1,4 +1,5 @@
 import 'package:aura_app/src/features/forget_password/widgets/animated_icon.dart';
+import 'package:aura_app/src/core/extensions/localization_extension.dart';
 import 'package:aura_app/src/shared/componants/custom_button.dart';
 import 'package:aura_app/src/shared/routing/route_strings.dart';
 import 'package:flutter/material.dart';
@@ -54,7 +55,7 @@ class _VerifyEmailScreenState extends State<VerifyEmailScreen> {
 
               const SizedBox(height: 40),
               Text(
-                "Verify Email",
+                context.tr('Verify Email', 'تأكيد البريد الإلكتروني'),
                 style: Theme.of(context).textTheme.headlineMedium,
               ),
               const SizedBox(height: 5),
@@ -65,7 +66,12 @@ class _VerifyEmailScreenState extends State<VerifyEmailScreen> {
                     context,
                   ).textTheme.bodyMedium?.copyWith(color: AppColors.greyText),
                   children: [
-                    const TextSpan(text: "Please enter the code sent to \n"),
+                    TextSpan(
+                      text: context.tr(
+                        'Please enter the code sent to \n',
+                        'يرجى إدخال الرمز المرسل إلى\n',
+                      ),
+                    ),
                     TextSpan(
                       text: "name*******@aura.ai",
                       style: const TextStyle(
@@ -87,7 +93,7 @@ class _VerifyEmailScreenState extends State<VerifyEmailScreen> {
               const SizedBox(height: 30),
 
               Text(
-                "Resend code in 00:59",
+                context.tr('Resend code in 00:59', 'إعادة الإرسال خلال 00:59'),
                 style: TextStyle(
                   color: AppColors.secondaryColor,
                   fontWeight: FontWeight.w500,
@@ -96,7 +102,7 @@ class _VerifyEmailScreenState extends State<VerifyEmailScreen> {
 
               const SizedBox(height: 40),
               AuraButton(
-                title: "Verify",
+                title: context.tr('Verify', 'تأكيد'),
                 onPressed: () {
                   Navigator.pushNamed(context, Routes.createNewPassword);
                 },

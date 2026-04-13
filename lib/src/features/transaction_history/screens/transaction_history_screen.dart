@@ -1,4 +1,5 @@
 import 'package:aura_app/src/features/smart_automation/widgets/build_appbar.dart';
+import 'package:aura_app/src/core/extensions/localization_extension.dart';
 import 'package:aura_app/src/features/transaction_history/widgets/build_transaction_item.dart';
 import 'package:aura_app/src/shared/themes/app_colors.dart';
 import 'package:flutter/material.dart';
@@ -10,30 +11,33 @@ class TransactionHistoryScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: AppColors.primaryColor,
-      appBar: buildAppBar(context, "Transaction History"),
+      appBar: buildAppBar(
+        context,
+        context.tr('Transaction History', 'سجل المعاملات'),
+      ),
       body: SingleChildScrollView(
         child: Column(
           children: [
-            _buildFilterTabs(),
+            _buildFilterTabs(context),
             SizedBox(height: 8),
             // Transaction List
-            _buildTransactionList(),
+            _buildTransactionList(context),
           ],
         ),
       ),
     );
   }
 
-  Widget _buildFilterTabs() {
+  Widget _buildFilterTabs(BuildContext context) {
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.start,
         children: [
-          _buildFilterTab("All", isSelected: true),
-          _buildFilterTab("Buy"),
-          _buildFilterTab("Sell"),
-          _buildFilterTab("Pending"),
+          _buildFilterTab(context.tr('All', 'الكل'), isSelected: true),
+          _buildFilterTab(context.tr('Buy', 'شراء')),
+          _buildFilterTab(context.tr('Sell', 'بيع')),
+          _buildFilterTab(context.tr('Pending', 'قيد الانتظار')),
         ],
       ),
     );
@@ -64,13 +68,13 @@ class TransactionHistoryScreen extends StatelessWidget {
     );
   }
 
-  Widget _buildTransactionList() {
+  Widget _buildTransactionList(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 16),
       child: Column(
         children: [
           _buildMonthSection(
-            month: "OCTOBER 2023",
+            month: context.tr('OCTOBER 2023', 'أكتوبر 2023'),
             transactions: [
               buildTransactionItem(
                 symbol: "AAPL",
@@ -113,7 +117,7 @@ class TransactionHistoryScreen extends StatelessWidget {
 
           // SEPTEMBER 2023 Section
           _buildMonthSection(
-            month: "SEPTEMBER 2023",
+            month: context.tr('SEPTEMBER 2023', 'سبتمبر 2023'),
             transactions: [
               buildTransactionItem(
                 symbol: "MSFT",

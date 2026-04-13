@@ -1,7 +1,8 @@
 import 'package:aura_app/src/shared/themes/app_colors.dart';
+import 'package:aura_app/src/core/extensions/localization_extension.dart';
 import 'package:flutter/material.dart';
 
-Widget buildSearchBar() {
+Widget buildSearchBar(BuildContext context) {
   return Container(
     height: 52,
     decoration: BoxDecoration(
@@ -32,7 +33,10 @@ Widget buildSearchBar() {
           size: 22,
         ),
 
-        hintText: "Search stocks, indices, symbols...",
+        hintText: context.tr(
+          'Search stocks, indices, symbols...',
+          'ابحث عن الأسهم والمؤشرات والرموز...',
+        ),
         hintStyle: TextStyle(
           color: AppColors.greyText.withOpacity(0.45),
           fontSize: 14,

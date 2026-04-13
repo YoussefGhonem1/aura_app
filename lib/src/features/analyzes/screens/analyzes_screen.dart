@@ -1,6 +1,7 @@
 import 'package:aura_app/src/features/analyzes/widgets/build_ai_analysis_card.dart';
 import 'package:aura_app/src/features/analyzes/widgets/build_sector_item.dart';
 import 'package:aura_app/src/features/analyzes/widgets/build_sentiment_gauge.dart';
+import 'package:aura_app/src/core/extensions/localization_extension.dart';
 import 'package:aura_app/src/features/smart_automation/widgets/build_appbar.dart';
 import 'package:aura_app/src/shared/themes/app_colors.dart';
 import 'package:flutter/material.dart';
@@ -14,7 +15,7 @@ class AnalyzesScreen extends StatelessWidget {
       backgroundColor: AppColors.primaryColor,
       appBar: buildAppBar(
         context,
-        "Analyzes",
+        context.l10n.analyzes,
         actions: [
           IconButton(
             onPressed: () {},
@@ -27,32 +28,32 @@ class AnalyzesScreen extends StatelessWidget {
         padding: const EdgeInsets.all(16),
         child: Column(
           children: [
-            sentimentGauge(),
+            sentimentGauge(context),
             const SizedBox(height: 24),
-            aiAnalysisCard(),
+            aiAnalysisCard(context),
             const SizedBox(height: 24),
-            _sectorHeader(),
+            _sectorHeader(context),
             const SizedBox(height: 12),
             sectorItem(
               icon: Icons.computer,
-              title: "Technology",
-              status: "Very Bullish",
+              title: context.tr('Technology', 'التقنية'),
+              status: context.tr('Very Bullish', 'صاعد جدًا'),
               value: 0.8,
               color: AppColors.secondaryColor,
             ),
             const SizedBox(height: 12),
             sectorItem(
               icon: Icons.flash_on,
-              title: "Energy",
-              status: "Neutral",
+              title: context.tr('Energy', 'الطاقة'),
+              status: context.tr('Neutral', 'محايد'),
               value: 0.45,
               color: Colors.purpleAccent,
             ),
             const SizedBox(height: 12),
             sectorItem(
               icon: Icons.account_balance,
-              title: "Finance",
-              status: "Cautious",
+              title: context.tr('Finance', 'المالية'),
+              status: context.tr('Cautious', 'حذر'),
               value: 0.3,
               color: Colors.grey,
             ),
@@ -62,21 +63,21 @@ class AnalyzesScreen extends StatelessWidget {
     );
   }
 
-  Widget _sectorHeader() {
+  Widget _sectorHeader(BuildContext context) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      children: const [
+      children: [
         Text(
-          "Sector Sentiment",
-          style: TextStyle(
+          context.tr('Sector Sentiment', 'معنويات القطاعات'),
+          style: const TextStyle(
             color: AppColors.white,
             fontSize: 16,
             fontWeight: FontWeight.bold,
           ),
         ),
         Text(
-          "View All",
-          style: TextStyle(
+          context.tr('View All', 'عرض الكل'),
+          style: const TextStyle(
             color: AppColors.secondaryColor,
             fontSize: 13,
             fontWeight: FontWeight.w500,

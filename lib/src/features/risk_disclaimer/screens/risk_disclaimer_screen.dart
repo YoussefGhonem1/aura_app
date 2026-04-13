@@ -1,4 +1,5 @@
 import 'package:aura_app/src/features/risk_disclaimer/widgets/build_expansion_tile.dart';
+import 'package:aura_app/src/core/extensions/localization_extension.dart';
 import 'package:flutter/material.dart';
 import 'package:aura_app/src/shared/themes/app_colors.dart';
 
@@ -37,9 +38,12 @@ class _RiskDisclaimerScreenState extends State<RiskDisclaimerScreen> {
             ),
           ),
         ),
-        title: const Text(
-          "Risk Disclaimer",
-          style: TextStyle(color: AppColors.white, fontWeight: FontWeight.bold),
+        title: Text(
+          context.l10n.riskDisclaimer,
+          style: const TextStyle(
+            color: AppColors.white,
+            fontWeight: FontWeight.bold,
+          ),
         ),
         centerTitle: true,
       ),
@@ -49,17 +53,17 @@ class _RiskDisclaimerScreenState extends State<RiskDisclaimerScreen> {
           children: [
             headerIcon(),
             const SizedBox(height: 24),
-            mainTitle(),
+            mainTitle(context),
             const SizedBox(height: 12),
-            mainDescription(),
+            mainDescription(context),
             const SizedBox(height: 30),
-            expansionTiles(),
+            expansionTiles(context),
             const SizedBox(height: 24),
-            acknowledgementCard(),
+            acknowledgementCard(context),
             const SizedBox(height: 24),
-            understandButton(),
+            understandButton(context),
             const SizedBox(height: 12),
-            declineButton(),
+            declineButton(context),
             const SizedBox(height: 20),
           ],
         ),
@@ -88,11 +92,11 @@ Widget headerIcon() {
   );
 }
 
-Widget mainTitle() {
-  return const Text(
-    "Important Risk Warning",
+Widget mainTitle(BuildContext context) {
+  return Text(
+    context.tr('Important Risk Warning', 'تحذير مخاطر مهم'),
     textAlign: TextAlign.center,
-    style: TextStyle(
+    style: const TextStyle(
       color: AppColors.white,
       fontSize: 22,
       fontWeight: FontWeight.bold,
@@ -100,57 +104,76 @@ Widget mainTitle() {
   );
 }
 
-Widget mainDescription() {
-  return const Text(
-    "Please read the following carefully before proceeding with Aura's AI forecasts. Your capital is at risk.",
+Widget mainDescription(BuildContext context) {
+  return Text(
+    context.tr(
+      "Please read the following carefully before proceeding with Aura's AI forecasts. Your capital is at risk.",
+      'يرجى قراءة ما يلي بعناية قبل متابعة توقعات Aura بالذكاء الاصطناعي. رأس مالك معرض للمخاطر.',
+    ),
     textAlign: TextAlign.center,
-    style: TextStyle(color: AppColors.greyText, height: 1.5),
+    style: const TextStyle(color: AppColors.greyText, height: 1.5),
   );
 }
 
-Widget expansionTiles() {
+Widget expansionTiles(BuildContext context) {
   return Column(
     children: [
       expansionTile(
         icon: Icons.psychology,
-        title: "AI Forecast Limitations",
-        content:
-            "Aura uses advanced artificial intelligence to analyze market trends. However, these forecasts are for educational and informational purposes only. AI predictions are probabilistic and represent hypothetical scenarios, not guarantees of future performance.",
+        title: context.tr(
+          'AI Forecast Limitations',
+          'قيود توقعات الذكاء الاصطناعي',
+        ),
+        content: context.tr(
+          'Aura uses advanced artificial intelligence to analyze market trends. However, these forecasts are for educational and informational purposes only. AI predictions are probabilistic and represent hypothetical scenarios, not guarantees of future performance.',
+          'يستخدم Aura ذكاءً اصطناعيًا متقدمًا لتحليل اتجاهات السوق. هذه التوقعات لأغراض تعليمية ومعلوماتية فقط، وهي احتمالية وتمثل سيناريوهات افتراضية وليست ضمانًا للأداء المستقبلي.',
+        ),
       ),
       const SizedBox(height: 16),
       expansionTile(
         icon: Icons.gavel,
-        title: "No Financial Advice",
-        content:
-            "Aura does not provide personalized financial advice. Users should consult with a licensed financial advisor before making investment decisions.",
+        title: context.tr('No Financial Advice', 'لا توجد نصيحة مالية'),
+        content: context.tr(
+          'Aura does not provide personalized financial advice. Users should consult with a licensed financial advisor before making investment decisions.',
+          'لا يقدم Aura نصائح مالية شخصية. يجب استشارة مستشار مالي مرخص قبل اتخاذ قرارات استثمارية.',
+        ),
       ),
       const SizedBox(height: 16),
       expansionTile(
         icon: Icons.trending_down,
-        title: "Capital at Risk",
-        content:
-            "Investing involves risk, including possible loss of principal. Past performance does not guarantee future results.",
+        title: context.tr('Capital at Risk', 'رأس المال معرض للمخاطر'),
+        content: context.tr(
+          'Investing involves risk, including possible loss of principal. Past performance does not guarantee future results.',
+          'الاستثمار ينطوي على مخاطر، بما في ذلك احتمال خسارة رأس المال. الأداء السابق لا يضمن النتائج المستقبلية.',
+        ),
       ),
     ],
   );
 }
 
-Widget acknowledgementCard() {
+Widget acknowledgementCard(BuildContext context) {
   return Container(
     padding: const EdgeInsets.all(16),
     decoration: BoxDecoration(
       color: AppColors.cardColor,
       borderRadius: BorderRadius.circular(14),
     ),
-    child: const Text(
-      "By tapping 'I Understand' below, you acknowledge that you have read, understood, and agreed to our Terms of Service and Privacy Policy.",
+    child: Text(
+      context.tr(
+        "By tapping 'I Understand' below, you acknowledge that you have read, understood, and agreed to our Terms of Service and Privacy Policy.",
+        'بالضغط على "أنا أفهم" أدناه، فإنك تقر بأنك قرأت وفهمت ووافقت على شروط الخدمة وسياسة الخصوصية.',
+      ),
       textAlign: TextAlign.center,
-      style: TextStyle(color: AppColors.greyText, fontSize: 13, height: 1.4),
+      style: const TextStyle(
+        color: AppColors.greyText,
+        fontSize: 13,
+        height: 1.4,
+      ),
     ),
   );
 }
 
-Widget understandButton() {
+Widget understandButton(BuildContext context) {
   return SizedBox(
     width: double.infinity,
     child: ElevatedButton(
@@ -160,8 +183,8 @@ Widget understandButton() {
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(14)),
       ),
       onPressed: () {},
-      child: const Text(
-        "I Understand",
+      child: Text(
+        context.tr('I Understand', 'أنا أفهم'),
         style: TextStyle(
           color: AppColors.primaryColor,
           fontWeight: FontWeight.bold,
@@ -171,9 +194,12 @@ Widget understandButton() {
   );
 }
 
-Widget declineButton() {
+Widget declineButton(BuildContext context) {
   return TextButton(
     onPressed: () {},
-    child: const Text("Decline", style: TextStyle(color: AppColors.greyText)),
+    child: Text(
+      context.tr('Decline', 'رفض'),
+      style: const TextStyle(color: AppColors.greyText),
+    ),
   );
 }

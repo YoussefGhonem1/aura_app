@@ -1,6 +1,7 @@
 import 'package:aura_app/src/features/create_account/widgets/social_driver.dart';
 import 'package:aura_app/src/features/forget_password/widgets/build_validation_item.dart';
 import 'package:aura_app/src/features/login/widgets/face_id_button.dart';
+import 'package:aura_app/src/core/extensions/localization_extension.dart';
 import 'package:aura_app/src/shared/componants/auth_option.dart';
 import 'package:aura_app/src/shared/componants/custom_button.dart';
 import 'package:aura_app/src/shared/componants/text_form.dart';
@@ -55,33 +56,45 @@ class _LoginScreenState extends State<LoginScreen> {
 
             const SizedBox(height: 10),
             Text(
-              "Welcome Back",
+              context.tr('Welcome Back', 'مرحبًا بعودتك'),
               style: Theme.of(context).textTheme.headlineMedium,
             ),
             const SizedBox(height: 5),
             Text(
-              "Your intelligent investement protofolio is ready",
+              context.tr(
+                'Your intelligent investment portfolio is ready',
+                'محفظتك الاستثمارية الذكية جاهزة',
+              ),
               style: Theme.of(context).textTheme.bodySmall,
             ),
 
             const SizedBox(height: 40),
-            const AuraTextField(
-              label: "Email Address",
-              hintText: "name@example.com",
+            AuraTextField(
+              label: context.tr('Email Address', 'البريد الإلكتروني'),
+              hintText: context.tr('name@example.com', 'name@example.com'),
             ),
             const SizedBox(height: 20),
             AuraTextField(
-              label: "Password",
-              hintText: "Password",
+              label: context.l10n.password,
+              hintText: context.l10n.password,
               isPassword: true,
               hasError: passwordHasError,
               controller: _passwordController,
               tooltipContent: Column(
                 mainAxisSize: MainAxisSize.min,
                 children: [
-                  buildValidationItem("At least 8 characters", _hasEightChars),
-                  buildValidationItem("One uppercase letter", _hasUppercase),
-                  buildValidationItem("One number", _hasNumber),
+                  buildValidationItem(
+                    context.tr('At least 8 characters', '8 أحرف على الأقل'),
+                    _hasEightChars,
+                  ),
+                  buildValidationItem(
+                    context.tr('One uppercase letter', 'حرف كبير واحد'),
+                    _hasUppercase,
+                  ),
+                  buildValidationItem(
+                    context.tr('One number', 'رقم واحد'),
+                    _hasNumber,
+                  ),
                 ],
               ),
             ),
@@ -92,14 +105,14 @@ class _LoginScreenState extends State<LoginScreen> {
                   Navigator.pushNamed(context, Routes.forgetPassword);
                 },
                 child: Text(
-                  "Forgot Password?",
+                  context.l10n.forgetPassword,
                   style: Theme.of(context).textTheme.bodySmall,
                 ),
               ),
             ),
             const SizedBox(height: 25),
             AuraButton(
-              title: "Sign in",
+              title: context.l10n.signIn,
               onPressed: () {
                 Navigator.pushReplacementNamed(context, Routes.layoutScreen);
               },
@@ -107,15 +120,18 @@ class _LoginScreenState extends State<LoginScreen> {
 
             const SizedBox(height: 20),
             AuthOptionWidget(
-              mainText: "Don't have an account?",
-              actionText: "Sign up",
+              mainText: context.tr('Don\'t have an account?', 'ليس لديك حساب؟'),
+              actionText: context.l10n.signUp,
               onTap: () {
                 Navigator.pushReplacementNamed(context, Routes.createAccount);
               },
             ),
             const SizedBox(height: 30),
 
-            buildSocialDivider(context, "Or continue with"),
+            buildSocialDivider(
+              context,
+              context.tr('Or continue with', 'أو تابع عبر'),
+            ),
 
             const SizedBox(height: 20),
             FaceIDButton(onPressed: () {}),

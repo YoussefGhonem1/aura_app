@@ -2,6 +2,7 @@ import 'package:aura_app/src/features/create_account/widgets/condition_terms.dar
 import 'package:aura_app/src/features/create_account/widgets/social_button.dart';
 import 'package:aura_app/src/features/create_account/widgets/social_driver.dart';
 import 'package:aura_app/src/features/forget_password/widgets/build_validation_item.dart';
+import 'package:aura_app/src/core/extensions/localization_extension.dart';
 import 'package:aura_app/src/shared/componants/auth_option.dart';
 import 'package:aura_app/src/shared/componants/custom_button.dart';
 import 'package:aura_app/src/shared/componants/text_form.dart';
@@ -57,36 +58,51 @@ class _CreateAccountState extends State<CreateAccount> {
 
             const SizedBox(height: 10),
             Text(
-              "Create your Aura",
+              context.tr('Create your Aura', 'أنشئ حسابك في Aura'),
               style: Theme.of(context).textTheme.headlineMedium,
             ),
             const SizedBox(height: 5),
             Text(
-              "Start your AI-powered investment journey",
+              context.tr(
+                'Start your AI-powered investment journey',
+                'ابدأ رحلتك الاستثمارية المدعومة بالذكاء الاصطناعي',
+              ),
               style: Theme.of(context).textTheme.bodySmall,
             ),
 
             const SizedBox(height: 40),
-            const AuraTextField(label: "Username", hintText: "Enter your name"),
+            AuraTextField(
+              label: context.tr('Username', 'اسم المستخدم'),
+              hintText: context.tr('Enter your name', 'أدخل اسمك'),
+            ),
             const SizedBox(height: 20),
-            const AuraTextField(
-              label: "Email Address",
-              hintText: "name@example.com",
+            AuraTextField(
+              label: context.tr('Email Address', 'البريد الإلكتروني'),
+              hintText: context.tr('name@example.com', 'name@example.com'),
             ),
             const SizedBox(height: 20),
 
             AuraTextField(
-              label: "Password",
-              hintText: "Password",
+              label: context.l10n.password,
+              hintText: context.l10n.password,
               isPassword: true,
               hasError: passwordHasError,
               controller: _passwordController,
               tooltipContent: Column(
                 mainAxisSize: MainAxisSize.min,
                 children: [
-                  buildValidationItem("At least 8 characters", _hasEightChars),
-                  buildValidationItem("One uppercase letter", _hasUppercase),
-                  buildValidationItem("One number", _hasNumber),
+                  buildValidationItem(
+                    context.tr('At least 8 characters', '8 أحرف على الأقل'),
+                    _hasEightChars,
+                  ),
+                  buildValidationItem(
+                    context.tr('One uppercase letter', 'حرف كبير واحد'),
+                    _hasUppercase,
+                  ),
+                  buildValidationItem(
+                    context.tr('One number', 'رقم واحد'),
+                    _hasNumber,
+                  ),
                 ],
               ),
             ),
@@ -95,19 +111,25 @@ class _CreateAccountState extends State<CreateAccount> {
 
             const TermsAndConditionsWidget(),
             const SizedBox(height: 25),
-            AuraButton(title: "Create account", onPressed: () {}),
+            AuraButton(title: context.l10n.createAccount, onPressed: () {}),
 
             const SizedBox(height: 20),
             AuthOptionWidget(
-              mainText: "Already have an account?",
-              actionText: "Log in",
+              mainText: context.tr(
+                'Already have an account?',
+                'لديك حساب بالفعل؟',
+              ),
+              actionText: context.tr('Log in', 'تسجيل الدخول'),
               onTap: () {
                 Navigator.pushReplacementNamed(context, Routes.login);
               },
             ),
             const SizedBox(height: 30),
 
-            buildSocialDivider(context, "Or sign up with"),
+            buildSocialDivider(
+              context,
+              context.tr('Or sign up with', 'أو سجّل عبر'),
+            ),
 
             const SizedBox(height: 20),
 

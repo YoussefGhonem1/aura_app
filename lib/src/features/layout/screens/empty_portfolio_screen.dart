@@ -1,4 +1,5 @@
 import 'package:aura_app/src/features/layout/widgets/build_header_home.dart';
+import 'package:aura_app/src/core/extensions/localization_extension.dart';
 import 'package:aura_app/src/shared/themes/app_colors.dart';
 import 'package:flutter/material.dart';
 
@@ -89,7 +90,10 @@ class EmptyPortfolioScreen extends StatelessWidget {
                       const SizedBox(height: 100),
                       // Title text
                       Text(
-                        "Your journey\nstarts here.",
+                        context.tr(
+                          'Your journey\nstarts here.',
+                          'رحلتك\nتبدأ من هنا.',
+                        ),
                         textAlign: TextAlign.center,
                         style: Theme.of(context).textTheme.headlineLarge
                             ?.copyWith(
@@ -102,7 +106,10 @@ class EmptyPortfolioScreen extends StatelessWidget {
                       const SizedBox(height: 16),
                       // Subtitle text
                       Text(
-                        "Start your virtual portfolio to see AI-powered growth and insights.",
+                        context.tr(
+                          'Start your virtual portfolio to see AI-powered growth and insights.',
+                          'ابدأ محفظتك الافتراضية لرؤية النمو والرؤى المدعومة بالذكاء الاصطناعي.',
+                        ),
                         textAlign: TextAlign.center,
                         style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                           color: AppColors.greyText,
@@ -129,18 +136,21 @@ class EmptyPortfolioScreen extends StatelessWidget {
                               0.3,
                             ),
                           ),
-                          child: const Row(
+                          child: Row(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
-                              Icon(
+                              const Icon(
                                 Icons.add,
                                 color: AppColors.primaryColor,
                                 size: 24,
                               ),
-                              SizedBox(width: 8),
+                              const SizedBox(width: 8),
                               Text(
-                                "Add Your First Stock",
-                                style: TextStyle(
+                                context.tr(
+                                  'Add Your First Stock',
+                                  'أضف أول سهم لك',
+                                ),
+                                style: const TextStyle(
                                   color: AppColors.primaryColor,
                                   fontWeight: FontWeight.bold,
                                   fontSize: 16,

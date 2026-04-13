@@ -1,5 +1,6 @@
 import 'package:aura_app/src/features/notification_settings/widgets/build_notification_option.dart';
 import 'package:aura_app/src/features/notification_settings/widgets/build_warning_messge.dart';
+import 'package:aura_app/src/core/extensions/localization_extension.dart';
 import 'package:aura_app/src/features/smart_automation/widgets/build_appbar.dart';
 import 'package:aura_app/src/shared/themes/app_colors.dart';
 import 'package:flutter/material.dart';
@@ -25,19 +26,25 @@ class _NotificationSettingsScreenState
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: buildAppBar(context, "Notification Settings"),
+      appBar: buildAppBar(context, context.l10n.notificationSettings),
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(16),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             // TRADING ACTIVITY Section
-            _buildSectionTitle("TRADING ACTIVITY"),
+            _buildSectionTitle(context.tr('TRADING ACTIVITY', 'نشاط التداول')),
             const SizedBox(height: 12),
 
             buildNotificationOption(
-              title: "AI Buy/Sell Alerts",
-              description: "Instant alerts when Aura executes a trade",
+              title: context.tr(
+                'AI Buy/Sell Alerts',
+                'تنبيهات شراء/بيع الذكاء الاصطناعي',
+              ),
+              description: context.tr(
+                'Instant alerts when Aura executes a trade',
+                'تنبيهات فورية عند تنفيذ Aura لعملية تداول',
+              ),
               value: aiAlerts,
               onChanged: (value) => setState(() => aiAlerts = value!),
             ),
@@ -45,8 +52,14 @@ class _NotificationSettingsScreenState
             const SizedBox(height: 16),
 
             buildNotificationOption(
-              title: "Price Volatility Alerts",
-              description: "Notifications when watchlist assets move >5%",
+              title: context.tr(
+                'Price Volatility Alerts',
+                'تنبيهات تقلبات الأسعار',
+              ),
+              description: context.tr(
+                'Notifications when watchlist assets move >5%',
+                'إشعارات عند تحرك أصول قائمة المتابعة بأكثر من 5%',
+              ),
               value: priceVolatilityAlerts,
               onChanged: (value) =>
                   setState(() => priceVolatilityAlerts = value!),
@@ -60,12 +73,15 @@ class _NotificationSettingsScreenState
             ),
 
             // MARKET INTELLIGENCE Section
-            _buildSectionTitle("MARKET INTELLIGENCE"),
+            _buildSectionTitle(context.tr('MARKET INTELLIGENCE', 'ذكاء السوق')),
             const SizedBox(height: 12),
 
             buildNotificationOption(
-              title: "Market News Summaries",
-              description: "Curated breaking news affecting your portfolio",
+              title: context.tr('Market News Summaries', 'ملخصات أخبار السوق'),
+              description: context.tr(
+                'Curated breaking news affecting your portfolio',
+                'أخبار عاجلة منتقاة تؤثر على محفظتك',
+              ),
               value: marketNewsSummaries,
               onChanged: (value) =>
                   setState(() => marketNewsSummaries = value!),
@@ -74,8 +90,14 @@ class _NotificationSettingsScreenState
             const SizedBox(height: 16),
 
             buildNotificationOption(
-              title: "Daily AI Insights",
-              description: "Morning briefing on market predictions",
+              title: context.tr(
+                'Daily AI Insights',
+                'رؤى الذكاء الاصطناعي اليومية',
+              ),
+              description: context.tr(
+                'Morning briefing on market predictions',
+                'إحاطة صباحية بتوقعات السوق',
+              ),
               value: dailyAIInsights,
               onChanged: (value) => setState(() => dailyAIInsights = value!),
             ),
@@ -88,12 +110,15 @@ class _NotificationSettingsScreenState
             ),
 
             // SYSTEM Section
-            _buildSectionTitle("SYSTEM"),
+            _buildSectionTitle(context.tr('SYSTEM', 'النظام')),
             const SizedBox(height: 12),
 
             buildNotificationOption(
-              title: "Push Notifications",
-              description: "Master switch for all Aura alerts on this device",
+              title: context.tr('Push Notifications', 'الإشعارات الفورية'),
+              description: context.tr(
+                'Master switch for all Aura alerts on this device',
+                'المفتاح الرئيسي لجميع تنبيهات Aura على هذا الجهاز',
+              ),
               value: pushNotifications,
               onChanged: (value) => setState(() => pushNotifications = value!),
             ),
@@ -106,7 +131,7 @@ class _NotificationSettingsScreenState
             ),
 
             // Warning Message
-            buildWarningMessage(),
+            buildWarningMessage(context),
 
             const SizedBox(height: 40),
           ],

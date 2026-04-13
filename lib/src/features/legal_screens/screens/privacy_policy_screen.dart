@@ -1,4 +1,5 @@
 import 'package:aura_app/src/features/smart_automation/widgets/build_appbar.dart';
+import 'package:aura_app/src/core/extensions/localization_extension.dart';
 import 'package:aura_app/src/shared/themes/app_colors.dart';
 import 'package:flutter/material.dart';
 
@@ -9,7 +10,7 @@ class PrivacyPolicyScreenEnhanced extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: AppColors.primaryColor,
-      appBar: buildAppBar(context, "Privacy Policy"),
+      appBar: buildAppBar(context, context.l10n.privacyPolicy),
       body: SingleChildScrollView(
         child: Column(
           children: [
@@ -60,9 +61,12 @@ class PrivacyPolicyScreenEnhanced extends StatelessWidget {
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              const Text(
-                                "Aura Privacy Policy",
-                                style: TextStyle(
+                              Text(
+                                context.tr(
+                                  'Aura Privacy Policy',
+                                  'سياسة خصوصية Aura',
+                                ),
+                                style: const TextStyle(
                                   color: AppColors.white,
                                   fontSize: 18,
                                   fontWeight: FontWeight.bold,
@@ -103,7 +107,7 @@ class PrivacyPolicyScreenEnhanced extends StatelessWidget {
                   // 1. Introduction
                   _buildPrivacyCard(
                     number: "1",
-                    title: "Introduction",
+                    title: context.tr('Introduction', 'مقدمة'),
                     icon: Icons.info_outline_rounded,
                     children: [
                       const Text(
@@ -136,9 +140,12 @@ class PrivacyPolicyScreenEnhanced extends StatelessWidget {
                               child: Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
-                                  const Text(
-                                    "Contact Privacy Team",
-                                    style: TextStyle(
+                                  Text(
+                                    context.tr(
+                                      'Contact Privacy Team',
+                                      'فريق خصوصية البيانات',
+                                    ),
+                                    style: const TextStyle(
                                       color: AppColors.white,
                                       fontSize: 14,
                                       fontWeight: FontWeight.w600,
@@ -173,7 +180,10 @@ class PrivacyPolicyScreenEnhanced extends StatelessWidget {
                   // 2. Information We Collect
                   _buildPrivacyCard(
                     number: "2",
-                    title: "Information We Collect",
+                    title: context.tr(
+                      'Information We Collect',
+                      'المعلومات التي نجمعها',
+                    ),
                     icon: Icons.collections_bookmark_rounded,
                     children: [
                       const Text(
@@ -186,19 +196,22 @@ class PrivacyPolicyScreenEnhanced extends StatelessWidget {
                       ),
                       const SizedBox(height: 16),
                       _buildDataCollectionItem(
-                        title: "Account Data",
+                        title: context.tr('Account Data', 'بيانات الحساب'),
                         description:
                             "Name, email address, and authentication credentials.",
                         icon: Icons.person_outline_rounded,
                       ),
                       _buildDataCollectionItem(
-                        title: "Device Information",
+                        title: context.tr(
+                          'Device Information',
+                          'معلومات الجهاز',
+                        ),
                         description:
                             "Hardware model, operating system version, and unique device identifiers.",
                         icon: Icons.phone_iphone_rounded,
                       ),
                       _buildDataCollectionItem(
-                        title: "Usage Data",
+                        title: context.tr('Usage Data', 'بيانات الاستخدام'),
                         description:
                             "Information about your interactions with the app, including features used and time spent.",
                         icon: Icons.analytics_outlined,
@@ -211,7 +224,10 @@ class PrivacyPolicyScreenEnhanced extends StatelessWidget {
                   // 3. How We Use Your Data
                   _buildPrivacyCard(
                     number: "3",
-                    title: "How We Use Your Data",
+                    title: context.tr(
+                      'How We Use Your Data',
+                      'كيف نستخدم بياناتك',
+                    ),
                     icon: Icons.data_usage_rounded,
                     children: [
                       const Text(
@@ -237,7 +253,7 @@ class PrivacyPolicyScreenEnhanced extends StatelessWidget {
                   // 4. Your Rights
                   _buildPrivacyCard(
                     number: "4",
-                    title: "Your Rights",
+                    title: context.tr('Your Rights', 'حقوقك'),
                     icon: Icons.gavel_rounded,
                     children: [
                       const Text(
@@ -269,7 +285,7 @@ class PrivacyPolicyScreenEnhanced extends StatelessWidget {
                   // 5. Data Protection
                   _buildPrivacyCard(
                     number: "5",
-                    title: "Data Protection",
+                    title: context.tr('Data Protection', 'حماية البيانات'),
                     icon: Icons.security_rounded,
                     children: [
                       Container(
@@ -314,7 +330,7 @@ class PrivacyPolicyScreenEnhanced extends StatelessWidget {
                   const SizedBox(height: 32),
 
                   // Contact Footer
-                  _buildContactFooter(),
+                  _buildContactFooter(context),
 
                   const SizedBox(height: 40),
                 ],
@@ -479,7 +495,7 @@ class PrivacyPolicyScreenEnhanced extends StatelessWidget {
     );
   }
 
-  Widget _buildContactFooter() {
+  Widget _buildContactFooter(BuildContext context) {
     return Container(
       padding: const EdgeInsets.all(24),
       decoration: BoxDecoration(
@@ -495,9 +511,9 @@ class PrivacyPolicyScreenEnhanced extends StatelessWidget {
             size: 48,
           ),
           const SizedBox(height: 16),
-          const Text(
-            "Have questions?",
-            style: TextStyle(
+          Text(
+            context.tr('Have questions?', 'هل لديك أسئلة؟'),
+            style: const TextStyle(
               color: AppColors.white,
               fontSize: 20,
               fontWeight: FontWeight.bold,
@@ -505,9 +521,12 @@ class PrivacyPolicyScreenEnhanced extends StatelessWidget {
             textAlign: TextAlign.center,
           ),
           const SizedBox(height: 8),
-          const Text(
-            "Our privacy team is here to help you understand your rights and our obligations.",
-            style: TextStyle(
+          Text(
+            context.tr(
+              'Our privacy team is here to help you understand your rights and our obligations.',
+              'فريق الخصوصية لدينا هنا لمساعدتك على فهم حقوقك والتزاماتنا.',
+            ),
+            style: const TextStyle(
               color: AppColors.greyText,
               fontSize: 14,
               height: 1.6,
@@ -529,18 +548,18 @@ class PrivacyPolicyScreenEnhanced extends StatelessWidget {
                 ),
                 elevation: 4,
               ),
-              child: const Row(
+              child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Icon(
+                  const Icon(
                     Icons.support_agent_rounded,
                     color: AppColors.primaryColor,
                     size: 20,
                   ),
-                  SizedBox(width: 10),
+                  const SizedBox(width: 10),
                   Text(
-                    "Contact Support",
-                    style: TextStyle(
+                    context.tr('Contact Support', 'تواصل مع الدعم'),
+                    style: const TextStyle(
                       color: AppColors.primaryColor,
                       fontSize: 16,
                       fontWeight: FontWeight.bold,

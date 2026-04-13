@@ -1,3 +1,4 @@
+import 'package:aura_app/src/core/extensions/localization_extension.dart';
 import 'package:aura_app/src/features/layout/widgets/all_picks_tabs.dart';
 import 'package:aura_app/src/features/layout/widgets/build_alert_list.dart';
 import 'package:aura_app/src/features/layout/widgets/build_hot_ai_signals_list.dart';
@@ -47,13 +48,19 @@ class _AuraAIRecommendationScreenState
                 onTabChanged: _onTabChanged,
               ),
               const SizedBox(height: 20),
-              buildSectionTitle(context, "High Confidence Picks"),
+              buildSectionTitle(
+                context,
+                context.tr('High Confidence Picks', 'اختيارات عالية الثقة'),
+              ),
               buildHighConfidencePicks(context),
               const SizedBox(height: 20),
-              buildSectionTitle(context, "Hot AI Signals"),
+              buildSectionTitle(
+                context,
+                context.tr('Hot AI Signals', 'إشارات AI الساخنة'),
+              ),
               buildQuickPicks(),
               const SizedBox(height: 24),
-              _buildHighVolatilityAlert(),
+              _buildHighVolatilityAlert(context),
               const SizedBox(height: 12),
               buildAlertsList(),
               const SizedBox(height: 40),
@@ -65,7 +72,7 @@ class _AuraAIRecommendationScreenState
   }
 }
 
-Widget _buildHighVolatilityAlert() {
+Widget _buildHighVolatilityAlert(BuildContext context) {
   return Column(
     crossAxisAlignment: CrossAxisAlignment.start,
     children: [
@@ -77,9 +84,9 @@ Widget _buildHighVolatilityAlert() {
             size: 20,
           ),
           SizedBox(width: 8),
-          const Text(
-            "High Volatility Alerts",
-            style: TextStyle(
+          Text(
+            context.tr('High Volatility Alerts', 'تنبيهات تقلبات عالية'),
+            style: const TextStyle(
               color: Colors.white,
               fontWeight: FontWeight.bold,
               fontSize: 16,
