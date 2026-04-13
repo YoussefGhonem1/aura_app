@@ -4,6 +4,7 @@ import 'package:aura_app/src/features/layout/widgets/build_section_header_search
 import 'package:aura_app/src/features/layout/widgets/build_trending_list_search.dart';
 import 'package:aura_app/src/features/layout/widgets/build_recent_searshes_list.dart';
 import 'package:aura_app/src/features/layout/widgets/search_bar.dart';
+import 'package:aura_app/src/core/extensions/localization_extension.dart';
 import 'package:aura_app/src/features/stock_details/models/stock_details_model.dart';
 import 'package:aura_app/src/shared/routing/route_strings.dart';
 import 'package:aura_app/src/shared/themes/app_colors.dart';
@@ -145,10 +146,10 @@ class _AuraSearchExploreScreenState extends State<AuraSearchExploreScreen> {
               child: Column(
                 children: [
                   const SizedBox(height: 10),
-                  buildSearchBar(),
+                  buildSearchBar(context),
                   const SizedBox(height: 25),
                   buildSectionHeader(
-                    "Recent Searches",
+                    context.tr('Recent Searches', 'عمليات البحث الأخيرة'),
                     hasClear: true,
                     isCompareMode: false,
                     toggleCompareMode: () {},
@@ -159,7 +160,7 @@ class _AuraSearchExploreScreenState extends State<AuraSearchExploreScreen> {
                   buildAuraInsight(context),
                   const SizedBox(height: 30),
                   buildSectionHeader(
-                    "Trending Now",
+                    context.tr('Trending Now', 'الأكثر تداولًا الآن'),
                     hasFilters: true,
                     isCompareMode: _isCompareMode,
                     toggleCompareMode: toggleCompareMode,

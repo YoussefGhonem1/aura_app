@@ -1,9 +1,9 @@
 import 'package:aura_app/src/features/smart_automation/widgets/build_appbar.dart';
+import 'package:aura_app/src/core/extensions/localization_extension.dart';
 import 'package:aura_app/src/features/stock_details/models/stock_details_model.dart';
 import 'package:aura_app/src/features/stocks_compare/widgets/build_alert_button.dart';
 import 'package:aura_app/src/features/stocks_compare/widgets/build_ratios.dart';
 import 'package:aura_app/src/features/stocks_compare/widgets/build_stock_card.dart';
-import 'package:aura_app/src/shared/themes/app_colors.dart';
 import 'package:flutter/material.dart';
 
 class StockComparisonScreen extends StatelessWidget {
@@ -19,7 +19,10 @@ class StockComparisonScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: buildAppBar(context, "Compare Stocks"),
+      appBar: buildAppBar(
+        context,
+        context.tr('Compare Stocks', 'مقارنة الأسهم'),
+      ),
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(20),
         child: Column(

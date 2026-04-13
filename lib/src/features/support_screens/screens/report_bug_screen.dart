@@ -1,4 +1,5 @@
 import 'package:aura_app/src/features/smart_automation/widgets/build_appbar.dart';
+import 'package:aura_app/src/core/extensions/localization_extension.dart';
 import 'package:aura_app/src/shared/themes/app_colors.dart';
 import 'package:flutter/material.dart';
 
@@ -6,22 +7,23 @@ class ReportBugScreenEnhanced extends StatefulWidget {
   const ReportBugScreenEnhanced({super.key});
 
   @override
-  State<ReportBugScreenEnhanced> createState() => _ReportBugScreenEnhancedState();
+  State<ReportBugScreenEnhanced> createState() =>
+      _ReportBugScreenEnhancedState();
 }
 
 class _ReportBugScreenEnhancedState extends State<ReportBugScreenEnhanced> {
   String? _selectedCategory;
   final TextEditingController _descriptionController = TextEditingController();
   final List<String> _categories = [
-    "App Crash",
-    "UI/Display Issue",
-    "Performance",
-    "Data Sync",
-    "Account/Login",
-    "AI Analysis",
-    "Other"
+    'App Crash',
+    'UI/Display Issue',
+    'Performance',
+    'Data Sync',
+    'Account/Login',
+    'AI Analysis',
+    'Other',
   ];
-  
+
   bool _isSubmitting = false;
   List<String> _screenshots = [];
   String? _errorMessage;
@@ -30,7 +32,7 @@ class _ReportBugScreenEnhancedState extends State<ReportBugScreenEnhanced> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: AppColors.primaryColor,
-      appBar:buildAppBar(context, "Report a Bug"),
+      appBar: buildAppBar(context, context.l10n.reportBug),
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(16),
         child: Column(
@@ -65,9 +67,9 @@ class _ReportBugScreenEnhancedState extends State<ReportBugScreenEnhanced> {
                   Expanded(
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
-                      children: const [
+                      children: [
                         Text(
-                          "Report a Bug",
+                          context.l10n.reportBug,
                           style: TextStyle(
                             color: AppColors.white,
                             fontSize: 22,
@@ -76,7 +78,10 @@ class _ReportBugScreenEnhancedState extends State<ReportBugScreenEnhanced> {
                         ),
                         SizedBox(height: 4),
                         Text(
-                          "Help us improve Aura. Provide details about the issue you encountered.",
+                          context.tr(
+                            'Help us improve Aura. Provide details about the issue you encountered.',
+                            'ساعدنا في تحسين Aura. قدم تفاصيل عن المشكلة التي واجهتها.',
+                          ),
                           style: TextStyle(
                             color: AppColors.greyText,
                             fontSize: 13,
@@ -116,7 +121,11 @@ class _ReportBugScreenEnhancedState extends State<ReportBugScreenEnhanced> {
                 ),
                 child: Row(
                   children: [
-                    const Icon(Icons.error_outline_rounded, color: Colors.red, size: 20),
+                    const Icon(
+                      Icons.error_outline_rounded,
+                      color: Colors.red,
+                      size: 20,
+                    ),
                     const SizedBox(width: 12),
                     Expanded(
                       child: Text(
@@ -166,12 +175,12 @@ class _ReportBugScreenEnhancedState extends State<ReportBugScreenEnhanced> {
               ),
             ),
             const SizedBox(width: 12),
-            const Expanded(
+            Expanded(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    "Bug Category",
+                    context.tr('Bug Category', 'فئة المشكلة'),
                     style: TextStyle(
                       color: AppColors.white,
                       fontSize: 16,
@@ -180,11 +189,8 @@ class _ReportBugScreenEnhancedState extends State<ReportBugScreenEnhanced> {
                   ),
                   SizedBox(height: 4),
                   Text(
-                    "Select a category",
-                    style: TextStyle(
-                      color: AppColors.greyText,
-                      fontSize: 12,
-                    ),
+                    context.tr('Select a category', 'اختر فئة'),
+                    style: TextStyle(color: AppColors.greyText, fontSize: 12),
                   ),
                 ],
               ),
@@ -205,9 +211,14 @@ class _ReportBugScreenEnhancedState extends State<ReportBugScreenEnhanced> {
                 });
               },
               child: Container(
-                padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 16,
+                  vertical: 12,
+                ),
                 decoration: BoxDecoration(
-                  color: isSelected ? AppColors.secondaryColor : AppColors.cardColor,
+                  color: isSelected
+                      ? AppColors.secondaryColor
+                      : AppColors.cardColor,
                   borderRadius: BorderRadius.circular(12),
                   border: Border.all(
                     color: isSelected
@@ -217,9 +228,23 @@ class _ReportBugScreenEnhancedState extends State<ReportBugScreenEnhanced> {
                   ),
                 ),
                 child: Text(
-                  category,
+                  context.tr(
+                    category,
+                    {
+                          'App Crash': 'تعطل التطبيق',
+                          'UI/Display Issue': 'مشكلة واجهة/عرض',
+                          'Performance': 'الأداء',
+                          'Data Sync': 'مزامنة البيانات',
+                          'Account/Login': 'الحساب/تسجيل الدخول',
+                          'AI Analysis': 'تحليل الذكاء الاصطناعي',
+                          'Other': 'أخرى',
+                        }[category] ??
+                        category,
+                  ),
                   style: TextStyle(
-                    color: isSelected ? AppColors.primaryColor : AppColors.white,
+                    color: isSelected
+                        ? AppColors.primaryColor
+                        : AppColors.white,
                     fontSize: 14,
                     fontWeight: FontWeight.w500,
                   ),
@@ -252,12 +277,12 @@ class _ReportBugScreenEnhancedState extends State<ReportBugScreenEnhanced> {
               ),
             ),
             const SizedBox(width: 12),
-            const Expanded(
+            Expanded(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    "Description",
+                    context.tr('Description', 'الوصف'),
                     style: TextStyle(
                       color: AppColors.white,
                       fontSize: 16,
@@ -266,11 +291,11 @@ class _ReportBugScreenEnhancedState extends State<ReportBugScreenEnhanced> {
                   ),
                   SizedBox(height: 4),
                   Text(
-                    "Describe the issue in detail...",
-                    style: TextStyle(
-                      color: AppColors.greyText,
-                      fontSize: 12,
+                    context.tr(
+                      'Describe the issue in detail...',
+                      'اشرح المشكلة بالتفصيل...',
                     ),
+                    style: TextStyle(color: AppColors.greyText, fontSize: 12),
                   ),
                 ],
               ),
@@ -299,7 +324,10 @@ class _ReportBugScreenEnhancedState extends State<ReportBugScreenEnhanced> {
             maxLines: 8,
             style: const TextStyle(color: AppColors.white, fontSize: 14),
             decoration: InputDecoration(
-              hintText: "• Steps to reproduce the bug\n• Expected behavior\n• Actual behavior\n• Device & app version\n• Any error messages",
+              hintText: context.tr(
+                '• Steps to reproduce the bug\n• Expected behavior\n• Actual behavior\n• Device & app version\n• Any error messages',
+                '• خطوات إعادة المشكلة\n• السلوك المتوقع\n• السلوك الفعلي\n• إصدار الجهاز والتطبيق\n• أي رسائل خطأ',
+              ),
               hintStyle: TextStyle(
                 color: AppColors.greyText.withOpacity(0.7),
                 fontSize: 13,
@@ -341,12 +369,12 @@ class _ReportBugScreenEnhancedState extends State<ReportBugScreenEnhanced> {
               ),
             ),
             const SizedBox(width: 12),
-            const Expanded(
+            Expanded(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    "Upload Screenshot",
+                    context.tr('Upload Screenshot', 'رفع لقطة شاشة'),
                     style: TextStyle(
                       color: AppColors.white,
                       fontSize: 16,
@@ -355,11 +383,11 @@ class _ReportBugScreenEnhancedState extends State<ReportBugScreenEnhanced> {
                   ),
                   SizedBox(height: 4),
                   Text(
-                    "Optional: Add screenshots to help us understand the issue",
-                    style: TextStyle(
-                      color: AppColors.greyText,
-                      fontSize: 12,
+                    context.tr(
+                      'Optional: Add screenshots to help us understand the issue',
+                      'اختياري: أضف لقطات شاشة لمساعدتنا على فهم المشكلة',
                     ),
+                    style: TextStyle(color: AppColors.greyText, fontSize: 12),
                   ),
                 ],
               ),
@@ -367,7 +395,7 @@ class _ReportBugScreenEnhancedState extends State<ReportBugScreenEnhanced> {
           ],
         ),
         const SizedBox(height: 16),
-        
+
         // Screenshot Preview
         if (_screenshots.isNotEmpty) ...[
           SizedBox(
@@ -383,7 +411,9 @@ class _ReportBugScreenEnhancedState extends State<ReportBugScreenEnhanced> {
                   ),
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(12),
-                    border: Border.all(color: AppColors.greyText.withOpacity(0.3)),
+                    border: Border.all(
+                      color: AppColors.greyText.withOpacity(0.3),
+                    ),
                   ),
                   child: Stack(
                     children: [
@@ -433,7 +463,7 @@ class _ReportBugScreenEnhancedState extends State<ReportBugScreenEnhanced> {
           ),
           const SizedBox(height: 16),
         ],
-        
+
         // Upload Button
         GestureDetector(
           onTap: _pickImage,
@@ -455,8 +485,8 @@ class _ReportBugScreenEnhancedState extends State<ReportBugScreenEnhanced> {
                   size: 48,
                 ),
                 const SizedBox(height: 16),
-                const Text(
-                  "Tap to Upload Screenshot",
+                Text(
+                  context.tr('Tap to Upload Screenshot', 'اضغط لرفع لقطة شاشة'),
                   style: TextStyle(
                     color: AppColors.white,
                     fontSize: 16,
@@ -465,11 +495,8 @@ class _ReportBugScreenEnhancedState extends State<ReportBugScreenEnhanced> {
                 ),
                 const SizedBox(height: 8),
                 Text(
-                  "PNG, JPG up to 5MB",
-                  style: TextStyle(
-                    color: AppColors.greyText,
-                    fontSize: 13,
-                  ),
+                  context.tr('PNG, JPG up to 5MB', 'PNG, JPG حتى 5MB'),
+                  style: TextStyle(color: AppColors.greyText, fontSize: 13),
                 ),
               ],
             ),
@@ -502,18 +529,18 @@ class _ReportBugScreenEnhancedState extends State<ReportBugScreenEnhanced> {
                   strokeWidth: 2,
                 ),
               )
-            : const Row(
+            : Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Icon(
+                  const Icon(
                     Icons.send_rounded,
                     color: AppColors.primaryColor,
                     size: 20,
                   ),
-                  SizedBox(width: 10),
+                  const SizedBox(width: 10),
                   Text(
-                    "Submit Report",
-                    style: TextStyle(
+                    context.tr('Submit Report', 'إرسال البلاغ'),
+                    style: const TextStyle(
                       color: AppColors.primaryColor,
                       fontSize: 16,
                       fontWeight: FontWeight.bold,
@@ -540,14 +567,20 @@ class _ReportBugScreenEnhancedState extends State<ReportBugScreenEnhanced> {
     // Validate form
     if (_selectedCategory == null) {
       setState(() {
-        _errorMessage = "Please select a bug category";
+        _errorMessage = context.tr(
+          'Please select a bug category',
+          'يرجى اختيار فئة للمشكلة',
+        );
       });
       return;
     }
 
     if (_descriptionController.text.isEmpty) {
       setState(() {
-        _errorMessage = "Please describe the bug in detail";
+        _errorMessage = context.tr(
+          'Please describe the bug in detail',
+          'يرجى وصف المشكلة بالتفصيل',
+        );
       });
       return;
     }
@@ -569,26 +602,27 @@ class _ReportBugScreenEnhancedState extends State<ReportBugScreenEnhanced> {
       context: context,
       builder: (context) => AlertDialog(
         backgroundColor: AppColors.cardColor,
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(16),
-        ),
-        title: const Text(
-          "Report Submitted!",
-          style: TextStyle(
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
+        title: Text(
+          context.tr('Report Submitted!', 'تم إرسال البلاغ!'),
+          style: const TextStyle(
             color: AppColors.white,
             fontWeight: FontWeight.bold,
           ),
         ),
-        content: const Text(
-          "Thank you for helping us improve Aura. Our team will review your report and work on a fix.",
-          style: TextStyle(color: AppColors.greyText),
+        content: Text(
+          context.tr(
+            'Thank you for helping us improve Aura. Our team will review your report and work on a fix.',
+            'شكرًا لمساعدتنا في تحسين Aura. سيقوم فريقنا بمراجعة البلاغ والعمل على حل المشكلة.',
+          ),
+          style: const TextStyle(color: AppColors.greyText),
         ),
         actions: [
           TextButton(
             onPressed: () => Navigator.pop(context),
-            child: const Text(
-              "Close",
-              style: TextStyle(color: AppColors.secondaryColor),
+            child: Text(
+              context.tr('Close', 'إغلاق'),
+              style: const TextStyle(color: AppColors.secondaryColor),
             ),
           ),
         ],

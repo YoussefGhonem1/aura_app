@@ -1,4 +1,5 @@
 import 'package:aura_app/src/shared/componants/custom_button.dart';
+import 'package:aura_app/src/core/extensions/localization_extension.dart';
 import 'package:aura_app/src/shared/themes/app_colors.dart';
 import 'package:flutter/material.dart';
 
@@ -37,7 +38,7 @@ class NoInternetScreen extends StatelessWidget {
 
               // Title
               Text(
-                "Connection Lost",
+                context.tr('Connection Lost', 'انقطع الاتصال'),
                 style: Theme.of(context).textTheme.headlineMedium?.copyWith(
                   fontWeight: FontWeight.bold,
                   color: Colors.white,
@@ -47,21 +48,27 @@ class NoInternetScreen extends StatelessWidget {
 
               // Description
               Text(
-                "Aura needs a connection to sync real-time\nmarket data.",
+                context.tr(
+                  'Aura needs a connection to sync real-time\nmarket data.',
+                  'يحتاج Aura إلى اتصال لمزامنة\nبيانات السوق الفورية.',
+                ),
                 textAlign: TextAlign.center,
                 style: Theme.of(context).textTheme.bodyMedium,
               ),
               const SizedBox(height: 48),
 
               // Retry Button
-              AuraButton(title: "Retry Connection", onPressed: () {}),
+              AuraButton(
+                title: context.tr('Retry Connection', 'إعادة المحاولة'),
+                onPressed: () {},
+              ),
               const SizedBox(height: 10),
 
               // Footer Links
               TextButton(
                 onPressed: () {},
                 child: Text(
-                  "Contact Support",
+                  context.tr('Contact Support', 'التواصل مع الدعم'),
                   style: Theme.of(context).textTheme.bodyMedium,
                 ),
               ),

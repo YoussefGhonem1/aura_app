@@ -1,4 +1,5 @@
 import 'package:aura_app/src/features/smart_automation/widgets/build_appbar.dart';
+import 'package:aura_app/src/core/extensions/localization_extension.dart';
 import 'package:aura_app/src/shared/themes/app_colors.dart';
 import 'package:flutter/material.dart';
 
@@ -9,7 +10,13 @@ class DisclaimerScreenEnhanced extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: AppColors.primaryColor,
-      appBar: buildAppBar(context, "Disclaimer & AI Ethics"),
+      appBar: buildAppBar(
+        context,
+        context.tr(
+          'Disclaimer & AI Ethics',
+          'إخلاء المسؤولية وأخلاقيات الذكاء الاصطناعي',
+        ),
+      ),
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(16),
         child: Column(
@@ -39,13 +46,16 @@ class DisclaimerScreenEnhanced extends StatelessWidget {
 
             // NOT FINANCIAL ADVICE Section with Card
             _buildSectionCard(
-              title: "NOT FINANCIAL ADVICE",
+              title: context.tr('NOT FINANCIAL ADVICE', 'ليست نصيحة مالية'),
               icon: Icons.account_balance_wallet_rounded,
               iconColor: Colors.orange,
               children: [
-                const Text(
-                  "Aura AI provides market analysis for educational purposes only. Our forecasts are probabilistic models based on historical patterns, not guarantees of future performance.",
-                  style: TextStyle(
+                Text(
+                  context.tr(
+                    'Aura AI provides market analysis for educational purposes only. Our forecasts are probabilistic models based on historical patterns, not guarantees of future performance.',
+                    'يوفر Aura AI تحليلات للسوق لأغراض تعليمية فقط. توقعاتنا نماذج احتمالية مبنية على أنماط تاريخية وليست ضمانًا للأداء المستقبلي.',
+                  ),
+                  style: const TextStyle(
                     color: AppColors.white,
                     fontSize: 14,
                     height: 1.6,
@@ -58,7 +68,7 @@ class DisclaimerScreenEnhanced extends StatelessWidget {
 
             // AI Limitations Section with Card
             _buildSectionCard(
-              title: "AI Limitations",
+              title: context.tr('AI Limitations', 'قيود الذكاء الاصطناعي'),
               icon: Icons.psychology_rounded,
               iconColor: AppColors.secondaryColor,
               children: [
@@ -70,21 +80,27 @@ class DisclaimerScreenEnhanced extends StatelessWidget {
                       height: 1.6,
                     ),
                     children: [
-                      const TextSpan(
-                        text:
-                            "Our AI models are trained on vast datasets of historical market data. However, past performance is not indicative of future results.\n\n",
+                      TextSpan(
+                        text: context.tr(
+                          'Our AI models are trained on vast datasets of historical market data. However, past performance is not indicative of future results.\n\n',
+                          'تم تدريب نماذج الذكاء الاصطناعي لدينا على مجموعات كبيرة من البيانات التاريخية للسوق. ومع ذلك، الأداء السابق لا يدل بالضرورة على النتائج المستقبلية.\n\n',
+                        ),
                       ),
                       TextSpan(
-                        text:
-                            "The AI may encounter \"edge cases,\" high volatility scenarios, or unprecedented global events (black swan events) that it has not been trained on.",
+                        text: context.tr(
+                          'The AI may encounter "edge cases," high volatility scenarios, or unprecedented global events (black swan events) that it has not been trained on.',
+                          'قد يواجه الذكاء الاصطناعي حالات نادرة، أو تقلبات عالية، أو أحداثًا عالمية غير مسبوقة (البجعة السوداء) لم يتم التدريب عليها.',
+                        ),
                         style: TextStyle(
                           color: Colors.orange.withOpacity(0.9),
                           fontWeight: FontWeight.w500,
                         ),
                       ),
-                      const TextSpan(
-                        text:
-                            " In these instances, predictions may be significantly less accurate or fail to capture the full scope of market risk.",
+                      TextSpan(
+                        text: context.tr(
+                          ' In these instances, predictions may be significantly less accurate or fail to capture the full scope of market risk.',
+                          ' في هذه الحالات، قد تكون التوقعات أقل دقة بشكل ملحوظ أو لا تعكس كامل نطاق مخاطر السوق.',
+                        ),
                       ),
                     ],
                   ),
@@ -96,13 +112,16 @@ class DisclaimerScreenEnhanced extends StatelessWidget {
 
             // User Responsibility Section with Card
             _buildSectionCard(
-              title: "User Responsibility",
+              title: context.tr('User Responsibility', 'مسؤولية المستخدم'),
               icon: Icons.person_rounded,
               iconColor: Colors.blue,
               children: [
-                const Text(
-                  "Aura AI is a technology provider, not a registered investment advisor or broker-dealer.",
-                  style: TextStyle(
+                Text(
+                  context.tr(
+                    'Aura AI is a technology provider, not a registered investment advisor or broker-dealer.',
+                    'Aura AI مزود تقنية وليس مستشارًا استثماريًا مسجلًا أو وسيطًا ماليًا.',
+                  ),
+                  style: const TextStyle(
                     color: AppColors.white,
                     fontSize: 14,
                     height: 1.6,
@@ -111,20 +130,26 @@ class DisclaimerScreenEnhanced extends StatelessWidget {
                 const SizedBox(height: 16),
                 _buildResponsibilityBullet(
                   icon: Icons.assignment_turned_in_rounded,
-                  text:
-                      "You retain full responsibility for all investment decisions.",
+                  text: context.tr(
+                    'You retain full responsibility for all investment decisions.',
+                    'تتحمل المسؤولية الكاملة عن جميع قراراتك الاستثمارية.',
+                  ),
                 ),
                 const SizedBox(height: 12),
                 _buildResponsibilityBullet(
                   icon: Icons.search_rounded,
-                  text:
-                      "You should conduct your own due diligence before executing any trade.",
+                  text: context.tr(
+                    'You should conduct your own due diligence before executing any trade.',
+                    'يجب عليك إجراء التحقق اللازم بنفسك قبل تنفيذ أي صفقة.',
+                  ),
                 ),
                 const SizedBox(height: 12),
                 _buildResponsibilityBullet(
                   icon: Icons.group_rounded,
-                  text:
-                      "Consider consulting with a qualified financial professional.",
+                  text: context.tr(
+                    'Consider consulting with a qualified financial professional.',
+                    'فكّر في استشارة مختص مالي مؤهل.',
+                  ),
                 ),
               ],
             ),
@@ -133,13 +158,19 @@ class DisclaimerScreenEnhanced extends StatelessWidget {
 
             // Data Sources & Latency Section with Card
             _buildSectionCard(
-              title: "Data Sources & Latency",
+              title: context.tr(
+                'Data Sources & Latency',
+                'مصادر البيانات وزمن التأخير',
+              ),
               icon: Icons.cloud_sync_rounded,
               iconColor: Colors.green,
               children: [
-                const Text(
-                  "Market data feeds may experience latency. While we strive for real-time accuracy, data delays can occur due to connectivity issues or third-party provider outages.",
-                  style: TextStyle(
+                Text(
+                  context.tr(
+                    'Market data feeds may experience latency. While we strive for real-time accuracy, data delays can occur due to connectivity issues or third-party provider outages.',
+                    'قد يحدث تأخير في تدفق بيانات السوق. رغم سعينا للدقة الفورية، قد تظهر تأخيرات بسبب مشاكل الاتصال أو أعطال مزودي البيانات الخارجيين.',
+                  ),
+                  style: const TextStyle(
                     color: AppColors.white,
                     fontSize: 14,
                     height: 1.6,
@@ -156,9 +187,12 @@ class DisclaimerScreenEnhanced extends StatelessWidget {
                       width: 1,
                     ),
                   ),
-                  child: const Text(
-                    "Do not rely solely on Aura for time-sensitive trade execution.",
-                    style: TextStyle(
+                  child: Text(
+                    context.tr(
+                      'Do not rely solely on Aura for time-sensitive trade execution.',
+                      'لا تعتمد فقط على Aura لتنفيذ الصفقات الحساسة للوقت.',
+                    ),
+                    style: const TextStyle(
                       color: Colors.red,
                       fontSize: 14,
                       fontWeight: FontWeight.w600,
@@ -172,7 +206,7 @@ class DisclaimerScreenEnhanced extends StatelessWidget {
             const SizedBox(height: 40),
 
             // Bottom Button with Checkbox
-            _buildAcknowledgeSection(),
+            _buildAcknowledgeSection(context),
 
             const SizedBox(height: 20),
           ],
@@ -254,7 +288,7 @@ class DisclaimerScreenEnhanced extends StatelessWidget {
     );
   }
 
-  Widget _buildAcknowledgeSection() {
+  Widget _buildAcknowledgeSection(BuildContext context) {
     return Container(
       padding: const EdgeInsets.all(20),
       decoration: BoxDecoration(
@@ -291,10 +325,13 @@ class DisclaimerScreenEnhanced extends StatelessWidget {
                 ),
               ),
               const SizedBox(width: 12),
-              const Expanded(
+              Expanded(
                 child: Text(
-                  "By clicking below, I confirm that I have read and understood all the terms and limitations mentioned above.",
-                  style: TextStyle(
+                  context.tr(
+                    'By clicking below, I confirm that I have read and understood all the terms and limitations mentioned above.',
+                    'بالضغط أدناه، أؤكد أنني قرأت وفهمت جميع الشروط والقيود المذكورة أعلاه.',
+                  ),
+                  style: const TextStyle(
                     color: AppColors.white,
                     fontSize: 14,
                     height: 1.6,
@@ -319,18 +356,18 @@ class DisclaimerScreenEnhanced extends StatelessWidget {
                 elevation: 4,
                 shadowColor: AppColors.secondaryColor.withOpacity(0.4),
               ),
-              child: const Row(
+              child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Icon(
+                  const Icon(
                     Icons.verified_user_rounded,
                     color: AppColors.primaryColor,
                     size: 20,
                   ),
-                  SizedBox(width: 10),
+                  const SizedBox(width: 10),
                   Text(
-                    "Understand & Acknowledge",
-                    style: TextStyle(
+                    context.tr('Understand & Acknowledge', 'فهمت وأوافق'),
+                    style: const TextStyle(
                       color: AppColors.primaryColor,
                       fontSize: 16,
                       fontWeight: FontWeight.bold,

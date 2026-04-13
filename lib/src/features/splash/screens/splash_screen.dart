@@ -1,6 +1,7 @@
 import 'package:aura_app/src/features/splash/widgets/animation_letter.dart';
 import 'package:aura_app/src/features/splash/widgets/background_pointer.dart';
 import 'package:aura_app/src/features/splash/widgets/logo_container.dart';
+import 'package:aura_app/src/core/extensions/localization_extension.dart';
 import 'package:aura_app/src/shared/routing/route_strings.dart';
 import 'package:aura_app/src/shared/themes/app_colors.dart';
 import 'package:flutter/material.dart';
@@ -105,10 +106,7 @@ class _SplashScreenState extends State<SplashScreen>
             child: Column(
               mainAxisSize: MainAxisSize.min,
               children: [
-                ScaleTransition(
-                  scale: _logoScale,
-                  child: buildLogoContainer(),
-                ),
+                ScaleTransition(scale: _logoScale, child: buildLogoContainer()),
                 const SizedBox(height: 45),
 
                 Row(
@@ -126,7 +124,10 @@ class _SplashScreenState extends State<SplashScreen>
                 FadeTransition(
                   opacity: _fadeAnimations.last,
                   child: Text(
-                    "AI-POWERED INVESTING",
+                    context.tr(
+                      'AI-POWERED INVESTING',
+                      'استثمار مدعوم بالذكاء الاصطناعي',
+                    ),
                     style: Theme.of(context).textTheme.bodySmall?.copyWith(
                       letterSpacing: 2,
                       color: AppColors.greyText,
@@ -140,5 +141,4 @@ class _SplashScreenState extends State<SplashScreen>
       ),
     );
   }
-
 }

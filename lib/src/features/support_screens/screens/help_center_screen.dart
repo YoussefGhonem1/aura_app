@@ -1,4 +1,5 @@
 import 'package:aura_app/src/features/smart_automation/widgets/build_appbar.dart';
+import 'package:aura_app/src/core/extensions/localization_extension.dart';
 import 'package:aura_app/src/shared/themes/app_colors.dart';
 import 'package:flutter/material.dart';
 
@@ -12,17 +13,17 @@ class HelpCenterScreenEnhanced extends StatefulWidget {
 
 class _HelpCenterScreenEnhancedState extends State<HelpCenterScreenEnhanced> {
   final TextEditingController _searchController = TextEditingController();
-  final List<String> _recentSearches = [
-    "How to reset password",
-    "API documentation",
-    "Subscription plans",
+  List<String> _recentSearches(BuildContext context) => [
+    context.tr('How to reset password', 'كيفية إعادة تعيين كلمة المرور'),
+    context.tr('API documentation', 'توثيق API'),
+    context.tr('Subscription plans', 'خطط الاشتراك'),
   ];
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: AppColors.primaryColor,
-      appBar: buildAppBar(context, "Help Center"),
+      appBar: buildAppBar(context, context.l10n.helpCenter),
       body: SingleChildScrollView(
         child: Column(
           children: [
@@ -58,12 +59,12 @@ class _HelpCenterScreenEnhancedState extends State<HelpCenterScreenEnhanced> {
                           size: 24,
                         ),
                         const SizedBox(width: 12),
-                        const Expanded(
+                        Expanded(
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Text(
-                                "Help Center",
+                                context.l10n.helpCenter,
                                 style: TextStyle(
                                   color: AppColors.white,
                                   fontSize: 18,
@@ -71,7 +72,10 @@ class _HelpCenterScreenEnhancedState extends State<HelpCenterScreenEnhanced> {
                                 ),
                               ),
                               Text(
-                                "Find answers to common questions",
+                                context.tr(
+                                  'Find answers to common questions',
+                                  'اعثر على إجابات للأسئلة الشائعة',
+                                ),
                                 style: TextStyle(
                                   color: AppColors.greyText,
                                   fontSize: 12,
@@ -124,7 +128,10 @@ class _HelpCenterScreenEnhancedState extends State<HelpCenterScreenEnhanced> {
                                     color: AppColors.white,
                                   ),
                                   decoration: InputDecoration(
-                                    hintText: "Search FAQ...",
+                                    hintText: context.tr(
+                                      'Search FAQ...',
+                                      'ابحث في الأسئلة الشائعة...',
+                                    ),
                                     hintStyle: TextStyle(
                                       color: AppColors.greyText,
                                       fontSize: 15,
@@ -153,7 +160,7 @@ class _HelpCenterScreenEnhancedState extends State<HelpCenterScreenEnhanced> {
                         ),
 
                         // Recent Searches
-                        if (_recentSearches.isNotEmpty)
+                        if (_recentSearches(context).isNotEmpty)
                           Container(
                             padding: const EdgeInsets.symmetric(
                               horizontal: 20,
@@ -170,7 +177,10 @@ class _HelpCenterScreenEnhancedState extends State<HelpCenterScreenEnhanced> {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Text(
-                                  "Recent searches",
+                                  context.tr(
+                                    'Recent searches',
+                                    'عمليات البحث الأخيرة',
+                                  ),
                                   style: TextStyle(
                                     color: AppColors.greyText,
                                     fontSize: 12,
@@ -181,7 +191,9 @@ class _HelpCenterScreenEnhancedState extends State<HelpCenterScreenEnhanced> {
                                 Wrap(
                                   spacing: 8,
                                   runSpacing: 8,
-                                  children: _recentSearches.map((search) {
+                                  children: _recentSearches(context).map((
+                                    search,
+                                  ) {
                                     return GestureDetector(
                                       onTap: () {
                                         _searchController.text = search;
@@ -261,8 +273,8 @@ class _HelpCenterScreenEnhancedState extends State<HelpCenterScreenEnhanced> {
                               ),
                             ),
                             const SizedBox(width: 12),
-                            const Text(
-                              "Common Categories",
+                            Text(
+                              context.tr('Common Categories', 'الفئات الشائعة'),
                               style: TextStyle(
                                 color: AppColors.white,
                                 fontSize: 18,
@@ -281,8 +293,11 @@ class _HelpCenterScreenEnhancedState extends State<HelpCenterScreenEnhanced> {
                           childAspectRatio: 1.4,
                           children: [
                             _buildEnhancedCategoryCard(
-                              title: "Getting Started",
-                              description: "Setup guides & tutorials",
+                              title: context.tr('Getting Started', 'البدء'),
+                              description: context.tr(
+                                'Setup guides & tutorials',
+                                'أدلة الإعداد والشروحات',
+                              ),
                               icon: Icons.rocket_launch_rounded,
                               gradient: LinearGradient(
                                 colors: [
@@ -292,8 +307,14 @@ class _HelpCenterScreenEnhancedState extends State<HelpCenterScreenEnhanced> {
                               ),
                             ),
                             _buildEnhancedCategoryCard(
-                              title: "AI Analysis",
-                              description: "Understand predictions",
+                              title: context.tr(
+                                'AI Analysis',
+                                'تحليل الذكاء الاصطناعي',
+                              ),
+                              description: context.tr(
+                                'Understand predictions',
+                                'افهم التوقعات',
+                              ),
                               icon: Icons.insights_rounded,
                               gradient: LinearGradient(
                                 colors: [
@@ -303,8 +324,14 @@ class _HelpCenterScreenEnhancedState extends State<HelpCenterScreenEnhanced> {
                               ),
                             ),
                             _buildEnhancedCategoryCard(
-                              title: "Account Security",
-                              description: "2FA & privacy settings",
+                              title: context.tr(
+                                'Account Security',
+                                'أمان الحساب',
+                              ),
+                              description: context.tr(
+                                '2FA & privacy settings',
+                                'إعدادات التحقق الثنائي والخصوصية',
+                              ),
                               icon: Icons.lock_rounded,
                               gradient: LinearGradient(
                                 colors: [
@@ -314,8 +341,14 @@ class _HelpCenterScreenEnhancedState extends State<HelpCenterScreenEnhanced> {
                               ),
                             ),
                             _buildEnhancedCategoryCard(
-                              title: "Billing & Plan",
-                              description: "Manage subscriptions",
+                              title: context.tr(
+                                'Billing & Plan',
+                                'الفوترة والخطة',
+                              ),
+                              description: context.tr(
+                                'Manage subscriptions',
+                                'إدارة الاشتراكات',
+                              ),
                               icon: Icons.credit_card_rounded,
                               gradient: LinearGradient(
                                 colors: [
@@ -360,8 +393,11 @@ class _HelpCenterScreenEnhancedState extends State<HelpCenterScreenEnhanced> {
                               ),
                             ),
                             const SizedBox(width: 12),
-                            const Text(
-                              "Popular Articles",
+                            Text(
+                              context.tr(
+                                'Popular Articles',
+                                'المقالات الشائعة',
+                              ),
                               style: TextStyle(
                                 color: AppColors.white,
                                 fontSize: 18,
@@ -372,22 +408,40 @@ class _HelpCenterScreenEnhancedState extends State<HelpCenterScreenEnhanced> {
                         ),
                         const SizedBox(height: 20),
                         _buildEnhancedArticleItem(
-                          title: "How to export my data?",
-                          description: "Step-by-step guide for data",
+                          title: context.tr(
+                            'How to export my data?',
+                            'كيف أقوم بتصدير بياناتي؟',
+                          ),
+                          description: context.tr(
+                            'Step-by-step guide for data',
+                            'دليل خطوة بخطوة للبيانات',
+                          ),
                           icon: Icons.download_rounded,
-                          views: "1.2k views",
+                          views: context.tr('1.2k views', '1.2 ألف مشاهدة'),
                         ),
                         _buildEnhancedArticleItem(
-                          title: "Connecting Aura to Apple Health",
-                          description: "Integrate with tracking apps",
+                          title: context.tr(
+                            'Connecting Aura to Apple Health',
+                            'ربط Aura مع Apple Health',
+                          ),
+                          description: context.tr(
+                            'Integrate with tracking apps',
+                            'تكامل مع تطبيقات التتبع',
+                          ),
                           icon: Icons.health_and_safety_rounded,
-                          views: "856 views",
+                          views: context.tr('856 views', '856 مشاهدة'),
                         ),
                         _buildEnhancedArticleItem(
-                          title: "Managing your 2FA settings",
-                          description: "Enhance account security",
+                          title: context.tr(
+                            'Managing your 2FA settings',
+                            'إدارة إعدادات التحقق الثنائي',
+                          ),
+                          description: context.tr(
+                            'Enhance account security',
+                            'تعزيز أمان الحساب',
+                          ),
                           icon: Icons.security_rounded,
-                          views: "2.3k views",
+                          views: context.tr('2.3k views', '2.3 ألف مشاهدة'),
                         ),
                       ],
                     ),
@@ -590,12 +644,12 @@ class _HelpCenterScreenEnhancedState extends State<HelpCenterScreenEnhanced> {
                 ),
               ),
               const SizedBox(width: 16),
-              const Expanded(
+              Expanded(
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      "Still need help?",
+                      context.tr('Still need help?', 'ما زلت تحتاج مساعدة؟'),
                       style: TextStyle(
                         color: AppColors.white,
                         fontSize: 18,
@@ -604,7 +658,10 @@ class _HelpCenterScreenEnhancedState extends State<HelpCenterScreenEnhanced> {
                     ),
                     SizedBox(height: 4),
                     Text(
-                      "Our support team is available 24/7",
+                      context.tr(
+                        'Our support team is available 24/7',
+                        'فريق الدعم متاح على مدار الساعة',
+                      ),
                       style: TextStyle(color: AppColors.greyText, fontSize: 14),
                     ),
                   ],
@@ -613,8 +670,11 @@ class _HelpCenterScreenEnhancedState extends State<HelpCenterScreenEnhanced> {
             ],
           ),
           const SizedBox(height: 20),
-          const Text(
-            "Our support team is available 24/7 to assist you with any questions.",
+          Text(
+            context.tr(
+              'Our support team is available 24/7 to assist you with any questions.',
+              'فريق الدعم متاح 24/7 لمساعدتك في أي استفسار.',
+            ),
             style: TextStyle(color: AppColors.white, fontSize: 14, height: 1.6),
             textAlign: TextAlign.center,
           ),
@@ -640,8 +700,8 @@ class _HelpCenterScreenEnhancedState extends State<HelpCenterScreenEnhanced> {
                     color: AppColors.white,
                     size: 20,
                   ),
-                  label: const Text(
-                    "Email Support",
+                  label: Text(
+                    context.tr('Email Support', 'الدعم عبر البريد'),
                     style: TextStyle(
                       color: AppColors.white,
                       fontSize: 15,
@@ -668,8 +728,8 @@ class _HelpCenterScreenEnhancedState extends State<HelpCenterScreenEnhanced> {
                     color: AppColors.primaryColor,
                     size: 20,
                   ),
-                  label: const Text(
-                    "Live Chat",
+                  label: Text(
+                    context.tr('Live Chat', 'دردشة مباشرة'),
                     style: TextStyle(
                       color: AppColors.primaryColor,
                       fontSize: 15,

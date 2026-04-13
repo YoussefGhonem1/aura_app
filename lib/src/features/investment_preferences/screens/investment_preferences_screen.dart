@@ -1,4 +1,5 @@
 import 'package:aura_app/src/features/investment_preferences/widgets/build_update_botton.dart';
+import 'package:aura_app/src/core/extensions/localization_extension.dart';
 import 'package:aura_app/src/features/smart_automation/widgets/build_appbar.dart';
 import 'package:aura_app/src/shared/themes/app_colors.dart';
 import 'package:flutter/material.dart';
@@ -13,47 +14,71 @@ class InvestmentPreferencesScreen extends StatefulWidget {
 
 class _InvestmentPreferencesScreenState
     extends State<InvestmentPreferencesScreen> {
-  String _risk = "Medium";
-  final Set<String> _markets = {"Technology", "Crypto"};
-  String _goal = "Growth";
+  String _risk = 'Medium';
+  final Set<String> _markets = {'Technology', 'Crypto'};
+  String _goal = 'Growth';
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: buildAppBar(context, "Investment Preferences"),
+      appBar: buildAppBar(context, context.l10n.investmentPreferences),
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(16),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            _sectionTitle("Risk Tolerance"),
-            _sectionSubtitle("What is your risk appetite?"),
+            _sectionTitle(context.tr('Risk Tolerance', 'تحمل المخاطر')),
+            _sectionSubtitle(
+              context.tr(
+                'What is your risk appetite?',
+                'ما مستوى تقبلك للمخاطرة؟',
+              ),
+            ),
             const SizedBox(height: 16),
-            _riskSelector(),
+            _riskSelector(context),
 
             const SizedBox(height: 32),
-            _sectionTitle("Market Interests"),
-            _sectionSubtitle("Select sectors for Aura to prioritize."),
+            _sectionTitle(context.tr('Market Interests', 'اهتمامات السوق')),
+            _sectionSubtitle(
+              context.tr(
+                'Select sectors for Aura to prioritize.',
+                'اختر القطاعات التي تريد أن يركز عليها Aura.',
+              ),
+            ),
             const SizedBox(height: 16),
-            _marketChips(),
+            _marketChips(context),
 
             const SizedBox(height: 32),
-            _sectionTitle("Primary Goal"),
-            _sectionSubtitle("What is your main objective?"),
+            _sectionTitle(context.tr('Primary Goal', 'الهدف الأساسي')),
+            _sectionSubtitle(
+              context.tr('What is your main objective?', 'ما هو هدفك الرئيسي؟'),
+            ),
             const SizedBox(height: 16),
             _goalItem(
-              title: "Growth",
-              description: "Maximizing capital appreciation over time.",
+              context: context,
+              title: 'Growth',
+              description: context.tr(
+                'Maximizing capital appreciation over time.',
+                'تعظيم نمو رأس المال على المدى الطويل.',
+              ),
             ),
             const SizedBox(height: 12),
             _goalItem(
-              title: "Dividends",
-              description: "Generating steady passive income.",
+              context: context,
+              title: 'Dividends',
+              description: context.tr(
+                'Generating steady passive income.',
+                'تحقيق دخل ثابت ومنتظم.',
+              ),
             ),
             const SizedBox(height: 12),
             _goalItem(
-              title: "Capital Preservation",
-              description: "Protecting current assets with minimal risk.",
+              context: context,
+              title: 'Capital Preservation',
+              description: context.tr(
+                'Protecting current assets with minimal risk.',
+                'حماية الأصول الحالية بأقل قدر من المخاطرة.',
+              ),
             ),
           ],
         ),
@@ -79,7 +104,7 @@ class _InvestmentPreferencesScreenState
     ),
   );
 
-  Widget _riskSelector() {
+  Widget _riskSelector(BuildContext context) {
     return Container(
       padding: const EdgeInsets.all(6),
       decoration: BoxDecoration(
@@ -87,7 +112,7 @@ class _InvestmentPreferencesScreenState
         borderRadius: BorderRadius.circular(14),
       ),
       child: Row(
-        children: ["Low", "Medium", "High"].map((e) {
+        children: ['Low', 'Medium', 'High'].map((e) {
           return _riskItem(e);
         }).toList(),
       ),
@@ -107,7 +132,11 @@ class _InvestmentPreferencesScreenState
           ),
           child: Center(
             child: Text(
-              text,
+              context.tr(
+                text,
+                {'Low': 'منخفض', 'Medium': 'متوسط', 'High': 'مرتفع'}[text] ??
+                    text,
+              ),
               style: TextStyle(
                 color: selected ? AppColors.primaryColor : AppColors.greyText,
                 fontWeight: FontWeight.w600,
@@ -119,14 +148,14 @@ class _InvestmentPreferencesScreenState
     );
   }
 
-  Widget _marketChips() {
+  Widget _marketChips(BuildContext context) {
     final items = [
-      "Technology",
-      "Green Energy",
-      "Crypto",
-      "Healthcare",
-      "Real Estate",
-      "Consumer Goods",
+      'Technology',
+      'Green Energy',
+      'Crypto',
+      'Healthcare',
+      'Real Estate',
+      'Consumer Goods',
     ];
 
     return Wrap(
@@ -147,7 +176,18 @@ class _InvestmentPreferencesScreenState
               borderRadius: BorderRadius.circular(20),
             ),
             child: Text(
-              e,
+              context.tr(
+                e,
+                {
+                      'Technology': 'التقنية',
+                      'Green Energy': 'الطاقة الخضراء',
+                      'Crypto': 'العملات الرقمية',
+                      'Healthcare': 'الرعاية الصحية',
+                      'Real Estate': 'العقارات',
+                      'Consumer Goods': 'السلع الاستهلاكية',
+                    }[e] ??
+                    e,
+              ),
               style: TextStyle(
                 color: selected ? AppColors.primaryColor : AppColors.white,
                 fontWeight: FontWeight.w500,
@@ -160,7 +200,11 @@ class _InvestmentPreferencesScreenState
     );
   }
 
-  Widget _goalItem({required String title, required String description}) {
+  Widget _goalItem({
+    required BuildContext context,
+    required String title,
+    required String description,
+  }) {
     final selected = _goal == title;
 
     return GestureDetector(
@@ -182,7 +226,15 @@ class _InvestmentPreferencesScreenState
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    title,
+                    context.tr(
+                      title,
+                      {
+                            'Growth': 'النمو',
+                            'Dividends': 'توزيعات الأرباح',
+                            'Capital Preservation': 'الحفاظ على رأس المال',
+                          }[title] ??
+                          title,
+                    ),
                     style: const TextStyle(
                       color: AppColors.white,
                       fontSize: 15,

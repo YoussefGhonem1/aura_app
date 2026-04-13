@@ -5,6 +5,7 @@ import 'package:aura_app/src/features/recommendation_reason/widgets/build_head.d
 import 'package:aura_app/src/features/recommendation_reason/widgets/build_recommendation_text.dart';
 import 'package:aura_app/src/features/recommendation_reason/widgets/build_sentiment_card.dart';
 import 'package:aura_app/src/features/recommendation_reason/widgets/buils_indicator_card.dart';
+import 'package:aura_app/src/core/extensions/localization_extension.dart';
 import 'package:aura_app/src/features/stock_details/models/stock_details_model.dart';
 import 'package:aura_app/src/shared/themes/app_colors.dart';
 import 'package:flutter/material.dart';
@@ -31,32 +32,38 @@ class RecommendationReasonScreen extends StatelessWidget {
               const SizedBox(height: 30),
               sentimentCard(),
               const SizedBox(height: 24),
-              _technicalIndicator(),
+              _technicalIndicator(context),
               const SizedBox(height: 12),
-              _technicalGrid(),
+              _technicalGrid(context),
               const SizedBox(height: 24),
-              _priceDriver(),
+              _priceDriver(context),
               const SizedBox(height: 12),
 
               driverTile(
                 icon: Icons.bar_chart,
-                title: "Sector Momentum",
-                subtitle:
-                    "Tech stocks are outperforming the S&P 500 this week, creating a tailwind for AAPL.",
+                title: context.tr('Sector Momentum', 'زخم القطاع'),
+                subtitle: context.tr(
+                  'Tech stocks are outperforming the S&P 500 this week, creating a tailwind for AAPL.',
+                  'أسهم التكنولوجيا تتفوق على مؤشر S&P 500 هذا الأسبوع مما يدعم AAPL.',
+                ),
               ),
 
               driverTile(
                 icon: Icons.volume_up,
-                title: "News Volume",
-                subtitle:
-                    "Mention volume has increased 200% in the last 24 hours driven by new product launches.",
+                title: context.tr('News Volume', 'حجم الأخبار'),
+                subtitle: context.tr(
+                  'Mention volume has increased 200% in the last 24 hours driven by new product launches.',
+                  'زاد حجم الإشارات بنسبة 200% خلال آخر 24 ساعة بسبب إطلاق منتجات جديدة.',
+                ),
               ),
 
               driverTile(
                 icon: Icons.attach_money,
-                title: "Institutional Flow",
-                subtitle:
-                    "Significant block buying detected in dark pools over the last 3 trading sessions.",
+                title: context.tr('Institutional Flow', 'تدفق المؤسسات'),
+                subtitle: context.tr(
+                  'Significant block buying detected in dark pools over the last 3 trading sessions.',
+                  'تم رصد عمليات شراء كبيرة في الأسواق المظلمة خلال آخر 3 جلسات.',
+                ),
               ),
 
               const SizedBox(height: 80),
@@ -70,14 +77,14 @@ class RecommendationReasonScreen extends StatelessWidget {
     );
   }
 
-  Widget _technicalIndicator() {
+  Widget _technicalIndicator(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 8.0),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          const Text(
-            "Technical Indicators",
+          Text(
+            context.tr('Technical Indicators', 'المؤشرات الفنية'),
             style: TextStyle(
               color: AppColors.white,
               fontSize: 17,
@@ -86,8 +93,8 @@ class RecommendationReasonScreen extends StatelessWidget {
           ),
           GestureDetector(
             onTap: () {},
-            child: const Text(
-              "View Chart",
+            child: Text(
+              context.tr('View Chart', 'عرض الرسم البياني'),
               style: TextStyle(color: AppColors.secondaryColor, fontSize: 14),
             ),
           ),
@@ -96,11 +103,11 @@ class RecommendationReasonScreen extends StatelessWidget {
     );
   }
 
-  Widget _priceDriver() {
+  Widget _priceDriver(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 8.0),
       child: Text(
-        "Price Drivers",
+        context.tr('Price Drivers', 'محركات السعر'),
         style: TextStyle(
           color: AppColors.white,
           fontSize: 16,
@@ -111,7 +118,7 @@ class RecommendationReasonScreen extends StatelessWidget {
   }
 
   /// TECHNICAL GRID
-  Widget _technicalGrid() {
+  Widget _technicalGrid(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 8.0),
       child: GridView.count(
@@ -125,23 +132,23 @@ class RecommendationReasonScreen extends StatelessWidget {
           indicatorCard(
             title: "RSI (14)",
             value: "65.4",
-            subtitle: "Neutral-High",
+            subtitle: context.tr('Neutral-High', 'محايد-مرتفع'),
             valueColor: Colors.yellowAccent,
           ),
           indicatorCard(
             title: "MACD",
             value: "Crossover",
-            subtitle: "Bullish Signal",
+            subtitle: context.tr('Bullish Signal', 'إشارة صعودية'),
           ),
           indicatorCard(
             title: "MA (50)",
             value: "\$172.40",
-            subtitle: "Above MA",
+            subtitle: context.tr('Above MA', 'أعلى من المتوسط'),
           ),
           indicatorCard(
-            title: "VOL VOLATILITY",
+            title: context.tr('VOL VOLATILITY', 'تقلب الحجم'),
             value: "+24%",
-            subtitle: "High interest",
+            subtitle: context.tr('High interest', 'اهتمام مرتفع'),
           ),
         ],
       ),

@@ -1,4 +1,5 @@
 import 'package:aura_app/src/features/smart_automation/widgets/build_appbar.dart';
+import 'package:aura_app/src/core/extensions/localization_extension.dart';
 import 'package:aura_app/src/shared/themes/app_colors.dart';
 import 'package:flutter/material.dart';
 
@@ -9,7 +10,7 @@ class TermsOfServiceScreenEnhanced extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: AppColors.primaryColor,
-      appBar: buildAppBar(context, "Terms of Service"),
+      appBar: buildAppBar(context, context.l10n.termsOfService),
       body: SingleChildScrollView(
         child: Column(
           children: [
@@ -53,9 +54,12 @@ class TermsOfServiceScreenEnhanced extends StatelessWidget {
                         Expanded(
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
-                            children: const [
+                            children: [
                               Text(
-                                "Aura Terms of Service",
+                                context.tr(
+                                  'Aura Terms of Service',
+                                  'شروط خدمة Aura',
+                                ),
                                 style: TextStyle(
                                   color: AppColors.white,
                                   fontSize: 18,
@@ -64,7 +68,10 @@ class TermsOfServiceScreenEnhanced extends StatelessWidget {
                               ),
                               SizedBox(height: 4),
                               Text(
-                                "Last Updated: October 2023 - Version 2.4",
+                                context.tr(
+                                  'Last Updated: October 2023 - Version 2.4',
+                                  'آخر تحديث: أكتوبر 2023 - الإصدار 2.4',
+                                ),
                                 style: TextStyle(
                                   color: AppColors.greyText,
                                   fontSize: 12,
@@ -77,9 +84,12 @@ class TermsOfServiceScreenEnhanced extends StatelessWidget {
                     ),
                   ),
                   const SizedBox(height: 20),
-                  const Text(
-                    "Welcome to Aura. Please read these Terms of Service carefully before using the Aura mobile application and associated services operated by Aura Inc.",
-                    style: TextStyle(
+                  Text(
+                    context.tr(
+                      'Welcome to Aura. Please read these Terms of Service carefully before using the Aura mobile application and associated services operated by Aura Inc.',
+                      'مرحبًا بك في Aura. يرجى قراءة شروط الخدمة بعناية قبل استخدام تطبيق Aura والخدمات المرتبطة به.',
+                    ),
+                    style: const TextStyle(
                       color: AppColors.white,
                       fontSize: 14,
                       height: 1.6,
@@ -98,12 +108,15 @@ class TermsOfServiceScreenEnhanced extends StatelessWidget {
                   // 1. Acceptance of Terms
                   _buildTermCard(
                     number: "1",
-                    title: "Acceptance of Terms",
+                    title: context.tr('Acceptance of Terms', 'قبول الشروط'),
                     icon: Icons.check_circle_rounded,
                     children: [
-                      const Text(
-                        "By downloading, accessing, or using the Aura application, you agree to be bound by these Terms of Service and all applicable laws and regulations. If you do not agree with any of these terms, you are prohibited from using or accessing this application.",
-                        style: TextStyle(
+                      Text(
+                        context.tr(
+                          'By downloading, accessing, or using the Aura application, you agree to be bound by these Terms of Service and all applicable laws and regulations. If you do not agree with any of these terms, you are prohibited from using or accessing this application.',
+                          'بمجرد تنزيل تطبيق Aura أو الوصول إليه أو استخدامه، فإنك توافق على الالتزام بشروط الخدمة وجميع القوانين المعمول بها. إذا لم توافق على هذه الشروط، يُمنع عليك استخدام التطبيق.',
+                        ),
+                        style: const TextStyle(
                           color: AppColors.white,
                           fontSize: 14,
                           height: 1.6,
@@ -121,7 +134,7 @@ class TermsOfServiceScreenEnhanced extends StatelessWidget {
                   // 2. Privacy Policy
                   _buildTermCard(
                     number: "2",
-                    title: "Privacy Policy",
+                    title: context.l10n.privacyPolicy,
                     icon: Icons.privacy_tip_rounded,
                     children: [
                       const Text(
@@ -156,7 +169,10 @@ class TermsOfServiceScreenEnhanced extends StatelessWidget {
                               ),
                               const SizedBox(width: 8),
                               Text(
-                                "View Privacy Policy",
+                                context.tr(
+                                  'View Privacy Policy',
+                                  'عرض سياسة الخصوصية',
+                                ),
                                 style: TextStyle(
                                   color: AppColors.secondaryColor,
                                   fontSize: 14,
@@ -175,7 +191,7 @@ class TermsOfServiceScreenEnhanced extends StatelessWidget {
                   // 3. User Conduct
                   _buildTermCard(
                     number: "3",
-                    title: "User Conduct",
+                    title: context.tr('User Conduct', 'سلوك المستخدم'),
                     icon: Icons.rule_rounded,
                     children: [
                       const Text(
@@ -210,7 +226,10 @@ class TermsOfServiceScreenEnhanced extends StatelessWidget {
                   // 4. Intellectual Property
                   _buildTermCard(
                     number: "4",
-                    title: "Intellectual Property",
+                    title: context.tr(
+                      'Intellectual Property',
+                      'الملكية الفكرية',
+                    ),
                     icon: Icons.copyright_rounded,
                     children: [
                       const Text(
@@ -229,7 +248,10 @@ class TermsOfServiceScreenEnhanced extends StatelessWidget {
                   // 5. Limitation of Liability
                   _buildTermCard(
                     number: "5",
-                    title: "Limitation of Liability",
+                    title: context.tr(
+                      'Limitation of Liability',
+                      'تحديد المسؤولية',
+                    ),
                     icon: Icons.warning_amber_rounded,
                     children: [
                       const Text(
@@ -246,7 +268,7 @@ class TermsOfServiceScreenEnhanced extends StatelessWidget {
                   const SizedBox(height: 40),
 
                   // Contact Section
-                  _buildContactSection(),
+                  _buildContactSection(context),
 
                   const SizedBox(height: 40),
                 ],
@@ -375,7 +397,7 @@ class TermsOfServiceScreenEnhanced extends StatelessWidget {
     );
   }
 
-  Widget _buildContactSection() {
+  Widget _buildContactSection(BuildContext context) {
     return Container(
       padding: const EdgeInsets.all(24),
       decoration: BoxDecoration(
@@ -401,9 +423,12 @@ class TermsOfServiceScreenEnhanced extends StatelessWidget {
             size: 48,
           ),
           const SizedBox(height: 16),
-          const Text(
-            "Have questions about these Terms?",
-            style: TextStyle(
+          Text(
+            context.tr(
+              'Have questions about these Terms?',
+              'هل لديك أسئلة حول هذه الشروط؟',
+            ),
+            style: const TextStyle(
               color: AppColors.white,
               fontSize: 20,
               fontWeight: FontWeight.bold,
@@ -412,7 +437,10 @@ class TermsOfServiceScreenEnhanced extends StatelessWidget {
           ),
           const SizedBox(height: 8),
           Text(
-            "Our legal team is here to help clarify any terms or conditions.",
+            context.tr(
+              'Our legal team is here to help clarify any terms or conditions.',
+              'فريقنا القانوني هنا للمساعدة في توضيح أي شروط أو بنود.',
+            ),
             style: TextStyle(
               color: AppColors.greyText,
               fontSize: 14,
@@ -437,9 +465,9 @@ class TermsOfServiceScreenEnhanced extends StatelessWidget {
                       borderRadius: BorderRadius.circular(12),
                     ),
                   ),
-                  child: const Text(
-                    "Email Support",
-                    style: TextStyle(
+                  child: Text(
+                    context.tr('Email Support', 'الدعم عبر البريد'),
+                    style: const TextStyle(
                       color: AppColors.white,
                       fontSize: 15,
                       fontWeight: FontWeight.w600,
@@ -460,9 +488,9 @@ class TermsOfServiceScreenEnhanced extends StatelessWidget {
                       borderRadius: BorderRadius.circular(12),
                     ),
                   ),
-                  child: const Text(
-                    "Contact Legal",
-                    style: TextStyle(
+                  child: Text(
+                    context.tr('Contact Legal', 'تواصل مع القسم القانوني'),
+                    style: const TextStyle(
                       color: AppColors.primaryColor,
                       fontSize: 15,
                       fontWeight: FontWeight.bold,
