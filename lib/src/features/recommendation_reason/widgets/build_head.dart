@@ -1,4 +1,5 @@
 import 'package:aura_app/src/features/stock_details/models/stock_details_model.dart';
+import 'package:aura_app/src/core/extensions/localization_extension.dart';
 import 'package:aura_app/src/shared/themes/app_colors.dart';
 import 'package:flutter/material.dart';
 
@@ -31,7 +32,7 @@ Widget buildHeadRecommendationWidget(BuildContext context, StockModel stock) {
             Column(
               children: [
                 Text(
-                  "Insight Details",
+                  context.l10n.insightDetails,
                   style: TextStyle(
                     color: AppColors.white,
                     fontSize: 18,

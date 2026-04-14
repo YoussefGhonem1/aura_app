@@ -1,3 +1,4 @@
+import 'package:aura_app/src/core/extensions/localization_extension.dart';
 import 'package:aura_app/src/shared/themes/app_colors.dart';
 import 'package:flutter/material.dart';
 
@@ -45,8 +46,8 @@ Widget buildDailyAIInsightCard(BuildContext context) {
                     size: 14,
                   ),
                   const SizedBox(width: 4),
-                  const Text(
-                    "Daily AI Insight",
+                  Text(
+                    context.l10n.dailyAiInsight,
                     style: TextStyle(
                       color: AppColors.secondaryColor,
                       fontWeight: FontWeight.bold,
@@ -57,22 +58,22 @@ Widget buildDailyAIInsightCard(BuildContext context) {
               ),
             ),
             const Spacer(),
-            const Text(
-              "Confidence 87%",
+            Text(
+              context.l10n.confidence87,
               style: TextStyle(color: AppColors.greyText, fontSize: 12),
             ),
           ],
         ),
         const SizedBox(height: 16),
         Text(
-          "Tech Sector Rally Predicted",
+          context.l10n.techSectorRallyPredicted,
           style: Theme.of(
             context,
           ).textTheme.headlineSmall?.copyWith(color: Colors.white),
         ),
         const SizedBox(height: 8),
         Text(
-          "AI models indicate a strong bullish trend in semiconductor stocks today based on pre-market volume.",
+          context.l10n.aiModelsBullishSemiconductors,
           style: Theme.of(context).textTheme.bodySmall?.copyWith(
             color: AppColors.greyText,
             height: 1.5,
@@ -89,12 +90,12 @@ Widget buildDailyAIInsightCard(BuildContext context) {
               color: AppColors.secondaryColor.withOpacity(0.1),
             ),
           ),
-          child: const Center(
+          child: Center(
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Text(
-                  "Read Analysis",
+                  context.l10n.readAnalysis,
                   style: TextStyle(
                     color: AppColors.secondaryColor,
                     fontWeight: FontWeight.bold,

@@ -101,7 +101,10 @@ class _AuraSearchExploreScreenState extends State<AuraSearchExploreScreen> {
   void _openStockDetails(int index) {
     final stock = trendingStocks[index];
     print('فتح تفاصيل السهم: ${stock['symbol']}');
-    final stockModel = StockModel.dummy(stock['symbol']);
+    final stockModel = StockModel.dummy(
+      stock['symbol'],
+      localeCode: Localizations.localeOf(context).toLanguageTag(),
+    );
 
     Navigator.pushNamed(
       context,
@@ -149,7 +152,8 @@ class _AuraSearchExploreScreenState extends State<AuraSearchExploreScreen> {
                   buildSearchBar(context),
                   const SizedBox(height: 25),
                   buildSectionHeader(
-                    context.tr('Recent Searches', 'عمليات البحث الأخيرة'),
+                    context,
+                    context.l10n.recentSearches,
                     hasClear: true,
                     isCompareMode: false,
                     toggleCompareMode: () {},
@@ -160,7 +164,8 @@ class _AuraSearchExploreScreenState extends State<AuraSearchExploreScreen> {
                   buildAuraInsight(context),
                   const SizedBox(height: 30),
                   buildSectionHeader(
-                    context.tr('Trending Now', 'الأكثر تداولًا الآن'),
+                    context,
+                    context.l10n.trendingNow,
                     hasFilters: true,
                     isCompareMode: _isCompareMode,
                     toggleCompareMode: toggleCompareMode,
@@ -179,6 +184,7 @@ class _AuraSearchExploreScreenState extends State<AuraSearchExploreScreen> {
           ),
           if (_showCompareBar)
             buildCompareBar(
+              context: context,
               trendingStocks: trendingStocks,
               selectedCount: _selectedCount,
               showCompareBar: _showCompareBar,
@@ -199,8 +205,14 @@ class _AuraSearchExploreScreenState extends State<AuraSearchExploreScreen> {
                 if (selectedStocks.length != 2) {
                   return;
                 }
-                final stock1 = StockModel.dummy(selectedStocks[0]['symbol']);
-                final stock2 = StockModel.dummy(selectedStocks[1]['symbol']);
+                final stock1 = StockModel.dummy(
+                  selectedStocks[0]['symbol'],
+                  localeCode: Localizations.localeOf(context).toLanguageTag(),
+                );
+                final stock2 = StockModel.dummy(
+                  selectedStocks[1]['symbol'],
+                  localeCode: Localizations.localeOf(context).toLanguageTag(),
+                );
                 Navigator.pushNamed(
                   context,
                   Routes.stocksCompareScreen,

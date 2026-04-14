@@ -1,16 +1,13 @@
 // في ملف: lib/src/features/layout/widgets/ai_pick_tabs.dart
+import 'package:aura_app/src/core/extensions/localization_extension.dart';
 import 'package:flutter/material.dart';
 import 'package:aura_app/src/shared/themes/app_colors.dart';
 
 class AIPickTabs extends StatefulWidget {
   final ValueChanged<int>? onTabChanged;
   final int initialIndex;
-  
-  const AIPickTabs({
-    super.key, 
-    this.onTabChanged,
-    this.initialIndex = 0,
-  });
+
+  const AIPickTabs({super.key, this.onTabChanged, this.initialIndex = 0});
 
   @override
   State<AIPickTabs> createState() => _AIPickTabsState();
@@ -18,12 +15,6 @@ class AIPickTabs extends StatefulWidget {
 
 class _AIPickTabsState extends State<AIPickTabs> {
   late int _selectedIndex;
-  
-  final List<String> _tabs = [
-    "All Picks",
-    "Long Term", 
-    "Short Squeeze",
-  ];
 
   @override
   void initState() {
@@ -35,20 +26,26 @@ class _AIPickTabsState extends State<AIPickTabs> {
     setState(() {
       _selectedIndex = index;
     });
-    
+
     widget.onTabChanged?.call(index);
   }
 
   @override
   Widget build(BuildContext context) {
+    final List<String> tabs = [
+      context.l10n.allPicks,
+      context.l10n.longTerm,
+      context.l10n.shortSqueeze,
+    ];
+
     return Row(
       children: [
-        for (int i = 0; i < _tabs.length; i++)
+        for (int i = 0; i < tabs.length; i++)
           Padding(
-            padding: EdgeInsets.only(right: i < _tabs.length - 1 ? 8 : 0),
+            padding: EdgeInsets.only(right: i < tabs.length - 1 ? 8 : 0),
             child: GestureDetector(
               onTap: () => _selectTab(i),
-              child: _buildTabChip(_tabs[i], i == _selectedIndex),
+              child: _buildTabChip(tabs[i], i == _selectedIndex),
             ),
           ),
       ],

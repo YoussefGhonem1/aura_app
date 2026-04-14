@@ -1,3 +1,4 @@
+import 'package:aura_app/src/core/extensions/localization_extension.dart';
 import 'package:aura_app/src/shared/routing/route_strings.dart';
 import 'package:aura_app/src/shared/themes/app_colors.dart';
 import 'package:flutter/material.dart';
@@ -39,14 +40,14 @@ Widget buildHeader(BuildContext context) {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            "Good Morning, Youssef",
+            context.l10n.goodMorningYoussef,
             style: Theme.of(context).textTheme.headlineMedium?.copyWith(
               fontSize: 22,
               fontWeight: FontWeight.bold,
             ),
           ),
           Text(
-            "Your portfolio is up 2.4% today",
+            context.l10n.portfolioUpToday,
             style: Theme.of(
               context,
             ).textTheme.bodySmall?.copyWith(color: AppColors.greyText),
@@ -61,7 +62,7 @@ Widget buildNotificationIcon(BuildContext context) {
   return InkWell(
     borderRadius: BorderRadius.circular(30),
     onTap: () {
-Navigator.pushNamed(context, Routes.notificationsScreen);
+      Navigator.pushNamed(context, Routes.notificationsScreen);
     },
     child: Stack(
       children: [
@@ -89,4 +90,3 @@ Navigator.pushNamed(context, Routes.notificationsScreen);
     ),
   );
 }
-

@@ -1,3 +1,4 @@
+import 'package:aura_app/src/core/extensions/localization_extension.dart';
 import 'package:flutter/material.dart';
 
 Widget buildAuraInsightCard(BuildContext context) {
@@ -39,8 +40,8 @@ Widget buildAuraInsightCard(BuildContext context) {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const Text(
-                "Aura Insight",
+              Text(
+                context.l10n.auraInsight,
                 style: TextStyle(
                   color: Colors.white,
                   fontWeight: FontWeight.bold,
@@ -49,7 +50,7 @@ Widget buildAuraInsightCard(BuildContext context) {
               ),
               const SizedBox(height: 4),
               Text(
-                "Your portfolio is heavily weighted in Tech (65%). Consider diversifying into Energy or Bonds to reduce volatility risk.",
+                context.l10n.portfolioTechHeavyInsight,
                 style: Theme.of(context).textTheme.bodySmall?.copyWith(
                   color: Colors.white.withOpacity(0.8),
                   height: 1.4,
@@ -60,7 +61,7 @@ Widget buildAuraInsightCard(BuildContext context) {
               InkWell(
                 onTap: () {},
                 child: Text(
-                  "View Analysis →",
+                  context.l10n.viewAnalysis,
                   style: TextStyle(
                     color: Colors.blue[300],
                     fontWeight: FontWeight.w600,

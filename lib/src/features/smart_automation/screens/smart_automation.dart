@@ -30,7 +30,7 @@ class _SmartAutomationScreenState extends State<SmartAutomationScreen> {
     return Scaffold(
       appBar: buildAppBar(
         context,
-        context.tr('Smart Automation', 'الأتمتة الذكية'),
+        context.l10n.smartAutomationTitle,
         actions: [
           IconButton(
             onPressed: () {},
@@ -47,33 +47,32 @@ class _SmartAutomationScreenState extends State<SmartAutomationScreen> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            _label(context.tr('Stock Selector', 'اختيار السهم')),
+            _label(context.l10n.stockSelector),
             _dropdown(),
 
             const SizedBox(height: 24),
-            _label(context.tr('Action', 'الإجراء')),
+            _label(context.l10n.action),
             _actionToggle(),
 
             const SizedBox(height: 24),
-            _label(context.tr('Target Price', 'السعر المستهدف')),
+            _label(context.l10n.targetPrice),
             _priceInput(),
 
             const SizedBox(height: 24),
-            _label(context.tr('Quantity', 'الكمية')),
+            _label(context.l10n.quantity),
             _quantityInput(),
 
             const SizedBox(height: 24),
-            orderValueCard(_orderValue),
+            orderValueCard(context, _orderValue),
 
             const SizedBox(height: 24),
-            setAutomationButton(),
+            setAutomationButton(context),
 
             const SizedBox(height: 16),
             Text(
-              context.tr(
-                'By setting this automation, Aura AI will monitor market conditions to execute your order at the target price.',
-                'عند ضبط هذه الأتمتة، سيقوم Aura AI بمراقبة ظروف السوق لتنفيذ أمرك عند السعر المستهدف.',
-              ),
+              context
+                  .l10n
+                  .bySettingThisAutomationAuraAiWillMonitorMarketConditionsToExecuteYourOrderAtTheTargetPrice,
               style: const TextStyle(
                 color: AppColors.greyText,
                 fontSize: 12,
@@ -168,7 +167,7 @@ class _SmartAutomationScreenState extends State<SmartAutomationScreen> {
         borderRadius: BorderRadius.circular(14),
       ),
       child: Row(
-        children: ["Buy", "Sell"].map((e) {
+        children: ['Buy', 'Sell'].map((e) {
           final selected = _action == e;
           return Expanded(
             child: GestureDetector(
@@ -183,7 +182,7 @@ class _SmartAutomationScreenState extends State<SmartAutomationScreen> {
                 ),
                 child: Center(
                   child: Text(
-                    e,
+                    _localizedActionLabel(context, e),
                     style: TextStyle(
                       color: selected
                           ? AppColors.primaryColor
@@ -200,6 +199,17 @@ class _SmartAutomationScreenState extends State<SmartAutomationScreen> {
     );
   }
 
+  String _localizedActionLabel(BuildContext context, String value) {
+    switch (value) {
+      case 'Buy':
+        return context.l10n.buy;
+      case 'Sell':
+        return context.l10n.sell;
+      default:
+        return value;
+    }
+  }
+
   Widget _priceInput() {
     return _inputField(
       controller: _priceController,
@@ -213,17 +223,20 @@ class _SmartAutomationScreenState extends State<SmartAutomationScreen> {
   Widget _quantityInput() {
     return _inputField(
       controller: _quantityController,
-      hint: context.tr('Shares', 'أسهم'),
+      hint: context.l10n.shares,
       suffixWidget: GestureDetector(
         onTap: () => setState(() => _quantityController.text = "100"),
         child: Column(
           children: [
             SizedBox(height: 12),
-            Text(
-              context.tr('MAX', 'الحد الأقصى'),
-              style: const TextStyle(
-                color: AppColors.secondaryColor,
-                fontWeight: FontWeight.bold,
+            Padding(
+              padding: const EdgeInsets.only(left: 8.0),
+              child: Text(
+                context.l10n.max,
+                style: const TextStyle(
+                  color: AppColors.secondaryColor,
+                  fontWeight: FontWeight.bold,
+                ),
               ),
             ),
           ],

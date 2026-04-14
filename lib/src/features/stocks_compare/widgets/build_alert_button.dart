@@ -1,7 +1,8 @@
+import 'package:aura_app/src/core/extensions/localization_extension.dart';
 import 'package:aura_app/src/shared/themes/app_colors.dart';
 import 'package:flutter/material.dart';
 
-Widget alertButton(VoidCallback onPressed) {
+Widget alertButton(BuildContext context, VoidCallback onPressed) {
   return Container(
     width: double.infinity,
     height: 56,
@@ -24,7 +25,7 @@ Widget alertButton(VoidCallback onPressed) {
         borderRadius: BorderRadius.circular(16),
         child: Center(
           child: Text(
-            'Set Price Alert for Both',
+            context.l10n.setPriceAlertForBoth,
             style: TextStyle(
               color: AppColors.primaryColor,
               fontSize: 16,

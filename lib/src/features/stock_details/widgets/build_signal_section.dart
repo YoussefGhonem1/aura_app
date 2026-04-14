@@ -1,14 +1,34 @@
 import 'package:aura_app/src/features/stock_details/models/stock_details_model.dart';
+import 'package:aura_app/src/core/extensions/localization_extension.dart';
 import 'package:aura_app/src/shared/routing/route_strings.dart';
 import 'package:aura_app/src/shared/themes/app_colors.dart';
 import 'package:flutter/material.dart';
+
+String _normalizeAuraSignal(String signal) {
+  return signal
+      .trim()
+      .replaceAll(RegExp(r'[_-]+'), ' ')
+      .replaceAll(RegExp(r'\s+'), ' ')
+      .toUpperCase();
+}
 
 Widget auraSignalSection({
   required StockModel stock,
   required Color Function(String) getAuraSignalColor,
   required BuildContext context,
 }) {
-  final Color signalColor = getAuraSignalColor(stock.auraSignal);
+  final normalizedSignal = _normalizeAuraSignal(stock.auraSignal);
+
+  final String signalText = switch (normalizedSignal) {
+    'STRONG BUY' => context.l10n.signalStrongBuy,
+    'BUY' => context.l10n.signalBuy,
+    'HOLD' => context.l10n.signalHold,
+    'SELL' => context.l10n.signalSell,
+    'STRONG SELL' => context.l10n.signalStrongSell,
+    _ => stock.auraSignal,
+  };
+
+  final Color signalColor = getAuraSignalColor(normalizedSignal);
   double progress = stock.auraScore / 100;
 
   return Container(
@@ -37,7 +57,7 @@ Widget auraSignalSection({
                 Icon(Icons.auto_awesome, color: AppColors.white, size: 18),
                 const SizedBox(width: 8),
                 Text(
-                  'Aura Signal',
+                  context.l10n.auraSignal,
                   style: TextStyle(
                     color: AppColors.white,
                     fontSize: 18,
@@ -56,7 +76,7 @@ Widget auraSignalSection({
                 border: Border.all(color: signalColor.withOpacity(0.4)),
               ),
               child: Text(
-                stock.auraSignal,
+                signalText,
                 style: TextStyle(
                   color: signalColor,
                   fontSize: 12,
@@ -112,7 +132,7 @@ Widget auraSignalSection({
                       ),
                       const SizedBox(height: 2),
                       Text(
-                        'Score',
+                        context.l10n.scoreLabel,
                         style: TextStyle(
                           color: AppColors.white.withOpacity(0.6),
                           fontSize: 11,
@@ -144,7 +164,7 @@ Widget auraSignalSection({
 
         /// ===== Why Section =====
         Text(
-          'WHY THIS RECOMMENDATION?',
+          context.l10n.whyThisRecommendation,
           style: TextStyle(
             color: AppColors.white.withOpacity(0.5),
             fontSize: 12,
@@ -168,16 +188,16 @@ Widget auraSignalSection({
                     fontSize: 14,
                     height: 1.5,
                   ),
-                  children: const [
-                    TextSpan(text: 'Revenue growth exceeds sector average by '),
+                  children: [
+                    TextSpan(text: context.l10n.revenueGrowthPrefix),
                     TextSpan(
-                      text: '15%',
+                      text: context.l10n.revenueGrowthValue,
                       style: TextStyle(
                         color: Colors.greenAccent,
                         fontWeight: FontWeight.bold,
                       ),
                     ),
-                    TextSpan(text: '.'),
+                    TextSpan(text: context.l10n.revenueGrowthSuffix),
                   ],
                 ),
               ),
@@ -190,16 +210,15 @@ Widget auraSignalSection({
           alignment: Alignment.centerRight,
           child: TextButton.icon(
             onPressed: () {
-
-                Navigator.pushNamed(
-                  context,
-                  Routes.recommendationReasonScreen,
-                  arguments: stock,
-                );
+              Navigator.pushNamed(
+                context,
+                Routes.recommendationReasonScreen,
+                arguments: stock,
+              );
             },
             icon: Icon(Icons.arrow_forward_ios, size: 14, color: signalColor),
             label: Text(
-              'View full analysis',
+              context.l10n.viewFullAnalysis,
               style: TextStyle(
                 color: signalColor,
                 fontWeight: FontWeight.w600,

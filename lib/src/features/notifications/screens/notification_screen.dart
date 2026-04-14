@@ -30,7 +30,7 @@ class _NotificationsScreenState extends State<NotificationsScreen> {
               _buildTabs(),
               const SizedBox(height: 24),
               Text(
-                context.tr('TODAY', 'اليوم'),
+                context.l10n.todayLabel,
                 style: TextStyle(
                   color: AppColors.greyText,
                   fontSize: 12,
@@ -41,7 +41,7 @@ class _NotificationsScreenState extends State<NotificationsScreen> {
               _alertsSection(),
               const SizedBox(height: 32),
               Text(
-                context.tr('YESTERDAY', 'الأمس'),
+                context.l10n.yesterdayLabel,
                 style: TextStyle(
                   color: AppColors.greyText,
                   fontSize: 12,
@@ -53,7 +53,7 @@ class _NotificationsScreenState extends State<NotificationsScreen> {
               const SizedBox(height: 40),
               Center(
                 child: Text(
-                  context.tr('End of notifications', 'نهاية الإشعارات'),
+                  context.l10n.endOfNotifications,
                   style: const TextStyle(color: AppColors.greyText),
                 ),
               ),
@@ -103,7 +103,7 @@ class _NotificationsScreenState extends State<NotificationsScreen> {
         TextButton(
           onPressed: () {},
           child: Text(
-            context.tr('Mark all read', 'تحديد الكل كمقروء'),
+            context.l10n.markAllRead,
             style: const TextStyle(
               color: AppColors.secondaryColor,
               fontSize: 14,
@@ -119,40 +119,31 @@ class _NotificationsScreenState extends State<NotificationsScreen> {
       children: [
         alertCard(
           symbol: "TSLA",
-          badge: "STRONG BUY",
+          badge: context.l10n.strongBuyBadge,
           badgeColor: Colors.green,
-          description: context.tr(
-            'AI detects a bullish breakout pattern. Volume spike confirmed.',
-            'اكتشف الذكاء الاصطناعي نمط اختراق صاعد. تم تأكيد ارتفاع حجم التداول.',
-          ),
-          match: "98% Match",
-          time: "2m ago",
+          description: context.l10n.tslaBullishBreakoutDescription,
+          match: context.l10n.match98,
+          time: context.l10n.time2mAgo,
           icon: Icons.trending_up,
         ),
         const SizedBox(height: 16),
         alertCard(
           symbol: "NVDA",
-          badge: "STOPLOSS",
+          badge: context.l10n.stopLossBadge,
           badgeColor: Colors.red,
-          description: context.tr(
-            'Price dropped below \$450 support level. Recommended exit.',
-            'انخفض السعر أسفل مستوى الدعم 450 دولارًا. يوصى بالخروج.',
-          ),
-          match: "92% Match",
-          time: "1h ago",
+          description: context.l10n.nvdaSupportBreakDescription,
+          match: context.l10n.match92,
+          time: context.l10n.time1hAgo,
           icon: Icons.trending_down,
         ),
         const SizedBox(height: 16),
         alertCard(
           symbol: "AMD",
-          badge: "VOLATILE",
+          badge: context.l10n.volatileBadge,
           badgeColor: Colors.orange,
-          description: context.tr(
-            'Unusual options activity detected...',
-            'تم اكتشاف نشاط غير معتاد في عقود الخيارات...',
-          ),
+          description: context.l10n.amdOptionsActivityDescription,
           match: null,
-          time: "4h ago",
+          time: context.l10n.time4hAgo,
           icon: Icons.notifications_active,
         ),
       ],
@@ -162,20 +153,11 @@ class _NotificationsScreenState extends State<NotificationsScreen> {
   Widget _disabledCardsSection() {
     return Column(
       children: [
-        disabledCard(
-          "SPY",
-          context.tr(
-            'Market closed with bearish sentiment. Moving averages crossing.',
-            'أغلق السوق بمشاعر هبوطية مع تقاطع المتوسطات المتحركة.',
-          ),
-        ),
+        disabledCard("SPY", context.l10n.marketBearishSentimentDescription),
         SizedBox(height: 16),
         disabledCard(
-          context.tr('Watchlist', 'قائمة المتابعة'),
-          context.tr(
-            'Weekly report available for your AI...',
-            'التقرير الأسبوعي متاح لذكائك الاصطناعي...',
-          ),
+          context.l10n.watchlist,
+          context.l10n.weeklyReportAvailable,
         ),
       ],
     );
@@ -190,8 +172,8 @@ class _NotificationsScreenState extends State<NotificationsScreen> {
       ),
       child: Row(
         children: [
-          _tabItem(context.tr('AI Alerts', 'تنبيهات الذكاء الاصطناعي'), 0),
-          _tabItem(context.tr('Market News', 'أخبار السوق'), 1),
+          _tabItem(context.l10n.aiAlertsTab, 0),
+          _tabItem(context.l10n.marketNewsTab, 1),
         ],
       ),
     );

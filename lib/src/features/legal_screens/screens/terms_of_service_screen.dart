@@ -56,23 +56,17 @@ class TermsOfServiceScreenEnhanced extends StatelessWidget {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Text(
-                                context.tr(
-                                  'Aura Terms of Service',
-                                  'شروط خدمة Aura',
-                                ),
+                                context.l10n.auraTermsOfServiceTitle,
                                 style: TextStyle(
                                   color: AppColors.white,
                                   fontSize: 18,
                                   fontWeight: FontWeight.bold,
                                 ),
                               ),
-                              SizedBox(height: 4),
+                              const SizedBox(height: 4),
                               Text(
-                                context.tr(
-                                  'Last Updated: October 2023 - Version 2.4',
-                                  'آخر تحديث: أكتوبر 2023 - الإصدار 2.4',
-                                ),
-                                style: TextStyle(
+                                context.l10n.termsLastUpdatedVersion24,
+                                style: const TextStyle(
                                   color: AppColors.greyText,
                                   fontSize: 12,
                                 ),
@@ -85,10 +79,7 @@ class TermsOfServiceScreenEnhanced extends StatelessWidget {
                   ),
                   const SizedBox(height: 20),
                   Text(
-                    context.tr(
-                      'Welcome to Aura. Please read these Terms of Service carefully before using the Aura mobile application and associated services operated by Aura Inc.',
-                      'مرحبًا بك في Aura. يرجى قراءة شروط الخدمة بعناية قبل استخدام تطبيق Aura والخدمات المرتبطة به.',
-                    ),
+                    context.l10n.termsWelcomeMessage,
                     style: const TextStyle(
                       color: AppColors.white,
                       fontSize: 14,
@@ -108,14 +99,11 @@ class TermsOfServiceScreenEnhanced extends StatelessWidget {
                   // 1. Acceptance of Terms
                   _buildTermCard(
                     number: "1",
-                    title: context.tr('Acceptance of Terms', 'قبول الشروط'),
+                    title: context.l10n.acceptanceOfTerms,
                     icon: Icons.check_circle_rounded,
                     children: [
                       Text(
-                        context.tr(
-                          'By downloading, accessing, or using the Aura application, you agree to be bound by these Terms of Service and all applicable laws and regulations. If you do not agree with any of these terms, you are prohibited from using or accessing this application.',
-                          'بمجرد تنزيل تطبيق Aura أو الوصول إليه أو استخدامه، فإنك توافق على الالتزام بشروط الخدمة وجميع القوانين المعمول بها. إذا لم توافق على هذه الشروط، يُمنع عليك استخدام التطبيق.',
-                        ),
+                        context.l10n.acceptanceOfTermsBody,
                         style: const TextStyle(
                           color: AppColors.white,
                           fontSize: 14,
@@ -123,9 +111,7 @@ class TermsOfServiceScreenEnhanced extends StatelessWidget {
                         ),
                       ),
                       const SizedBox(height: 16),
-                      _buildNoteCard(
-                        "Note: Continued use of the app constitutes your ongoing agreement to any future modifications of these terms.",
-                      ),
+                      _buildNoteCard(context.l10n.acceptanceNote),
                     ],
                   ),
 
@@ -137,9 +123,9 @@ class TermsOfServiceScreenEnhanced extends StatelessWidget {
                     title: context.l10n.privacyPolicy,
                     icon: Icons.privacy_tip_rounded,
                     children: [
-                      const Text(
-                        "Your privacy is important to us. Our Privacy Policy, which describes how we handle the personal information you provide to us, is incorporated into these Terms. By using Aura, you consent to the collection and use of this information as set forth in the Privacy Policy.",
-                        style: TextStyle(
+                      Text(
+                        context.l10n.privacyPolicyTermsBody,
+                        style: const TextStyle(
                           color: AppColors.white,
                           fontSize: 14,
                           height: 1.6,
@@ -169,11 +155,8 @@ class TermsOfServiceScreenEnhanced extends StatelessWidget {
                               ),
                               const SizedBox(width: 8),
                               Text(
-                                context.tr(
-                                  'View Privacy Policy',
-                                  'عرض سياسة الخصوصية',
-                                ),
-                                style: TextStyle(
+                                context.l10n.viewPrivacyPolicy,
+                                style: const TextStyle(
                                   color: AppColors.secondaryColor,
                                   fontSize: 14,
                                   fontWeight: FontWeight.w600,
@@ -191,12 +174,12 @@ class TermsOfServiceScreenEnhanced extends StatelessWidget {
                   // 3. User Conduct
                   _buildTermCard(
                     number: "3",
-                    title: context.tr('User Conduct', 'سلوك المستخدم'),
+                    title: context.l10n.userConduct,
                     icon: Icons.rule_rounded,
                     children: [
-                      const Text(
-                        "You agree not to engage in any of the following prohibited activities:",
-                        style: TextStyle(
+                      Text(
+                        context.l10n.prohibitedActivitiesIntro,
+                        style: const TextStyle(
                           color: AppColors.white,
                           fontSize: 14,
                           height: 1.6,
@@ -205,18 +188,15 @@ class TermsOfServiceScreenEnhanced extends StatelessWidget {
                       const SizedBox(height: 12),
                       _buildConductItem(
                         icon: Icons.copy_rounded,
-                        text:
-                            "Copying, distributing, or disclosing any part of the Service in any medium.",
+                        text: context.l10n.copyingDistributingText,
                       ),
                       _buildConductItem(
                         icon: Icons.security_rounded,
-                        text:
-                            "Attempting to interfere with, compromise the system integrity or security of the Service.",
+                        text: context.l10n.interferingSecurityText,
                       ),
                       _buildConductItem(
                         icon: Icons.speed_rounded,
-                        text:
-                            "Taking any action that imposes an unreasonable or disproportionately large load on our infrastructure.",
+                        text: context.l10n.unreasonableLoadText,
                       ),
                     ],
                   ),
@@ -226,15 +206,12 @@ class TermsOfServiceScreenEnhanced extends StatelessWidget {
                   // 4. Intellectual Property
                   _buildTermCard(
                     number: "4",
-                    title: context.tr(
-                      'Intellectual Property',
-                      'الملكية الفكرية',
-                    ),
+                    title: context.l10n.intellectualProperty,
                     icon: Icons.copyright_rounded,
                     children: [
-                      const Text(
-                        "The Service and its original content, features, and functionality are and will remain the exclusive property of Aura Inc. and its licensors. The Service is protected by copyright, trademark, and other laws of both the United States and foreign countries.",
-                        style: TextStyle(
+                      Text(
+                        context.l10n.intellectualPropertyBody,
+                        style: const TextStyle(
                           color: AppColors.white,
                           fontSize: 14,
                           height: 1.6,
@@ -248,15 +225,12 @@ class TermsOfServiceScreenEnhanced extends StatelessWidget {
                   // 5. Limitation of Liability
                   _buildTermCard(
                     number: "5",
-                    title: context.tr(
-                      'Limitation of Liability',
-                      'تحديد المسؤولية',
-                    ),
+                    title: context.l10n.limitationOfLiability,
                     icon: Icons.warning_amber_rounded,
                     children: [
-                      const Text(
-                        "In no event shall Aura Inc., nor its directors, employees, partners, agents, suppliers, or affiliates, be liable for any indirect, incidental, special, consequential or punitive damages, including without limitation, loss of profits, data, use, goodwill, or other intangible losses.",
-                        style: TextStyle(
+                      Text(
+                        context.l10n.limitationOfLiabilityBody,
+                        style: const TextStyle(
                           color: AppColors.white,
                           fontSize: 14,
                           height: 1.6,
@@ -424,10 +398,7 @@ class TermsOfServiceScreenEnhanced extends StatelessWidget {
           ),
           const SizedBox(height: 16),
           Text(
-            context.tr(
-              'Have questions about these Terms?',
-              'هل لديك أسئلة حول هذه الشروط؟',
-            ),
+            context.l10n.haveQuestionsAboutTheseTerms,
             style: const TextStyle(
               color: AppColors.white,
               fontSize: 20,
@@ -437,10 +408,7 @@ class TermsOfServiceScreenEnhanced extends StatelessWidget {
           ),
           const SizedBox(height: 8),
           Text(
-            context.tr(
-              'Our legal team is here to help clarify any terms or conditions.',
-              'فريقنا القانوني هنا للمساعدة في توضيح أي شروط أو بنود.',
-            ),
+            context.l10n.legalTeamHelpClarifyTerms,
             style: TextStyle(
               color: AppColors.greyText,
               fontSize: 14,
@@ -466,7 +434,7 @@ class TermsOfServiceScreenEnhanced extends StatelessWidget {
                     ),
                   ),
                   child: Text(
-                    context.tr('Email Support', 'الدعم عبر البريد'),
+                    context.l10n.emailSupport,
                     style: const TextStyle(
                       color: AppColors.white,
                       fontSize: 15,
@@ -489,7 +457,7 @@ class TermsOfServiceScreenEnhanced extends StatelessWidget {
                     ),
                   ),
                   child: Text(
-                    context.tr('Contact Legal', 'تواصل مع القسم القانوني'),
+                    context.l10n.contactLegal,
                     style: const TextStyle(
                       color: AppColors.primaryColor,
                       fontSize: 15,

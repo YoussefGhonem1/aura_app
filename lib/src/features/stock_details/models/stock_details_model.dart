@@ -1,4 +1,6 @@
 // lib/models/stock_model.dart
+import 'package:intl/intl.dart';
+
 class StockModel {
   final String symbol;
   final String name;
@@ -9,22 +11,22 @@ class StockModel {
   final bool isPositive;
   final String sector;
   final String industry;
-  
+
   // Market Statistics
   final double marketCap; // in billions
   final double peRatio;
   final double dividendYield;
   final double avgVolume; // in millions
-  
+
   // Aura Signal
   final String auraSignal; // STRONG BUY, BUY, HOLD, SELL, STRONG SELL
   final int auraScore; // 0-100
   final String auraConfidence;
   final List<String> recommendationReasons;
-  
+
   // About
   final String about;
-  
+
   // Chart Data
   final List<ChartPoint> chartData;
 
@@ -51,18 +53,23 @@ class StockModel {
   });
 
   // Factory method لإنشاء نموذج وهمي للاختبار
-  factory StockModel.dummy(String symbol) {
+  factory StockModel.dummy(String symbol, {String? localeCode}) {
     List<ChartPoint> chartData = [];
     double basePrice = 180.0;
-    
+    final normalizedLocale = (localeCode ?? Intl.getCurrentLocale())
+        .toLowerCase();
+    final isArabic = normalizedLocale.startsWith('ar');
+
     // إنشاء بيانات وهمية للرسم البياني
     for (int i = 0; i < 24; i++) {
       double variation = (i % 5 == 0) ? 0.5 : 0.1;
       basePrice += variation * (i.isEven ? 1 : -1);
-      chartData.add(ChartPoint(
-        time: DateTime.now().subtract(Duration(hours: 23 - i)),
-        price: basePrice,
-      ));
+      chartData.add(
+        ChartPoint(
+          time: DateTime.now().subtract(Duration(hours: 23 - i)),
+          price: basePrice,
+        ),
+      );
     }
 
     return StockModel(
@@ -73,17 +80,20 @@ class StockModel {
       priceChange: _getPriceChange(symbol),
       priceChangePercent: _getPriceChangePercent(symbol),
       isPositive: _getPriceChange(symbol) > 0,
-      sector: 'Technology',
-      industry: 'Consumer Electronics',
+      sector: isArabic ? 'التكنولوجيا' : 'Technology',
+      industry: isArabic ? 'الإلكترونيات الاستهلاكية' : 'Consumer Electronics',
       marketCap: _getMarketCap(symbol),
       peRatio: _getPERatio(symbol),
       dividendYield: _getDividendYield(symbol),
       avgVolume: _getAvgVolume(symbol),
       auraSignal: _getAuraSignal(symbol),
       auraScore: _getAuraScore(symbol),
-      auraConfidence: _getAuraConfidence(symbol),
-      recommendationReasons: _getRecommendationReasons(symbol),
-      about: _getAboutText(symbol),
+      auraConfidence: _getAuraConfidence(symbol, isArabic: isArabic),
+      recommendationReasons: _getRecommendationReasons(
+        symbol,
+        isArabic: isArabic,
+      ),
+      about: _getAboutText(symbol, isArabic: isArabic),
       chartData: chartData,
     );
   }
@@ -249,11 +259,27 @@ class StockModel {
     return scores[symbol] ?? 50;
   }
 
-  static String _getAuraConfidence(String symbol) {
+  static String _getAuraConfidence(String symbol, {required bool isArabic}) {
+    if (isArabic) {
+      return 'ثقة الذكاء الاصطناعي مرتفعة بناء على نتائج الأرباح الأخيرة وزخم المؤسسات الإيجابي.';
+    }
     return "AI confidence is high based on recent earnings reports and positive institutional sentiment.";
   }
 
-  static List<String> _getRecommendationReasons(String symbol) {
+  static List<String> _getRecommendationReasons(
+    String symbol, {
+    required bool isArabic,
+  }) {
+    if (isArabic) {
+      return [
+        'نمو الإيرادات يتجاوز متوسط القطاع بنسبة 15%.',
+        'تدفقات نقدية قوية وميزانية عمومية متينة.',
+        'نظرة إيجابية من المحللين مع 85% تقييمات شراء.',
+        'خط إنتاج الابتكار يُظهر منتجات واعدة مستقبلًا.',
+        'ريادة سوقية في قطاعات النمو الرئيسية.',
+      ];
+    }
+
     return [
       "Revenue growth exceeds sector average by 15%.",
       "Strong cash flow generation and balance sheet.",
@@ -263,15 +289,34 @@ class StockModel {
     ];
   }
 
-  static String _getAboutText(String symbol) {
+  static String _getAboutText(String symbol, {required bool isArabic}) {
+    if (isArabic) {
+      final Map<String, String> aboutTextsAr = {
+        'AAPL':
+            'شركة Apple Inc. تقوم بتصميم وتصنيع وتسويق الهواتف الذكية وأجهزة الكمبيوتر الشخصية والأجهزة اللوحية والأجهزة القابلة للارتداء والملحقات على مستوى العالم. وتقدم iPhone وMac وiPad وAirPods وApple TV وApple Watch ومنتجات Beats وHomePod، إضافة إلى خدمات AppleCare والخدمات السحابية ومنصات مثل App Store وApple Music وApple Pay وiCloud.',
+        'MSFT':
+            'شركة Microsoft Corporation تطور وتمنح تراخيص وتدعم البرمجيات والخدمات والأجهزة والحلول حول العالم. وتعمل الشركة عبر ثلاثة قطاعات: الإنتاجية وعمليات الأعمال، والسحابة الذكية، والحوسبة الشخصية الأكثر قربًا للمستخدم.',
+        'TSLA':
+            'شركة Tesla, Inc. تصمم وتطور وتصنع وتؤجر وتبيع المركبات الكهربائية وحلول توليد وتخزين الطاقة في الولايات المتحدة والصين ودوليًا. وتعمل الشركة عبر قطاعين رئيسيين: السيارات، وتوليد وتخزين الطاقة.',
+        'NVDA':
+            'شركة NVIDIA Corporation تقدم حلول الرسوميات والحوسبة والشبكات في الولايات المتحدة وتايوان والصين ودوليًا. ويشمل قطاع الرسوميات معالجات GeForce للألعاب والحواسيب وخدمة GeForce NOW وبنية تحتية مرتبطة بها.',
+      };
+      return aboutTextsAr[symbol] ??
+          '$symbol Corporation شركة رائدة في قطاعها مع موقع سوقي قوي وآفاق نمو جيدة. تركز الشركة على الابتكار ورضا العملاء لدعم قيمة مستدامة للمساهمين على المدى الطويل.';
+    }
+
     final Map<String, String> aboutTexts = {
-      'AAPL': "Apple Inc. designs, manufactures, and markets smartphones, personal computers, tablets, wearables, and accessories worldwide. The company offers iPhone, Mac, iPad, AirPods, Apple TV, Apple Watch, Beats products, and HomePod. It also provides AppleCare support and cloud services, and operates various platforms including the App Store, Apple Music, Apple Pay, and iCloud.",
-      'MSFT': "Microsoft Corporation develops, licenses, and supports software, services, devices, and solutions worldwide. The company operates in three segments: Productivity and Business Processes, Intelligent Cloud, and More Personal Computing.",
-      'TSLA': "Tesla, Inc. designs, develops, manufactures, leases, and sells electric vehicles, and energy generation and storage systems in the United States, China, and internationally. The company operates in two segments, Automotive, and Energy Generation and Storage.",
-      'NVDA': "NVIDIA Corporation provides graphics, and compute and networking solutions in the United States, Taiwan, China, and internationally. The company's Graphics segment offers GeForce GPUs for gaming and PCs, the GeForce NOW game streaming service and related infrastructure.",
+      'AAPL':
+          "Apple Inc. designs, manufactures, and markets smartphones, personal computers, tablets, wearables, and accessories worldwide. The company offers iPhone, Mac, iPad, AirPods, Apple TV, Apple Watch, Beats products, and HomePod. It also provides AppleCare support and cloud services, and operates various platforms including the App Store, Apple Music, Apple Pay, and iCloud.",
+      'MSFT':
+          "Microsoft Corporation develops, licenses, and supports software, services, devices, and solutions worldwide. The company operates in three segments: Productivity and Business Processes, Intelligent Cloud, and More Personal Computing.",
+      'TSLA':
+          "Tesla, Inc. designs, develops, manufactures, leases, and sells electric vehicles, and energy generation and storage systems in the United States, China, and internationally. The company operates in two segments, Automotive, and Energy Generation and Storage.",
+      'NVDA':
+          "NVIDIA Corporation provides graphics, and compute and networking solutions in the United States, Taiwan, China, and internationally. The company's Graphics segment offers GeForce GPUs for gaming and PCs, the GeForce NOW game streaming service and related infrastructure.",
     };
-    return aboutTexts[symbol] ?? 
-      "$symbol Corporation is a leading company in its industry with strong market position and growth prospects. The company focuses on innovation and customer satisfaction to drive long-term shareholder value.";
+    return aboutTexts[symbol] ??
+        "$symbol Corporation is a leading company in its industry with strong market position and growth prospects. The company focuses on innovation and customer satisfaction to drive long-term shareholder value.";
   }
 }
 
@@ -279,8 +324,5 @@ class ChartPoint {
   final DateTime time;
   final double price;
 
-  ChartPoint({
-    required this.time,
-    required this.price,
-  });
+  ChartPoint({required this.time, required this.price});
 }

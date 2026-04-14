@@ -62,10 +62,7 @@ class PrivacyPolicyScreenEnhanced extends StatelessWidget {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Text(
-                                context.tr(
-                                  'Aura Privacy Policy',
-                                  'سياسة خصوصية Aura',
-                                ),
+                                context.l10n.auraPrivacyPolicyTitle,
                                 style: const TextStyle(
                                   color: AppColors.white,
                                   fontSize: 18,
@@ -74,8 +71,8 @@ class PrivacyPolicyScreenEnhanced extends StatelessWidget {
                               ),
                               const SizedBox(height: 4),
                               Text(
-                                "Last updated: October 24, 2023",
-                                style: TextStyle(
+                                context.l10n.privacyLastUpdated,
+                                style: const TextStyle(
                                   color: AppColors.greyText,
                                   fontSize: 13,
                                 ),
@@ -87,9 +84,9 @@ class PrivacyPolicyScreenEnhanced extends StatelessWidget {
                     ),
                   ),
                   const SizedBox(height: 20),
-                  const Text(
-                    "Welcome to Aura. We are committed to protecting your personal information and your right to privacy. This Privacy Policy describes how your personal information is collected, used, and shared when you use our mobile application and services.",
-                    style: TextStyle(
+                  Text(
+                    context.l10n.privacyWelcomeMessage,
+                    style: const TextStyle(
                       color: AppColors.white,
                       fontSize: 14,
                       height: 1.6,
@@ -107,12 +104,12 @@ class PrivacyPolicyScreenEnhanced extends StatelessWidget {
                   // 1. Introduction
                   _buildPrivacyCard(
                     number: "1",
-                    title: context.tr('Introduction', 'مقدمة'),
+                    title: context.l10n.introduction,
                     icon: Icons.info_outline_rounded,
                     children: [
-                      const Text(
-                        "Welcome to Aura. We are committed to protecting your personal information and your right to privacy. This Privacy Policy describes how your personal information is collected, used, and shared when you use our mobile application and services.",
-                        style: TextStyle(
+                      Text(
+                        context.l10n.privacyIntroductionBody,
+                        style: const TextStyle(
                           color: AppColors.white,
                           fontSize: 14,
                           height: 1.6,
@@ -141,10 +138,7 @@ class PrivacyPolicyScreenEnhanced extends StatelessWidget {
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   Text(
-                                    context.tr(
-                                      'Contact Privacy Team',
-                                      'فريق خصوصية البيانات',
-                                    ),
+                                    context.l10n.contactPrivacyTeam,
                                     style: const TextStyle(
                                       color: AppColors.white,
                                       fontSize: 14,
@@ -176,19 +170,15 @@ class PrivacyPolicyScreenEnhanced extends StatelessWidget {
                   ),
 
                   const SizedBox(height: 24),
-
                   // 2. Information We Collect
                   _buildPrivacyCard(
                     number: "2",
-                    title: context.tr(
-                      'Information We Collect',
-                      'المعلومات التي نجمعها',
-                    ),
+                    title: context.l10n.informationWeCollect,
                     icon: Icons.collections_bookmark_rounded,
                     children: [
-                      const Text(
-                        "We collect information that you provide directly to us when you create an account, use our services, or communicate with us.",
-                        style: TextStyle(
+                      Text(
+                        context.l10n.informationWeCollectBody,
+                        style: const TextStyle(
                           color: AppColors.white,
                           fontSize: 14,
                           height: 1.6,
@@ -196,69 +186,54 @@ class PrivacyPolicyScreenEnhanced extends StatelessWidget {
                       ),
                       const SizedBox(height: 16),
                       _buildDataCollectionItem(
-                        title: context.tr('Account Data', 'بيانات الحساب'),
-                        description:
-                            "Name, email address, and authentication credentials.",
+                        title: context.l10n.accountData,
+                        description: context.l10n.accountDataDescription,
                         icon: Icons.person_outline_rounded,
                       ),
                       _buildDataCollectionItem(
-                        title: context.tr(
-                          'Device Information',
-                          'معلومات الجهاز',
-                        ),
-                        description:
-                            "Hardware model, operating system version, and unique device identifiers.",
+                        title: context.l10n.deviceInformation,
+                        description: context.l10n.deviceInformationDescription,
                         icon: Icons.phone_iphone_rounded,
                       ),
                       _buildDataCollectionItem(
-                        title: context.tr('Usage Data', 'بيانات الاستخدام'),
-                        description:
-                            "Information about your interactions with the app, including features used and time spent.",
+                        title: context.l10n.usageData,
+                        description: context.l10n.usageDataDescription,
                         icon: Icons.analytics_outlined,
                       ),
                     ],
                   ),
 
                   const SizedBox(height: 24),
-
                   // 3. How We Use Your Data
                   _buildPrivacyCard(
                     number: "3",
-                    title: context.tr(
-                      'How We Use Your Data',
-                      'كيف نستخدم بياناتك',
-                    ),
+                    title: context.l10n.howWeUseYourData,
                     icon: Icons.data_usage_rounded,
                     children: [
-                      const Text(
-                        "We use the information we collect to provide, maintain, and improve our services, including:",
-                        style: TextStyle(
+                      Text(
+                        context.l10n.howWeUseYourDataBody,
+                        style: const TextStyle(
                           color: AppColors.white,
                           fontSize: 14,
                           height: 1.6,
                         ),
                       ),
                       const SizedBox(height: 12),
-                      _buildUsageItem(
-                        "To personalize your experience and deliver the type of content and product offerings it suits you are most interested in.",
-                      ),
-                      _buildUsageItem(
-                        "To monitor and analyze trends, usage, and activities in connection with our services.",
-                      ),
+                      _buildUsageItem(context.l10n.personalizeExperienceText),
+                      _buildUsageItem(context.l10n.monitorAnalyzeTrendsText),
                     ],
                   ),
 
                   const SizedBox(height: 24),
-
                   // 4. Your Rights
                   _buildPrivacyCard(
                     number: "4",
-                    title: context.tr('Your Rights', 'حقوقك'),
+                    title: context.l10n.yourRights,
                     icon: Icons.gavel_rounded,
                     children: [
-                      const Text(
-                        "Depending on your location, you may have certain rights under applicable data protection laws, including:",
-                        style: TextStyle(
+                      Text(
+                        context.l10n.yourRightsBody,
+                        style: const TextStyle(
                           color: AppColors.white,
                           fontSize: 14,
                           height: 1.6,
@@ -266,26 +241,25 @@ class PrivacyPolicyScreenEnhanced extends StatelessWidget {
                       ),
                       const SizedBox(height: 12),
                       _buildRightItem(
-                        "The right to access your personal data.",
+                        context.l10n.rightToAccessData,
                         Icons.visibility_rounded,
                       ),
                       _buildRightItem(
-                        "The right to request data deletion.",
+                        context.l10n.rightToRequestDataDeletion,
                         Icons.delete_outline_rounded,
                       ),
                       _buildRightItem(
-                        "The right to data portability.",
+                        context.l10n.rightToDataPortability,
                         Icons.import_export_rounded,
                       ),
                     ],
                   ),
 
                   const SizedBox(height: 24),
-
                   // 5. Data Protection
                   _buildPrivacyCard(
                     number: "5",
-                    title: context.tr('Data Protection', 'حماية البيانات'),
+                    title: context.l10n.dataProtection,
                     icon: Icons.security_rounded,
                     children: [
                       Container(
@@ -304,17 +278,17 @@ class PrivacyPolicyScreenEnhanced extends StatelessWidget {
                             color: Colors.green.withOpacity(0.3),
                           ),
                         ),
-                        child: const Column(
+                        child: Column(
                           children: [
-                            Icon(
+                            const Icon(
                               Icons.verified_user_rounded,
                               color: Colors.green,
                               size: 40,
                             ),
-                            SizedBox(height: 12),
+                            const SizedBox(height: 12),
                             Text(
-                              "We implement a variety of security measures to maintain the safety of your personal information. Your personal information is contained behind secured networks and is only accessible by a limited number of persons who have special access rights to such systems.",
-                              style: TextStyle(
+                              context.l10n.dataProtectionBody,
+                              style: const TextStyle(
                                 color: AppColors.white,
                                 fontSize: 14,
                                 height: 1.6,
@@ -512,7 +486,7 @@ class PrivacyPolicyScreenEnhanced extends StatelessWidget {
           ),
           const SizedBox(height: 16),
           Text(
-            context.tr('Have questions?', 'هل لديك أسئلة؟'),
+            context.l10n.haveQuestions,
             style: const TextStyle(
               color: AppColors.white,
               fontSize: 20,
@@ -522,10 +496,7 @@ class PrivacyPolicyScreenEnhanced extends StatelessWidget {
           ),
           const SizedBox(height: 8),
           Text(
-            context.tr(
-              'Our privacy team is here to help you understand your rights and our obligations.',
-              'فريق الخصوصية لدينا هنا لمساعدتك على فهم حقوقك والتزاماتنا.',
-            ),
+            context.l10n.privacyTeamHelpUnderstandRights,
             style: const TextStyle(
               color: AppColors.greyText,
               fontSize: 14,
@@ -558,7 +529,7 @@ class PrivacyPolicyScreenEnhanced extends StatelessWidget {
                   ),
                   const SizedBox(width: 10),
                   Text(
-                    context.tr('Contact Support', 'تواصل مع الدعم'),
+                    context.l10n.contactSupport,
                     style: const TextStyle(
                       color: AppColors.primaryColor,
                       fontSize: 16,
@@ -572,18 +543,18 @@ class PrivacyPolicyScreenEnhanced extends StatelessWidget {
           const SizedBox(height: 24),
           const Divider(color: AppColors.greyText, height: 1),
           const SizedBox(height: 16),
-          const Row(
+          Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Icon(
+              const Icon(
                 Icons.copyright_rounded,
                 color: AppColors.greyText,
                 size: 14,
               ),
-              SizedBox(width: 8),
+              const SizedBox(width: 8),
               Text(
-                "2019 Aura App Inc. All rights reserved.",
-                style: TextStyle(color: AppColors.greyText, fontSize: 13),
+                context.l10n.copyrightNotice,
+                style: const TextStyle(color: AppColors.greyText, fontSize: 13),
               ),
             ],
           ),

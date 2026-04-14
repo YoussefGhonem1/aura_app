@@ -1,4 +1,5 @@
 import 'package:aura_app/src/features/layout/widgets/build_header_home.dart';
+import 'package:aura_app/src/core/extensions/localization_extension.dart';
 import 'package:aura_app/src/shared/themes/app_colors.dart';
 import 'package:flutter/material.dart';
 
@@ -14,8 +15,8 @@ Widget buildTopBar(BuildContext context) {
             child: Icon(Icons.auto_awesome, color: Colors.white),
           ),
           const SizedBox(width: 10),
-          const Text(
-            "Aura AI",
+          Text(
+            context.l10n.auraAi,
             style: TextStyle(
               color: Colors.white,
               fontSize: 18,
@@ -28,7 +29,7 @@ Widget buildTopBar(BuildContext context) {
       ),
       const SizedBox(height: 10),
       Text(
-        "MARKET ANALYSIS UPDATED 2M AGO",
+        context.l10n.marketAnalysisUpdated2mAgo,
         style: TextStyle(
           color: AppColors.secondaryColor.withOpacity(0.7),
           fontSize: 11,

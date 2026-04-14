@@ -5,7 +5,6 @@ import 'package:aura_app/src/shared/routing/route_strings.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'src/shared/themes/app_theme.dart';
-import 'src/core/bloc/language_bloc.dart';
 
 void main() {
   runApp(

@@ -26,11 +26,11 @@ class RecommendationReasonScreen extends StatelessWidget {
             children: [
               buildHeadRecommendationWidget(context, stock),
               SizedBox(height: 20),
-              buildHeadRecommendationTextWidget(),
+              buildHeadRecommendationTextWidget(context),
               const SizedBox(height: 16),
-              analysisCard(),
+              analysisCard(context, stock),
               const SizedBox(height: 30),
-              sentimentCard(),
+              sentimentCard(context),
               const SizedBox(height: 24),
               _technicalIndicator(context),
               const SizedBox(height: 12),
@@ -41,29 +41,20 @@ class RecommendationReasonScreen extends StatelessWidget {
 
               driverTile(
                 icon: Icons.bar_chart,
-                title: context.tr('Sector Momentum', 'زخم القطاع'),
-                subtitle: context.tr(
-                  'Tech stocks are outperforming the S&P 500 this week, creating a tailwind for AAPL.',
-                  'أسهم التكنولوجيا تتفوق على مؤشر S&P 500 هذا الأسبوع مما يدعم AAPL.',
-                ),
+                title: context.l10n.sectorMomentumTitle,
+                subtitle: context.l10n.sectorMomentumSubtitle(stock.symbol),
               ),
 
               driverTile(
                 icon: Icons.volume_up,
-                title: context.tr('News Volume', 'حجم الأخبار'),
-                subtitle: context.tr(
-                  'Mention volume has increased 200% in the last 24 hours driven by new product launches.',
-                  'زاد حجم الإشارات بنسبة 200% خلال آخر 24 ساعة بسبب إطلاق منتجات جديدة.',
-                ),
+                title: context.l10n.newsVolumeTitle,
+                subtitle: context.l10n.newsVolumeSubtitle,
               ),
 
               driverTile(
                 icon: Icons.attach_money,
-                title: context.tr('Institutional Flow', 'تدفق المؤسسات'),
-                subtitle: context.tr(
-                  'Significant block buying detected in dark pools over the last 3 trading sessions.',
-                  'تم رصد عمليات شراء كبيرة في الأسواق المظلمة خلال آخر 3 جلسات.',
-                ),
+                title: context.l10n.institutionalFlowTitle,
+                subtitle: context.l10n.institutionalFlowSubtitle,
               ),
 
               const SizedBox(height: 80),
@@ -73,7 +64,7 @@ class RecommendationReasonScreen extends StatelessWidget {
       ),
 
       /// BOTTOM BAR
-      bottomNavigationBar: buildBottomBar(),
+      bottomNavigationBar: buildBottomBar(context, stock),
     );
   }
 
@@ -84,7 +75,7 @@ class RecommendationReasonScreen extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           Text(
-            context.tr('Technical Indicators', 'المؤشرات الفنية'),
+            context.l10n.technicalIndicators,
             style: TextStyle(
               color: AppColors.white,
               fontSize: 17,
@@ -94,7 +85,7 @@ class RecommendationReasonScreen extends StatelessWidget {
           GestureDetector(
             onTap: () {},
             child: Text(
-              context.tr('View Chart', 'عرض الرسم البياني'),
+              context.l10n.viewChart,
               style: TextStyle(color: AppColors.secondaryColor, fontSize: 14),
             ),
           ),
@@ -107,7 +98,7 @@ class RecommendationReasonScreen extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 8.0),
       child: Text(
-        context.tr('Price Drivers', 'محركات السعر'),
+        context.l10n.priceDrivers,
         style: TextStyle(
           color: AppColors.white,
           fontSize: 16,
@@ -132,23 +123,23 @@ class RecommendationReasonScreen extends StatelessWidget {
           indicatorCard(
             title: "RSI (14)",
             value: "65.4",
-            subtitle: context.tr('Neutral-High', 'محايد-مرتفع'),
+            subtitle: context.l10n.neutralHigh,
             valueColor: Colors.yellowAccent,
           ),
           indicatorCard(
             title: "MACD",
             value: "Crossover",
-            subtitle: context.tr('Bullish Signal', 'إشارة صعودية'),
+            subtitle: context.l10n.bullishSignal,
           ),
           indicatorCard(
             title: "MA (50)",
             value: "\$172.40",
-            subtitle: context.tr('Above MA', 'أعلى من المتوسط'),
+            subtitle: context.l10n.aboveMa,
           ),
           indicatorCard(
-            title: context.tr('VOL VOLATILITY', 'تقلب الحجم'),
+            title: context.l10n.volVolatility,
             value: "+24%",
-            subtitle: context.tr('High interest', 'اهتمام مرتفع'),
+            subtitle: context.l10n.highInterest,
           ),
         ],
       ),

@@ -1,4 +1,5 @@
 import 'package:aura_app/src/features/layout/widgets/build_header_home.dart';
+import 'package:aura_app/src/core/extensions/localization_extension.dart';
 import 'package:aura_app/src/shared/themes/app_colors.dart';
 import 'package:flutter/material.dart';
 
@@ -29,13 +30,13 @@ Widget buildHeaderPortfolio(BuildContext context) {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                "Welcome back,",
+                context.l10n.welcomeBackComma,
                 style: Theme.of(
                   context,
                 ).textTheme.bodySmall?.copyWith(color: AppColors.greyText),
               ),
               Text(
-                "Alex",
+                context.tr('Youssef', 'يوسف'),
                 style: Theme.of(context).textTheme.headlineSmall?.copyWith(
                   fontWeight: FontWeight.bold,
                   fontSize: 18,

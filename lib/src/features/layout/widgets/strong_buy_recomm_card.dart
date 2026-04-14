@@ -1,4 +1,5 @@
 import 'dart:math';
+import 'package:aura_app/src/core/extensions/localization_extension.dart';
 import 'package:flutter/material.dart';
 import 'package:aura_app/src/shared/themes/app_colors.dart';
 
@@ -107,7 +108,7 @@ class _MainAICardState extends State<MainAICard> with TickerProviderStateMixin {
                         ),
                         const SizedBox(width: 6),
                         Text(
-                          "AI PICK OF THE DAY",
+                          context.l10n.aiPickOfTheDay,
                           style: TextStyle(
                             color: AppColors.secondaryColor,
                             fontSize: 11,
@@ -162,7 +163,7 @@ class _MainAICardState extends State<MainAICard> with TickerProviderStateMixin {
                   ),
                   const SizedBox(width: 5),
                   Text(
-                    "Strong Buy Signal",
+                    context.l10n.strongBuySignal,
                     style: TextStyle(
                       color: AppColors.accentColor,
                       fontSize: 16,
@@ -218,7 +219,7 @@ class _MainAICardState extends State<MainAICard> with TickerProviderStateMixin {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        "AI Confidence Score",
+                        context.l10n.aiConfidenceScore,
                         style: TextStyle(
                           fontSize: 14,
                           color: Colors.white.withOpacity(0.6),
@@ -263,7 +264,7 @@ class _MainAICardState extends State<MainAICard> with TickerProviderStateMixin {
                           ),
                           const SizedBox(width: 6),
                           Text(
-                            "Bullish",
+                            context.l10n.bullish,
                             style: TextStyle(
                               color: AppColors.accentColor,
                               fontWeight: FontWeight.bold,
@@ -329,7 +330,7 @@ class _MainAICardState extends State<MainAICard> with TickerProviderStateMixin {
                                     ),
                                     const SizedBox(width: 5),
                                     Text(
-                                      "View Analysis",
+                                      context.l10n.viewAnalysis,
                                       style: TextStyle(
                                         color: Colors.white,
                                         fontSize: 16,

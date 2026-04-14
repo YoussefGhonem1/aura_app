@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:aura_app/src/core/extensions/localization_extension.dart';
 
 class FaceIDButton extends StatelessWidget {
   final VoidCallback onPressed;
@@ -22,7 +23,7 @@ class FaceIDButton extends StatelessWidget {
           children: [
             Image.asset('assets/icons/face_id.png', width: 50, height: 50),
             Text(
-              'Sign in with FaceID',
+              context.l10n.signInWithFaceId,
               style: TextStyle(
                 color: Colors.white,
                 fontSize: 15,

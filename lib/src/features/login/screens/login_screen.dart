@@ -56,22 +56,19 @@ class _LoginScreenState extends State<LoginScreen> {
 
             const SizedBox(height: 10),
             Text(
-              context.tr('Welcome Back', 'مرحبًا بعودتك'),
+              context.l10n.welcomeBack,
               style: Theme.of(context).textTheme.headlineMedium,
             ),
             const SizedBox(height: 5),
             Text(
-              context.tr(
-                'Your intelligent investment portfolio is ready',
-                'محفظتك الاستثمارية الذكية جاهزة',
-              ),
+              context.l10n.intelligentPortfolioReady,
               style: Theme.of(context).textTheme.bodySmall,
             ),
 
             const SizedBox(height: 40),
             AuraTextField(
-              label: context.tr('Email Address', 'البريد الإلكتروني'),
-              hintText: context.tr('name@example.com', 'name@example.com'),
+              label: context.l10n.emailAddress,
+              hintText: context.l10n.emailExample,
             ),
             const SizedBox(height: 20),
             AuraTextField(
@@ -84,17 +81,14 @@ class _LoginScreenState extends State<LoginScreen> {
                 mainAxisSize: MainAxisSize.min,
                 children: [
                   buildValidationItem(
-                    context.tr('At least 8 characters', '8 أحرف على الأقل'),
+                    context.l10n.atLeastEightCharacters,
                     _hasEightChars,
                   ),
                   buildValidationItem(
-                    context.tr('One uppercase letter', 'حرف كبير واحد'),
+                    context.l10n.oneUppercaseLetter,
                     _hasUppercase,
                   ),
-                  buildValidationItem(
-                    context.tr('One number', 'رقم واحد'),
-                    _hasNumber,
-                  ),
+                  buildValidationItem(context.l10n.oneNumber, _hasNumber),
                 ],
               ),
             ),
@@ -120,7 +114,7 @@ class _LoginScreenState extends State<LoginScreen> {
 
             const SizedBox(height: 20),
             AuthOptionWidget(
-              mainText: context.tr('Don\'t have an account?', 'ليس لديك حساب؟'),
+              mainText: context.l10n.dontHaveAnAccount,
               actionText: context.l10n.signUp,
               onTap: () {
                 Navigator.pushReplacementNamed(context, Routes.createAccount);
@@ -128,10 +122,7 @@ class _LoginScreenState extends State<LoginScreen> {
             ),
             const SizedBox(height: 30),
 
-            buildSocialDivider(
-              context,
-              context.tr('Or continue with', 'أو تابع عبر'),
-            ),
+            buildSocialDivider(context, context.l10n.orContinueWith),
 
             const SizedBox(height: 20),
             FaceIDButton(onPressed: () {}),

@@ -1,3 +1,4 @@
+import 'package:aura_app/src/core/extensions/localization_extension.dart';
 import 'package:aura_app/src/shared/themes/app_colors.dart';
 import 'package:flutter/material.dart';
 
@@ -53,7 +54,7 @@ Widget buildAuraInsight(BuildContext context) {
                   ),
                   const SizedBox(width: 8),
                   Text(
-                    "AURA INSIGHT",
+                    context.l10n.auraInsightHeader,
                     style: TextStyle(
                       color: AppColors.secondaryColor,
                       fontSize: 11,
@@ -68,7 +69,7 @@ Widget buildAuraInsight(BuildContext context) {
 
               // Title
               Text(
-                "Watch Tech Hardware",
+                context.l10n.watchTechHardware,
                 style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                   color: AppColors.white,
                   fontWeight: FontWeight.w700,
@@ -79,7 +80,7 @@ Widget buildAuraInsight(BuildContext context) {
 
               // Description
               Text(
-                "Sector momentum is up 4.2% today driven by new chip announcements.",
+                context.l10n.sectorMomentumUp42,
                 style: Theme.of(context).textTheme.bodySmall?.copyWith(
                   color: AppColors.greyText,
                   height: 1.4,

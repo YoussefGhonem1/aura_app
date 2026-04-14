@@ -1,7 +1,9 @@
+import 'package:aura_app/src/core/extensions/localization_extension.dart';
 import 'package:aura_app/src/shared/themes/app_colors.dart';
 import 'package:flutter/material.dart';
 
 Widget buildTransactionItem({
+  required BuildContext context,
   required String symbol,
   bool auraPick = false,
   required double amount,
@@ -87,8 +89,8 @@ Widget buildTransactionItem({
                                   ),
                                   borderRadius: BorderRadius.circular(4),
                                 ),
-                                child: const Text(
-                                  "AURA PICK",
+                                child: Text(
+                                  context.l10n.auraPick,
                                   style: TextStyle(
                                     color: AppColors.secondaryColor,
                                     fontSize: 10,

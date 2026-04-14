@@ -1,4 +1,5 @@
 import 'package:aura_app/src/features/stock_details/models/stock_details_model.dart';
+import 'package:aura_app/src/core/extensions/localization_extension.dart';
 import 'package:aura_app/src/shared/themes/app_colors.dart';
 import 'package:flutter/material.dart';
 
@@ -24,7 +25,7 @@ class _AboutSectionState extends State<AboutSection> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            'About ${widget.stock.name}',
+            '${context.l10n.about} ${widget.stock.name}',
             style: TextStyle(
               color: AppColors.white,
               fontSize: 20,
@@ -67,7 +68,7 @@ class _AboutSectionState extends State<AboutSection> {
                 });
               },
               child: Text(
-                isExpanded ? '[Show less]' : '[Read more]',
+                isExpanded ? context.l10n.showLess : context.l10n.readMore,
                 style: TextStyle(
                   color: AppColors.secondaryColor,
                   fontSize: 14,

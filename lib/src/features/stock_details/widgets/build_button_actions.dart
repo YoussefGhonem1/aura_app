@@ -1,4 +1,5 @@
 import 'package:aura_app/src/features/stock_details/models/stock_details_model.dart';
+import 'package:aura_app/src/core/extensions/localization_extension.dart';
 import 'package:aura_app/src/shared/routing/route_strings.dart';
 import 'package:aura_app/src/shared/themes/app_colors.dart';
 import 'package:flutter/material.dart';
@@ -29,7 +30,7 @@ Widget buildBottomActions(StockModel stock, BuildContext context) {
               ),
             ),
             child: Text(
-              'Sell',
+              context.l10n.sell,
               style: TextStyle(
                 fontSize: 16,
                 color: AppColors.errorColor,
@@ -57,7 +58,7 @@ Widget buildBottomActions(StockModel stock, BuildContext context) {
               ),
             ),
             child: Text(
-              'Buy ${stock.symbol}',
+              '${context.l10n.buy} ${stock.symbol}',
               style: const TextStyle(
                 fontSize: 16,
                 color: AppColors.primaryColor,

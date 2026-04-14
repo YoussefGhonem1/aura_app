@@ -1,7 +1,9 @@
+import 'package:aura_app/src/core/extensions/localization_extension.dart';
 import 'package:aura_app/src/shared/themes/app_colors.dart';
 import 'package:flutter/material.dart';
 
 Widget buildSectionHeader(
+  BuildContext context,
   String title, {
   bool hasClear = false,
   bool hasFilters = false,
@@ -20,8 +22,8 @@ Widget buildSectionHeader(
         ),
       ),
       if (hasClear)
-        const Text(
-          "Clear",
+        Text(
+          context.l10n.clear,
           style: TextStyle(color: AppColors.secondaryColor, fontSize: 14),
         ),
       if (hasFilters)

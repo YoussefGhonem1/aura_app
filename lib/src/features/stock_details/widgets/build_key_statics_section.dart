@@ -1,15 +1,19 @@
 import 'package:aura_app/src/features/stock_details/models/stock_details_model.dart';
+import 'package:aura_app/src/core/extensions/localization_extension.dart';
 import 'package:aura_app/src/shared/themes/app_colors.dart';
 import 'package:flutter/material.dart';
 
-Widget keyStatisticsSection({required StockModel stock}) {
+Widget keyStatisticsSection({
+  required BuildContext context,
+  required StockModel stock,
+}) {
   return Padding(
     padding: const EdgeInsets.symmetric(horizontal: 20),
     child: Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
-          'Key Statistics',
+          context.l10n.keyStatistics,
           style: TextStyle(
             color: AppColors.white,
             fontSize: 20,
@@ -21,14 +25,14 @@ Widget keyStatisticsSection({required StockModel stock}) {
           children: [
             Expanded(
               child: _buildStatCard(
-                title: 'Market Cap',
+                title: context.l10n.marketCapLabel,
                 value: '${stock.marketCap.toStringAsFixed(1)}T',
               ),
             ),
             const SizedBox(width: 16),
             Expanded(
               child: _buildStatCard(
-                title: 'P/E Ratio',
+                title: context.l10n.peRatioLabel,
                 value: stock.peRatio.toStringAsFixed(1),
               ),
             ),
@@ -39,14 +43,14 @@ Widget keyStatisticsSection({required StockModel stock}) {
           children: [
             Expanded(
               child: _buildStatCard(
-                title: 'Div Yield',
+                title: context.l10n.divYieldLabel,
                 value: '${stock.dividendYield.toStringAsFixed(2)}%',
               ),
             ),
             const SizedBox(width: 16),
             Expanded(
               child: _buildStatCard(
-                title: 'Avg Volume',
+                title: context.l10n.avgVolumeLabel,
                 value: '${stock.avgVolume.toStringAsFixed(1)}M',
               ),
             ),

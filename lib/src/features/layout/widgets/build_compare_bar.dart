@@ -1,7 +1,9 @@
+import 'package:aura_app/src/core/extensions/localization_extension.dart';
 import 'package:aura_app/src/shared/themes/app_colors.dart';
 import 'package:flutter/material.dart';
 
 Widget buildCompareBar({
+  required BuildContext context,
   required List<Map<String, dynamic>> trendingStocks,
   required int selectedCount,
   required bool showCompareBar,
@@ -52,8 +54,8 @@ Widget buildCompareBar({
                 ),
               ),
               const SizedBox(width: 12),
-              const Text(
-                "Stocks Selected",
+              Text(
+                context.l10n.stocksSelected,
                 style: TextStyle(
                   color: AppColors.white,
                   fontSize: 16,
@@ -65,7 +67,7 @@ Widget buildCompareBar({
                 GestureDetector(
                   onTap: onClearAll,
                   child: Text(
-                    "Clear All",
+                    context.l10n.clearAll,
                     style: TextStyle(
                       color: AppColors.secondaryColor,
                       fontSize: 14,
@@ -110,18 +112,18 @@ Widget buildCompareBar({
                   ),
                 ],
               ),
-              child: const Center(
+              child: Center(
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Icon(
+                    const Icon(
                       Icons.compare_arrows_rounded,
                       color: AppColors.primaryColor,
                       size: 22,
                     ),
-                    SizedBox(width: 8),
+                    const SizedBox(width: 8),
                     Text(
-                      "Compare Now",
+                      context.l10n.compareNow,
                       style: TextStyle(
                         color: AppColors.primaryColor,
                         fontSize: 16,

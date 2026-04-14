@@ -27,63 +27,42 @@ class _InvestmentPreferencesScreenState
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            _sectionTitle(context.tr('Risk Tolerance', 'تحمل المخاطر')),
-            _sectionSubtitle(
-              context.tr(
-                'What is your risk appetite?',
-                'ما مستوى تقبلك للمخاطرة؟',
-              ),
-            ),
+            _sectionTitle(context.l10n.riskTolerance),
+            _sectionSubtitle(context.l10n.whatIsYourRiskAppetite),
             const SizedBox(height: 16),
             _riskSelector(context),
 
             const SizedBox(height: 32),
-            _sectionTitle(context.tr('Market Interests', 'اهتمامات السوق')),
-            _sectionSubtitle(
-              context.tr(
-                'Select sectors for Aura to prioritize.',
-                'اختر القطاعات التي تريد أن يركز عليها Aura.',
-              ),
-            ),
+            _sectionTitle(context.l10n.marketInterests),
+            _sectionSubtitle(context.l10n.selectSectorsForAuraToPrioritize),
             const SizedBox(height: 16),
             _marketChips(context),
 
             const SizedBox(height: 32),
-            _sectionTitle(context.tr('Primary Goal', 'الهدف الأساسي')),
-            _sectionSubtitle(
-              context.tr('What is your main objective?', 'ما هو هدفك الرئيسي؟'),
-            ),
+            _sectionTitle(context.l10n.primaryGoal),
+            _sectionSubtitle(context.l10n.whatIsYourMainObjective),
             const SizedBox(height: 16),
             _goalItem(
               context: context,
               title: 'Growth',
-              description: context.tr(
-                'Maximizing capital appreciation over time.',
-                'تعظيم نمو رأس المال على المدى الطويل.',
-              ),
+              description: context.l10n.maximizingCapitalAppreciationOverTime,
             ),
             const SizedBox(height: 12),
             _goalItem(
               context: context,
               title: 'Dividends',
-              description: context.tr(
-                'Generating steady passive income.',
-                'تحقيق دخل ثابت ومنتظم.',
-              ),
+              description: context.l10n.generatingSteadyPassiveIncome,
             ),
             const SizedBox(height: 12),
             _goalItem(
               context: context,
               title: 'Capital Preservation',
-              description: context.tr(
-                'Protecting current assets with minimal risk.',
-                'حماية الأصول الحالية بأقل قدر من المخاطرة.',
-              ),
+              description: context.l10n.protectingCurrentAssetsWithMinimalRisk,
             ),
           ],
         ),
       ),
-      bottomNavigationBar: updateButton(),
+      bottomNavigationBar: updateButton(context),
     );
   }
 
@@ -132,11 +111,7 @@ class _InvestmentPreferencesScreenState
           ),
           child: Center(
             child: Text(
-              context.tr(
-                text,
-                {'Low': 'منخفض', 'Medium': 'متوسط', 'High': 'مرتفع'}[text] ??
-                    text,
-              ),
+              _localizedRiskOption(text),
               style: TextStyle(
                 color: selected ? AppColors.primaryColor : AppColors.greyText,
                 fontWeight: FontWeight.w600,
@@ -176,18 +151,7 @@ class _InvestmentPreferencesScreenState
               borderRadius: BorderRadius.circular(20),
             ),
             child: Text(
-              context.tr(
-                e,
-                {
-                      'Technology': 'التقنية',
-                      'Green Energy': 'الطاقة الخضراء',
-                      'Crypto': 'العملات الرقمية',
-                      'Healthcare': 'الرعاية الصحية',
-                      'Real Estate': 'العقارات',
-                      'Consumer Goods': 'السلع الاستهلاكية',
-                    }[e] ??
-                    e,
-              ),
+              _localizedMarketItem(context, e),
               style: TextStyle(
                 color: selected ? AppColors.primaryColor : AppColors.white,
                 fontWeight: FontWeight.w500,
@@ -226,15 +190,7 @@ class _InvestmentPreferencesScreenState
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    context.tr(
-                      title,
-                      {
-                            'Growth': 'النمو',
-                            'Dividends': 'توزيعات الأرباح',
-                            'Capital Preservation': 'الحفاظ على رأس المال',
-                          }[title] ??
-                          title,
-                    ),
+                    _localizedGoalTitle(context, title),
                     style: const TextStyle(
                       color: AppColors.white,
                       fontSize: 15,
@@ -281,5 +237,50 @@ class _InvestmentPreferencesScreenState
         ),
       ),
     );
+  }
+
+  String _localizedRiskOption(String value) {
+    switch (value) {
+      case 'Low':
+        return context.l10n.riskOptionLow;
+      case 'Medium':
+        return context.l10n.riskOptionMedium;
+      case 'High':
+        return context.l10n.riskOptionHigh;
+      default:
+        return value;
+    }
+  }
+
+  String _localizedMarketItem(BuildContext context, String value) {
+    switch (value) {
+      case 'Technology':
+        return context.l10n.marketTechnology;
+      case 'Green Energy':
+        return context.l10n.marketGreenEnergy;
+      case 'Crypto':
+        return context.l10n.crypto;
+      case 'Healthcare':
+        return context.l10n.marketHealthcare;
+      case 'Real Estate':
+        return context.l10n.marketRealEstate;
+      case 'Consumer Goods':
+        return context.l10n.marketConsumerGoods;
+      default:
+        return value;
+    }
+  }
+
+  String _localizedGoalTitle(BuildContext context, String value) {
+    switch (value) {
+      case 'Growth':
+        return context.l10n.goalGrowth;
+      case 'Dividends':
+        return context.l10n.goalDividends;
+      case 'Capital Preservation':
+        return context.l10n.goalCapitalPreservation;
+      default:
+        return value;
+    }
   }
 }
