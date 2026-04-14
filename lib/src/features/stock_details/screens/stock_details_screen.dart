@@ -8,9 +8,11 @@ import 'package:aura_app/src/features/stock_details/widgets/build_linear_chart.d
 import 'package:aura_app/src/features/stock_details/widgets/build_price_section.dart';
 import 'package:aura_app/src/features/stock_details/widgets/build_signal_section.dart';
 import 'package:aura_app/src/features/stock_details/widgets/build_time_frame_selector.dart';
+import 'package:aura_app/src/core/extensions/localization_extension.dart';
 import 'package:aura_app/src/shared/themes/app_colors.dart';
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 
 class StockDetailsScreen extends StatefulWidget {
   final StockModel stock;
@@ -23,7 +25,14 @@ class StockDetailsScreen extends StatefulWidget {
 
 class _StockDetailsScreenState extends State<StockDetailsScreen> {
   int _selectedTimeFrame = 4;
-  List<String> timeFrames = ['1D', '1W', '1M', '1Y', 'All'];
+
+  String _normalizeAuraSignal(String signal) {
+    return signal
+        .trim()
+        .replaceAll(RegExp(r'[_-]+'), ' ')
+        .replaceAll(RegExp(r'\s+'), ' ')
+        .toUpperCase();
+  }
 
   List<FlSpot> _generateLineData(int timeFrameIndex) {
     final List<FlSpot> data = [];
@@ -80,7 +89,7 @@ class _StockDetailsScreenState extends State<StockDetailsScreen> {
       isPositive ? AppColors.accentColor : AppColors.errorColor;
 
   Color getAuraSignalColor(String signal) {
-    switch (signal.toUpperCase()) {
+    switch (_normalizeAuraSignal(signal)) {
       case 'STRONG BUY':
         return AppColors.accentColor;
       case 'BUY':
@@ -121,33 +130,29 @@ class _StockDetailsScreenState extends State<StockDetailsScreen> {
   }
 
   String _getTimeLabel(double value, int timeFrameIndex) {
+    final locale = Localizations.localeOf(context).toLanguageTag();
+
     switch (timeFrameIndex) {
       case 0:
         final hour = value.toInt();
-        final period = hour >= 12 ? 'PM' : 'AM';
+        final period = DateFormat(
+          'a',
+          locale,
+        ).format(DateTime(2024, 1, 1, hour.clamp(0, 23)));
         final displayHour = hour % 12 == 0 ? 12 : hour % 12;
         return '$displayHour$period';
       case 1:
-        final days = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
-        return days[value.toInt() % days.length];
+        final weekdayIndex = value.toInt() % 7;
+        final mondayBase = DateTime(2024, 1, 1); // Monday
+        return DateFormat(
+          'EEE',
+          locale,
+        ).format(mondayBase.add(Duration(days: weekdayIndex)));
       case 2:
         return '${value.toInt() + 1}';
       case 3:
-        final months = [
-          'Jan',
-          'Feb',
-          'Mar',
-          'Apr',
-          'May',
-          'Jun',
-          'Jul',
-          'Aug',
-          'Sep',
-          'Oct',
-          'Nov',
-          'Dec',
-        ];
-        return months[value.toInt() % months.length];
+        final monthIndex = (value.toInt() % 12) + 1;
+        return DateFormat('MMM', locale).format(DateTime(2024, monthIndex, 1));
       case 4:
         return 'Q${(value.toInt() ~/ 6) + 1}';
       default:
@@ -164,6 +169,13 @@ class _StockDetailsScreenState extends State<StockDetailsScreen> {
   @override
   Widget build(BuildContext context) {
     final lineData = _generateLineData(_selectedTimeFrame);
+    final List<String> timeFrames = [
+      context.l10n.stockTime1d,
+      context.l10n.stockTime1w,
+      context.l10n.stockTime1m,
+      context.l10n.stockTime1y,
+      context.l10n.all,
+    ];
 
     return Scaffold(
       body: SafeArea(
@@ -172,7 +184,7 @@ class _StockDetailsScreenState extends State<StockDetailsScreen> {
             children: [
               buildHeadWidget(context, widget.stock),
               SizedBox(height: 18),
-              buildPriceSection(widget.stock),
+              buildPriceSection(context, widget.stock),
               SizedBox(height: 22),
               timeFrameSelector(
                 timeFrames: timeFrames,
@@ -196,7 +208,7 @@ class _StockDetailsScreenState extends State<StockDetailsScreen> {
                 getAuraSignalColor: getAuraSignalColor,
               ),
               SizedBox(height: 22),
-              keyStatisticsSection(stock: widget.stock),
+              keyStatisticsSection(context: context, stock: widget.stock),
               SizedBox(height: 28),
               AboutSection(stock: widget.stock),
 

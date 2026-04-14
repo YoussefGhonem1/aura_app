@@ -1,9 +1,10 @@
 import 'package:aura_app/src/features/stock_details/models/stock_details_model.dart';
+import 'package:aura_app/src/core/extensions/localization_extension.dart';
 import 'package:aura_app/src/features/stocks_compare/widgets/build_ai_card.dart';
 import 'package:aura_app/src/shared/themes/app_colors.dart';
 import 'package:flutter/material.dart';
 
-Widget buildStockCard(StockModel stock) {
+Widget buildStockCard(BuildContext context, StockModel stock) {
   return Container(
     padding: const EdgeInsets.all(20),
     decoration: BoxDecoration(
@@ -40,9 +41,9 @@ Widget buildStockCard(StockModel stock) {
         RichText(
           text: TextSpan(
             children: [
-              const TextSpan(
-                text: 'Current Price\n',
-                style: TextStyle(color: Colors.white70, fontSize: 12),
+              TextSpan(
+                text: '${context.l10n.currentPrice}\n',
+                style: const TextStyle(color: Colors.white70, fontSize: 12),
               ),
               TextSpan(
                 text: '\$${stock.currentPrice.toStringAsFixed(2)}',
@@ -95,6 +96,7 @@ Widget buildStockCard(StockModel stock) {
         const SizedBox(height: 20),
 
         buildAuraAICard(
+          context,
           stock,
           progress: stock.auraScore / 100,
           signalColor: _getSignalColor(stock.auraSignal),

@@ -26,61 +26,43 @@ class _ProfileScreenState extends State<ProfileScreen> {
           {
             'title': context.l10n.personalInfo,
             'icon': Icons.person_outline_rounded,
-            'subtitle': context.tr(
-              'Manage your personal information',
-              'إدارة معلوماتك الشخصية',
-            ),
+            'subtitle': context.l10n.managePersonalInformation,
             'onTap': () =>
                 Navigator.pushNamed(context, Routes.personalInfoScreen),
           },
           {
             'title': context.l10n.analyzes,
             'icon': Icons.analytics_outlined,
-            'subtitle': context.tr(
-              'View your analysis history',
-              'عرض سجل التحليلات الخاصة بك',
-            ),
+            'subtitle': context.l10n.viewAnalysisHistory,
             'onTap': () => Navigator.pushNamed(context, Routes.analysisScreen),
           },
           {
-            'title': context.tr('Transaction History', 'سجل المعاملات'),
+            'title': context.l10n.transactionHistory,
             'icon': Icons.history_rounded,
-            'subtitle': context.tr(
-              'Track all your transactions',
-              'تتبع جميع معاملاتك',
-            ),
+            'subtitle': context.l10n.trackAllTransactions,
             'onTap': () =>
                 Navigator.pushNamed(context, Routes.transactionHistoryScreen),
           },
           {
             'title': context.l10n.investmentPreferences,
             'icon': Icons.tune_rounded,
-            'subtitle': context.tr(
-              'Customize your investment settings',
-              'خصص إعدادات الاستثمار الخاصة بك',
-            ),
+            'subtitle': context.l10n.customizeInvestmentSettings,
             'onTap': () => Navigator.pushNamed(
               context,
               Routes.investmentPreferencesScreen,
             ),
           },
           {
-            'title': context.tr('Smart Automations', 'الأتمتة الذكية'),
+            'title': context.l10n.smartAutomations,
             'icon': Icons.auto_awesome_rounded,
-            'subtitle': context.tr(
-              'Set up automated investment strategies',
-              'إعداد استراتيجيات استثمار آلية',
-            ),
+            'subtitle': context.l10n.setAutomatedInvestmentStrategies,
             'onTap': () =>
                 Navigator.pushNamed(context, Routes.smartAutomationScreen),
           },
           {
             'title': context.l10n.notificationSettings,
             'icon': Icons.notifications_outlined,
-            'subtitle': context.tr(
-              'Manage your notification preferences',
-              'إدارة تفضيلات الإشعارات الخاصة بك',
-            ),
+            'subtitle': context.l10n.manageNotificationPreferences,
             'onTap': () =>
                 Navigator.pushNamed(context, Routes.notificationSettingsScreen),
           },
@@ -98,12 +80,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
             },
           },
           {
-            'title': context.tr('Legal & Support', 'القانوني والدعم'),
+            'title': context.l10n.legalAndSupport,
             'icon': Icons.description_outlined,
-            'subtitle': context.tr(
-              'Terms, privacy, and support',
-              'الشروط والخصوصية والدعم',
-            ),
+            'subtitle': context.l10n.termsPrivacyAndSupport,
             'onTap': () =>
                 Navigator.pushNamed(context, Routes.legalSupportScreenEnhanced),
           },
@@ -133,7 +112,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   Padding(
                     padding: const EdgeInsets.fromLTRB(20, 32, 20, 16),
                     child: Text(
-                      context.tr('ACCOUNT', 'الحساب'),
+                      context.l10n.account,
                       style: TextStyle(
                         color: AppColors.secondaryColor,
                         fontSize: 12,
@@ -165,7 +144,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
 
                   Center(
                     child: Text(
-                      "Aura App v1.0.0",
+                      context.l10n.appVersionLabel,
                       style: TextStyle(
                         color: Colors.white.withOpacity(0.5),
                         fontSize: 14,

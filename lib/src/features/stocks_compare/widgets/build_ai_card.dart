@@ -1,139 +1,155 @@
-
-  import 'package:aura_app/src/features/stock_details/models/stock_details_model.dart';
+import 'package:aura_app/src/core/extensions/localization_extension.dart';
+import 'package:aura_app/src/features/stock_details/models/stock_details_model.dart';
 import 'package:aura_app/src/shared/themes/app_colors.dart';
 import 'package:flutter/material.dart';
 
 Widget buildAuraAICard(
-    StockModel stock, {
-    double progress = 0.0,
-    Color signalColor = Colors.grey,
-  }) {
-    return Column(
-      children: [
-        Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            const Icon(
-              Icons.auto_awesome,
-              color: AppColors.accentColor,
-              size: 20,
-            ),
-            const SizedBox(width: 8),
-            Text(
-              'AURA AI ',
-              style: TextStyle(
-                color: AppColors.white,
-                fontSize: 16,
-                fontWeight: FontWeight.bold,
-              ),
-            ),
-          ],
-        ),
-        SizedBox(height: 8),
-
-        SizedBox(
-          width: 84,
-          height: 84,
-          child: Stack(
-            alignment: Alignment.center,
-            children: [
-              /// Background Circle using CustomPaint
-              CustomPaint(
-                size: const Size(78, 78),
-                painter: _CirclePainter(
-                  progress: 1.0,
-                  color: AppColors.white.withOpacity(0.1),
-                  strokeWidth: 6,
-                ),
-              ),
-
-              /// Progress Circle using CustomPaint
-              CustomPaint(
-                size: const Size(78, 78),
-                painter: _CirclePainter(
-                  progress: progress.clamp(0.0, 1.0),
-                  color: signalColor,
-                  strokeWidth: 6,
-                ),
-              ),
-
-              /// Center Text
-              Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Text(
-                    '${stock.auraScore}',
-                    style: TextStyle(
-                      color: AppColors.white,
-                      fontSize: 22,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                  const SizedBox(height: 2),
-                  Text(
-                    'Score',
-                    style: TextStyle(
-                      color: AppColors.white.withOpacity(0.6),
-                      fontSize: 11,
-                    ),
-                  ),
-                ],
-              ),
-            ],
+  BuildContext context,
+  StockModel stock, {
+  double progress = 0.0,
+  Color signalColor = Colors.grey,
+}) {
+  return Column(
+    children: [
+      Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          const Icon(
+            Icons.auto_awesome,
+            color: AppColors.accentColor,
+            size: 20,
           ),
-        ),
-
-        SizedBox(height: 8),
-        Container(
-          padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 16),
-          decoration: BoxDecoration(
-            color: _getSignalColor(stock.auraSignal).withOpacity(0.15),
-            borderRadius: BorderRadius.circular(12),
-          ),
-          child: Text(
-            stock.auraSignal,
+          const SizedBox(width: 8),
+          Text(
+            context.l10n.auraAi,
             style: TextStyle(
-              color: _getSignalColor(stock.auraSignal),
-              fontSize: 14,
+              color: AppColors.white,
+              fontSize: 16,
               fontWeight: FontWeight.bold,
             ),
           ),
+        ],
+      ),
+      SizedBox(height: 8),
+
+      SizedBox(
+        width: 84,
+        height: 84,
+        child: Stack(
+          alignment: Alignment.center,
+          children: [
+            /// Background Circle using CustomPaint
+            CustomPaint(
+              size: const Size(78, 78),
+              painter: _CirclePainter(
+                progress: 1.0,
+                color: AppColors.white.withOpacity(0.1),
+                strokeWidth: 6,
+              ),
+            ),
+
+            /// Progress Circle using CustomPaint
+            CustomPaint(
+              size: const Size(78, 78),
+              painter: _CirclePainter(
+                progress: progress.clamp(0.0, 1.0),
+                color: signalColor,
+                strokeWidth: 6,
+              ),
+            ),
+
+            /// Center Text
+            Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Text(
+                  '${stock.auraScore}',
+                  style: TextStyle(
+                    color: AppColors.white,
+                    fontSize: 22,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+                const SizedBox(height: 2),
+                Text(
+                  context.l10n.scoreLabel,
+                  style: TextStyle(
+                    color: AppColors.white.withOpacity(0.6),
+                    fontSize: 11,
+                  ),
+                ),
+              ],
+            ),
+          ],
         ),
-        const SizedBox(height: 12),
-        Text(
-          'Risk: ${_getRiskLevel(stock)}',
+      ),
+
+      SizedBox(height: 8),
+      Container(
+        padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 16),
+        decoration: BoxDecoration(
+          color: _getSignalColor(stock.auraSignal).withOpacity(0.15),
+          borderRadius: BorderRadius.circular(12),
+        ),
+        child: Text(
+          _localizedSignal(context, stock.auraSignal),
           style: TextStyle(
-            color: AppColors.white.withOpacity(0.8),
+            color: _getSignalColor(stock.auraSignal),
             fontSize: 14,
+            fontWeight: FontWeight.bold,
           ),
         ),
-      ],
-    );
-  }Color _getSignalColor(String signal) {
-    switch (signal.toUpperCase()) {
-      case 'STRONG BUY':
-        return AppColors.accentColor;
-      case 'BUY':
-        return AppColors.accentColor.withOpacity(0.9);
-      case 'HOLD':
-        return Colors.orange;
-      case 'SELL':
-        return AppColors.errorColor.withOpacity(0.9);
-      case 'STRONG SELL':
-        return AppColors.errorColor;
-      default:
-        return AppColors.greyText;
-    }
-  }
+      ),
+      const SizedBox(height: 12),
+      Text(
+        '${context.l10n.riskLabel}: ${_getRiskLevel(context, stock)}',
+        style: TextStyle(color: AppColors.white.withOpacity(0.8), fontSize: 14),
+      ),
+    ],
+  );
+}
 
-  String _getRiskLevel(StockModel stock) {
-    // Simplified risk calculation
-    final absChange = stock.priceChangePercent.abs();
-    if (absChange < 2) return 'Low Risk';
-    if (absChange < 5) return 'Medium Risk';
-    return 'High Risk';
+Color _getSignalColor(String signal) {
+  switch (signal.toUpperCase()) {
+    case 'STRONG BUY':
+      return AppColors.accentColor;
+    case 'BUY':
+      return AppColors.accentColor.withOpacity(0.9);
+    case 'HOLD':
+      return Colors.orange;
+    case 'SELL':
+      return AppColors.errorColor.withOpacity(0.9);
+    case 'STRONG SELL':
+      return AppColors.errorColor;
+    default:
+      return AppColors.greyText;
   }
+}
 
+String _localizedSignal(BuildContext context, String signal) {
+  switch (signal.toUpperCase()) {
+    case 'STRONG BUY':
+      return context.l10n.signalStrongBuy;
+    case 'BUY':
+      return context.l10n.signalBuy;
+    case 'HOLD':
+      return context.l10n.signalHold;
+    case 'SELL':
+      return context.l10n.signalSell;
+    case 'STRONG SELL':
+      return context.l10n.signalStrongSell;
+    default:
+      return signal;
+  }
+}
+
+String _getRiskLevel(BuildContext context, StockModel stock) {
+  // Simplified risk calculation
+  final absChange = stock.priceChangePercent.abs();
+  if (absChange < 2) return context.l10n.lowRisk;
+  if (absChange < 5) return context.l10n.mediumRisk;
+  return context.l10n.highRisk;
+}
 
 class _CirclePainter extends CustomPainter {
   final double progress;

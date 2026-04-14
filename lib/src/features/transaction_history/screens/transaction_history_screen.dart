@@ -11,10 +11,7 @@ class TransactionHistoryScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: AppColors.primaryColor,
-      appBar: buildAppBar(
-        context,
-        context.tr('Transaction History', 'سجل المعاملات'),
-      ),
+      appBar: buildAppBar(context, context.l10n.transactionHistory),
       body: SingleChildScrollView(
         child: Column(
           children: [
@@ -34,10 +31,10 @@ class TransactionHistoryScreen extends StatelessWidget {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.start,
         children: [
-          _buildFilterTab(context.tr('All', 'الكل'), isSelected: true),
-          _buildFilterTab(context.tr('Buy', 'شراء')),
-          _buildFilterTab(context.tr('Sell', 'بيع')),
-          _buildFilterTab(context.tr('Pending', 'قيد الانتظار')),
+          _buildFilterTab(context.l10n.all, isSelected: true),
+          _buildFilterTab(context.l10n.buy),
+          _buildFilterTab(context.l10n.sell),
+          _buildFilterTab(context.l10n.pending),
         ],
       ),
     );
@@ -74,40 +71,44 @@ class TransactionHistoryScreen extends StatelessWidget {
       child: Column(
         children: [
           _buildMonthSection(
-            month: context.tr('OCTOBER 2023', 'أكتوبر 2023'),
+            month: context.l10n.october2023,
             transactions: [
               buildTransactionItem(
+                context: context,
                 symbol: "AAPL",
                 auraPick: true,
                 amount: -145.22,
-                type: "Buy Market Order",
-                date: "Oct 24",
-                status: "Filled",
+                type: context.l10n.buyMarketOrder,
+                date: context.l10n.oct24,
+                status: context.l10n.filled,
                 statusColor: Colors.green,
               ),
               buildTransactionItem(
+                context: context,
                 symbol: "TSLA",
                 amount: 3200.00,
-                type: "Sell Limit Order",
-                date: "Oct 22",
-                status: "Filled",
+                type: context.l10n.sellLimitOrder,
+                date: context.l10n.oct22,
+                status: context.l10n.filled,
                 statusColor: Colors.green,
               ),
               buildTransactionItem(
+                context: context,
                 symbol: "NVDA",
                 auraPick: true,
                 amount: -840.50,
-                type: "Buy Market Order",
-                date: "Oct 18",
-                status: "Filled",
+                type: context.l10n.buyMarketOrder,
+                date: context.l10n.oct18,
+                status: context.l10n.filled,
                 statusColor: Colors.green,
               ),
               buildTransactionItem(
+                context: context,
                 symbol: "AMZN",
                 amount: -125.00,
-                type: "Buy Limit Order",
-                date: "Oct 15",
-                status: "Pending",
+                type: context.l10n.buyLimitOrder,
+                date: context.l10n.oct15,
+                status: context.l10n.pending,
                 statusColor: Colors.orange,
               ),
             ],
@@ -117,30 +118,33 @@ class TransactionHistoryScreen extends StatelessWidget {
 
           // SEPTEMBER 2023 Section
           _buildMonthSection(
-            month: context.tr('SEPTEMBER 2023', 'سبتمبر 2023'),
+            month: context.l10n.september2023,
             transactions: [
               buildTransactionItem(
+                context: context,
                 symbol: "MSFT",
                 amount: 12.45,
-                type: "Dividend Received",
-                date: "Sep 28",
-                status: "Completed",
+                type: context.l10n.dividendReceived,
+                date: context.l10n.sep28,
+                status: context.l10n.completed,
                 statusColor: Colors.green,
               ),
               buildTransactionItem(
-                symbol: "Deposit",
+                context: context,
+                symbol: context.l10n.deposit,
                 amount: 5000.00,
-                type: "Bank Transfer",
-                date: "Sep 20",
+                type: context.l10n.bankTransfer,
+                date: context.l10n.sep20,
                 status: "Success",
                 statusColor: Colors.green,
               ),
               buildTransactionItem(
+                context: context,
                 symbol: "COIN",
                 amount: 1450.00,
-                type: "Sell Market Order",
-                date: "Sep 12",
-                status: "Filled",
+                type: context.l10n.sellMarketOrder,
+                date: context.l10n.sep12,
+                status: context.l10n.filled,
                 statusColor: Colors.green,
               ),
             ],

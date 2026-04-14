@@ -3,6 +3,7 @@ import 'package:aura_app/src/features/layout/screens/home_screen.dart';
 import 'package:aura_app/src/features/layout/screens/portfolio_screen.dart';
 import 'package:aura_app/src/features/layout/screens/profile_screen.dart';
 import 'package:aura_app/src/features/layout/screens/search_screen.dart';
+import 'package:aura_app/src/core/extensions/localization_extension.dart';
 import 'package:aura_app/src/shared/themes/app_colors.dart';
 import 'package:flutter/material.dart';
 
@@ -63,16 +64,16 @@ class _MainLayoutScreenState extends State<MainLayoutScreen> {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              _buildNavItem(Icons.home_filled, "Home", 0),
+              _buildNavItem(Icons.home_filled, context.l10n.home, 0),
               _buildNavItem(
                 Icons.account_balance_wallet_rounded,
-                "Portfolio",
+                context.l10n.portfolio,
                 1,
               ),
 
               const SizedBox(width: 40),
-              _buildNavItem(Icons.search, "Search", 3),
-              _buildNavItem(Icons.person_rounded, "Profile", 4),
+              _buildNavItem(Icons.search, context.l10n.search, 3),
+              _buildNavItem(Icons.person_rounded, context.l10n.profile, 4),
             ],
           ),
         ),

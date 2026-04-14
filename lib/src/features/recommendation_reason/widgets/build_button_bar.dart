@@ -1,7 +1,9 @@
 import 'package:aura_app/src/shared/themes/app_colors.dart';
+import 'package:aura_app/src/core/extensions/localization_extension.dart';
+import 'package:aura_app/src/features/stock_details/models/stock_details_model.dart';
 import 'package:flutter/material.dart';
 
-Widget buildBottomBar() {
+Widget buildBottomBar(BuildContext context, StockModel stock) {
   return Container(
     padding: const EdgeInsets.all(16),
     color: AppColors.primaryColor,
@@ -29,8 +31,8 @@ Widget buildBottomBar() {
                   size: 22,
                 ),
                 SizedBox(width: 6),
-                const Text(
-                  "Watch",
+                Text(
+                  context.l10n.watchAction,
                   style: TextStyle(
                     color: AppColors.white,
                     fontSize: 16,
@@ -55,8 +57,8 @@ Widget buildBottomBar() {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                const Text(
-                  "Trade AAPL",
+                Text(
+                  context.l10n.tradeSymbol(stock.symbol),
                   style: TextStyle(
                     color: AppColors.primaryColor,
                     fontSize: 16,

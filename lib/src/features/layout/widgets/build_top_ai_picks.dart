@@ -18,7 +18,10 @@ Widget buildTopAIPicks(BuildContext context) {
               item.color,
               chartData: item.chartData,
               onTap: () {
-                final stock = StockModel.dummy(item.symbol);
+                final stock = StockModel.dummy(
+                  item.symbol,
+                  localeCode: Localizations.localeOf(context).toLanguageTag(),
+                );
 
                 Navigator.pushNamed(
                   context,

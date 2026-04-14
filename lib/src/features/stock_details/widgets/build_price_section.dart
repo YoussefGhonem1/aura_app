@@ -1,8 +1,9 @@
 import 'package:aura_app/src/features/stock_details/models/stock_details_model.dart';
+import 'package:aura_app/src/core/extensions/localization_extension.dart';
 import 'package:aura_app/src/shared/themes/app_colors.dart';
 import 'package:flutter/material.dart';
 
-Widget buildPriceSection(StockModel stock) {
+Widget buildPriceSection(BuildContext context, StockModel stock) {
   return Padding(
     padding: const EdgeInsets.symmetric(horizontal: 20),
     child: Column(
@@ -60,7 +61,7 @@ Widget buildPriceSection(StockModel stock) {
 
               // "Today" Label
               Text(
-                'Today',
+                context.l10n.todayShort,
                 style: TextStyle(
                   color: stock.isPositive
                       ? AppColors.accentColor

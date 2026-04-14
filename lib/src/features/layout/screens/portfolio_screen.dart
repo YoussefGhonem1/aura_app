@@ -30,10 +30,7 @@ class PortfolioScreen extends StatelessWidget {
               const SizedBox(height: 32),
               buildAssetAllocationChart(context),
               const SizedBox(height: 32),
-              buildSectionTitle(
-                context,
-                context.tr('Current Holdings', 'الحيازات الحالية'),
-              ),
+              buildSectionTitle(context, context.l10n.currentHoldings),
               const SizedBox(height: 10),
               buildHoldingsList(context),
               const SizedBox(height: 100),

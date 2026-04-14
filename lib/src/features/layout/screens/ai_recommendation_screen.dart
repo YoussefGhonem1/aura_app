@@ -48,21 +48,15 @@ class _AuraAIRecommendationScreenState
                 onTabChanged: _onTabChanged,
               ),
               const SizedBox(height: 20),
-              buildSectionTitle(
-                context,
-                context.tr('High Confidence Picks', 'اختيارات عالية الثقة'),
-              ),
+              buildSectionTitle(context, context.l10n.highConfidencePicks),
               buildHighConfidencePicks(context),
               const SizedBox(height: 20),
-              buildSectionTitle(
-                context,
-                context.tr('Hot AI Signals', 'إشارات AI الساخنة'),
-              ),
+              buildSectionTitle(context, context.l10n.hotAiSignals),
               buildQuickPicks(),
               const SizedBox(height: 24),
               _buildHighVolatilityAlert(context),
               const SizedBox(height: 12),
-              buildAlertsList(),
+              buildAlertsList(context),
               const SizedBox(height: 40),
             ],
           ),
@@ -85,7 +79,7 @@ Widget _buildHighVolatilityAlert(BuildContext context) {
           ),
           SizedBox(width: 8),
           Text(
-            context.tr('High Volatility Alerts', 'تنبيهات تقلبات عالية'),
+            context.l10n.highVolatilityAlerts,
             style: const TextStyle(
               color: Colors.white,
               fontWeight: FontWeight.bold,

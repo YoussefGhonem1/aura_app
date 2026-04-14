@@ -1,3 +1,4 @@
+import 'package:aura_app/src/core/extensions/localization_extension.dart';
 import 'package:aura_app/src/shared/routing/route_strings.dart';
 import 'package:aura_app/src/shared/themes/app_colors.dart';
 import 'package:flutter/gestures.dart';
@@ -42,24 +43,9 @@ class _TermsAndConditionsWidgetState extends State<TermsAndConditionsWidget> {
             text: TextSpan(
               style: Theme.of(context).textTheme.bodySmall,
               children: [
-                const TextSpan(text: "I agree to the "),
+                TextSpan(text: context.l10n.agreeToThe),
                 TextSpan(
-                  text: "Terms and Conditions",
-                  style: TextStyle(
-                    color: AppColors.secondaryColor,
-                    fontWeight: FontWeight.w600,
-                  ),
-                  recognizer: TapGestureRecognizer()
-                    ..onTap = () {
-                    Navigator.pushNamed(
-                            context,
-                            Routes.termsOfServiceScreenEnhanced,
-                          );
-                    },
-                ),
-                const TextSpan(text: " and "),
-                TextSpan(
-                  text: "Privacy Policy",
+                  text: context.l10n.termsOfService,
                   style: TextStyle(
                     color: AppColors.secondaryColor,
                     fontWeight: FontWeight.w600,
@@ -67,9 +53,24 @@ class _TermsAndConditionsWidgetState extends State<TermsAndConditionsWidget> {
                   recognizer: TapGestureRecognizer()
                     ..onTap = () {
                       Navigator.pushNamed(
-                            context,
-                            Routes.privacyPolicyScreenEnhanced,
-                          );
+                        context,
+                        Routes.termsOfServiceScreenEnhanced,
+                      );
+                    },
+                ),
+                TextSpan(text: context.l10n.andWord),
+                TextSpan(
+                  text: context.l10n.privacyPolicy,
+                  style: TextStyle(
+                    color: AppColors.secondaryColor,
+                    fontWeight: FontWeight.w600,
+                  ),
+                  recognizer: TapGestureRecognizer()
+                    ..onTap = () {
+                      Navigator.pushNamed(
+                        context,
+                        Routes.privacyPolicyScreenEnhanced,
+                      );
                     },
                 ),
                 const TextSpan(text: "."),

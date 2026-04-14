@@ -90,10 +90,7 @@ class EmptyPortfolioScreen extends StatelessWidget {
                       const SizedBox(height: 100),
                       // Title text
                       Text(
-                        context.tr(
-                          'Your journey\nstarts here.',
-                          'رحلتك\nتبدأ من هنا.',
-                        ),
+                        context.l10n.yourJourneyStartsHere,
                         textAlign: TextAlign.center,
                         style: Theme.of(context).textTheme.headlineLarge
                             ?.copyWith(
@@ -106,10 +103,7 @@ class EmptyPortfolioScreen extends StatelessWidget {
                       const SizedBox(height: 16),
                       // Subtitle text
                       Text(
-                        context.tr(
-                          'Start your virtual portfolio to see AI-powered growth and insights.',
-                          'ابدأ محفظتك الافتراضية لرؤية النمو والرؤى المدعومة بالذكاء الاصطناعي.',
-                        ),
+                        context.l10n.startVirtualPortfolioPrompt,
                         textAlign: TextAlign.center,
                         style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                           color: AppColors.greyText,
@@ -146,10 +140,7 @@ class EmptyPortfolioScreen extends StatelessWidget {
                               ),
                               const SizedBox(width: 8),
                               Text(
-                                context.tr(
-                                  'Add Your First Stock',
-                                  'أضف أول سهم لك',
-                                ),
+                                context.l10n.addYourFirstStock,
                                 style: const TextStyle(
                                   color: AppColors.primaryColor,
                                   fontWeight: FontWeight.bold,

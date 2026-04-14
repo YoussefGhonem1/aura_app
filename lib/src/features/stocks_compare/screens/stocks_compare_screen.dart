@@ -19,10 +19,7 @@ class StockComparisonScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: buildAppBar(
-        context,
-        context.tr('Compare Stocks', 'مقارنة الأسهم'),
-      ),
+      appBar: buildAppBar(context, context.l10n.compareStocks),
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(20),
         child: Column(
@@ -30,21 +27,21 @@ class StockComparisonScreen extends StatelessWidget {
           children: [
             Row(
               children: [
-                Expanded(child: buildStockCard(stock1)),
+                Expanded(child: buildStockCard(context, stock1)),
                 const SizedBox(width: 20),
-                Expanded(child: buildStockCard(stock2)),
+                Expanded(child: buildStockCard(context, stock2)),
               ],
             ),
 
             const SizedBox(height: 32),
 
             // Key Ratios
-            buildKeyRatios(stock1, stock2),
+            buildKeyRatios(context, stock1, stock2),
 
             const SizedBox(height: 40),
 
             // Set Price Alert Button
-            alertButton(() {}),
+            alertButton(context, () {}),
           ],
         ),
       ),

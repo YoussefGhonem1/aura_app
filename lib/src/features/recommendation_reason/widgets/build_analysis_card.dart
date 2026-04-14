@@ -1,8 +1,10 @@
 import 'package:aura_app/src/shared/themes/app_colors.dart';
+import 'package:aura_app/src/core/extensions/localization_extension.dart';
+import 'package:aura_app/src/features/stock_details/models/stock_details_model.dart';
 import 'package:flutter/material.dart';
 
 /// ANALYSIS CARD
-Widget analysisCard() {
+Widget analysisCard(BuildContext context, StockModel stock) {
   return Container(
     margin: const EdgeInsets.symmetric(horizontal: 8),
     padding: const EdgeInsets.all(18),
@@ -55,8 +57,8 @@ Widget analysisCard() {
                     ),
                   ),
                   const SizedBox(width: 8),
-                  const Text(
-                    "AURA AI ANALYSIS",
+                  Text(
+                    context.l10n.auraAiAnalysis,
                     style: TextStyle(
                       color: AppColors.secondaryColor,
                       fontSize: 12,
@@ -66,7 +68,7 @@ Widget analysisCard() {
                   ),
                   const Spacer(),
                   Text(
-                    "Updated 2m ago",
+                    context.l10n.updated2mAgo,
                     style: TextStyle(
                       color: AppColors.secondaryColor,
                       fontSize: 11,
@@ -84,19 +86,16 @@ Widget analysisCard() {
                     fontSize: 15,
                     height: 1.4,
                   ),
-                  children: const [
-                    TextSpan(text: "Aura AI detects "),
+                  children: [
+                    TextSpan(text: context.l10n.auraAiDetectsPrefix),
                     TextSpan(
-                      text: "a strong breakout pattern",
+                      text: context.l10n.strongBreakoutPattern,
                       style: TextStyle(
                         color: AppColors.secondaryColor,
                         fontWeight: FontWeight.w600,
                       ),
                     ),
-                    TextSpan(
-                      text:
-                          " for AAPL combined with unusually positive institutional sentiment. Volume surge confirms the uptrend validity.",
-                    ),
+                    TextSpan(text: context.l10n.analysisTailText(stock.symbol)),
                   ],
                 ),
               ),

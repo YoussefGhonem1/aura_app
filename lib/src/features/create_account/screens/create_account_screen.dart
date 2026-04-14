@@ -58,27 +58,24 @@ class _CreateAccountState extends State<CreateAccount> {
 
             const SizedBox(height: 10),
             Text(
-              context.tr('Create your Aura', 'أنشئ حسابك في Aura'),
+              context.l10n.createYourAura,
               style: Theme.of(context).textTheme.headlineMedium,
             ),
             const SizedBox(height: 5),
             Text(
-              context.tr(
-                'Start your AI-powered investment journey',
-                'ابدأ رحلتك الاستثمارية المدعومة بالذكاء الاصطناعي',
-              ),
+              context.l10n.startAiPoweredInvestmentJourney,
               style: Theme.of(context).textTheme.bodySmall,
             ),
 
             const SizedBox(height: 40),
             AuraTextField(
-              label: context.tr('Username', 'اسم المستخدم'),
-              hintText: context.tr('Enter your name', 'أدخل اسمك'),
+              label: context.l10n.username,
+              hintText: context.l10n.enterYourName,
             ),
             const SizedBox(height: 20),
             AuraTextField(
-              label: context.tr('Email Address', 'البريد الإلكتروني'),
-              hintText: context.tr('name@example.com', 'name@example.com'),
+              label: context.l10n.emailAddress,
+              hintText: context.l10n.emailExample,
             ),
             const SizedBox(height: 20),
 
@@ -92,17 +89,14 @@ class _CreateAccountState extends State<CreateAccount> {
                 mainAxisSize: MainAxisSize.min,
                 children: [
                   buildValidationItem(
-                    context.tr('At least 8 characters', '8 أحرف على الأقل'),
+                    context.l10n.atLeastEightCharacters,
                     _hasEightChars,
                   ),
                   buildValidationItem(
-                    context.tr('One uppercase letter', 'حرف كبير واحد'),
+                    context.l10n.oneUppercaseLetter,
                     _hasUppercase,
                   ),
-                  buildValidationItem(
-                    context.tr('One number', 'رقم واحد'),
-                    _hasNumber,
-                  ),
+                  buildValidationItem(context.l10n.oneNumber, _hasNumber),
                 ],
               ),
             ),
@@ -115,21 +109,15 @@ class _CreateAccountState extends State<CreateAccount> {
 
             const SizedBox(height: 20),
             AuthOptionWidget(
-              mainText: context.tr(
-                'Already have an account?',
-                'لديك حساب بالفعل؟',
-              ),
-              actionText: context.tr('Log in', 'تسجيل الدخول'),
+              mainText: context.l10n.alreadyHaveAnAccount,
+              actionText: context.l10n.logIn,
               onTap: () {
                 Navigator.pushReplacementNamed(context, Routes.login);
               },
             ),
             const SizedBox(height: 30),
 
-            buildSocialDivider(
-              context,
-              context.tr('Or sign up with', 'أو سجّل عبر'),
-            ),
+            buildSocialDivider(context, context.l10n.orSignUpWith),
 
             const SizedBox(height: 20),
 
