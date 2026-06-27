@@ -1,8 +1,10 @@
 import 'package:aura_app/src/features/on_boarding/models/on_boarding_model.dart';
+import 'package:aura_app/src/core/bloc/bloc_exports.dart';
 import 'package:aura_app/src/core/extensions/localization_extension.dart';
 import 'package:aura_app/src/shared/routing/route_strings.dart';
 import 'package:aura_app/src/shared/themes/app_colors.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class OnboardingScreen extends StatefulWidget {
   const OnboardingScreen({super.key});
@@ -14,6 +16,14 @@ class OnboardingScreen extends StatefulWidget {
 class _OnboardingScreenState extends State<OnboardingScreen> {
   final PageController _pageController = PageController();
   int _currentPage = 0;
+
+  Future<void> _finishOnboarding() async {
+    await context.read<AuthCubit>().completeOnboarding();
+    if (!mounted) {
+      return;
+    }
+    Navigator.pushReplacementNamed(context, Routes.login);
+  }
 
   List<OnboardingData> _pages(BuildContext context) => [
     OnboardingData(
@@ -62,6 +72,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                     child: TextButton(
                       onPressed: () {
                         _pageController.jumpToPage(_pages(context).length - 1);
+                        _finishOnboarding();
                       },
                       child: Text(
                         context.tr('Skip', 'تخطي'),
@@ -102,12 +113,12 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(20),
               border: Border.all(
-                color: Colors.white.withOpacity(0.1),
+                color: Colors.white.withValues(alpha: 0.1),
                 width: 1,
               ),
               boxShadow: [
                 BoxShadow(
-                  color: AppColors.secondaryColor.withOpacity(0.15),
+                  color: AppColors.secondaryColor.withValues(alpha: 0.15),
                   blurRadius: 30,
                   spreadRadius: 1,
                   offset: const Offset(0, 10),
@@ -172,7 +183,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                   curve: Curves.easeInOut,
                 );
               } else {
-                Navigator.pushReplacementNamed(context, Routes.login);
+                _finishOnboarding();
               }
             },
             style: ElevatedButton.styleFrom(
@@ -204,7 +215,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
       decoration: BoxDecoration(
         color: _currentPage == index
             ? AppColors.secondaryColor
-            : AppColors.greyText.withOpacity(0.3),
+            : AppColors.greyText.withValues(alpha: 0.3),
         borderRadius: BorderRadius.circular(3),
       ),
     );

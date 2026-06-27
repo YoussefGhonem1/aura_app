@@ -1,10 +1,12 @@
 import 'package:aura_app/src/features/splash/widgets/animation_letter.dart';
 import 'package:aura_app/src/features/splash/widgets/background_pointer.dart';
 import 'package:aura_app/src/features/splash/widgets/logo_container.dart';
+import 'package:aura_app/src/core/bloc/bloc_exports.dart';
 import 'package:aura_app/src/core/extensions/localization_extension.dart';
 import 'package:aura_app/src/shared/routing/route_strings.dart';
 import 'package:aura_app/src/shared/themes/app_colors.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
@@ -16,6 +18,8 @@ class SplashScreen extends StatefulWidget {
 class _SplashScreenState extends State<SplashScreen>
     with TickerProviderStateMixin {
   final String word = "AURA";
+  bool _animationCompleted = false;
+  bool _navigationTriggered = false;
 
   final List<Offset> entryOffsets = [
     const Offset(-1.5, 0),
@@ -34,6 +38,11 @@ class _SplashScreenState extends State<SplashScreen>
   @override
   void initState() {
     super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      if (mounted) {
+        context.read<AuthCubit>().checkAuthStatus();
+      }
+    });
 
     _logoController = AnimationController(
       vsync: this,
@@ -72,6 +81,29 @@ class _SplashScreenState extends State<SplashScreen>
     _startSequentialAnimations();
   }
 
+  void _navigateIfReady(AuthState state) {
+    if (!_animationCompleted || _navigationTriggered || !mounted) {
+      return;
+    }
+
+    if (state is Authenticated) {
+      _navigationTriggered = true;
+      Navigator.pushReplacementNamed(context, Routes.layoutScreen);
+      return;
+    }
+
+    if (state is OnboardingRequired) {
+      _navigationTriggered = true;
+      Navigator.pushReplacementNamed(context, Routes.onBoarding);
+      return;
+    }
+
+    if (state is Unauthenticated) {
+      _navigationTriggered = true;
+      Navigator.pushReplacementNamed(context, Routes.login);
+    }
+  }
+
   Future<void> _startSequentialAnimations() async {
     _logoController.forward();
     await Future.delayed(const Duration(milliseconds: 500));
@@ -83,7 +115,10 @@ class _SplashScreenState extends State<SplashScreen>
     await Future.delayed(const Duration(seconds: 2));
 
     if (mounted) {
-      Navigator.pushReplacementNamed(context, Routes.onBoarding);
+      setState(() {
+        _animationCompleted = true;
+      });
+      _navigateIfReady(context.read<AuthCubit>().state);
     }
   }
 
@@ -98,46 +133,54 @@ class _SplashScreenState extends State<SplashScreen>
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Stack(
-        children: [
-          CustomPaint(size: Size.infinite, painter: GridBackgroundPainter()),
-          Center(
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                ScaleTransition(scale: _logoScale, child: buildLogoContainer()),
-                const SizedBox(height: 45),
+    return BlocListener<AuthCubit, AuthState>(
+      listener: (context, state) {
+        _navigateIfReady(state);
+      },
+      child: Scaffold(
+        body: Stack(
+          children: [
+            CustomPaint(size: Size.infinite, painter: GridBackgroundPainter()),
+            Center(
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  ScaleTransition(
+                    scale: _logoScale,
+                    child: buildLogoContainer(),
+                  ),
+                  const SizedBox(height: 45),
 
-                Row(
-                  mainAxisSize: MainAxisSize.min,
-                  children: List.generate(word.length, (index) {
-                    return AnimatedLetter(
-                      char: word[index],
-                      slideAnimation: _slideAnimations[index],
-                      fadeAnimation: _fadeAnimations[index],
-                    );
-                  }),
-                ),
+                  Row(
+                    mainAxisSize: MainAxisSize.min,
+                    children: List.generate(word.length, (index) {
+                      return AnimatedLetter(
+                        char: word[index],
+                        slideAnimation: _slideAnimations[index],
+                        fadeAnimation: _fadeAnimations[index],
+                      );
+                    }),
+                  ),
 
-                const SizedBox(height: 15),
-                FadeTransition(
-                  opacity: _fadeAnimations.last,
-                  child: Text(
-                    context.tr(
-                      'AI-POWERED INVESTING',
-                      'استثمار مدعوم بالذكاء الاصطناعي',
-                    ),
-                    style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                      letterSpacing: 2,
-                      color: AppColors.greyText,
+                  const SizedBox(height: 15),
+                  FadeTransition(
+                    opacity: _fadeAnimations.last,
+                    child: Text(
+                      context.tr(
+                        'AI-POWERED INVESTING',
+                        'استثمار مدعوم بالذكاء الاصطناعي',
+                      ),
+                      style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                        letterSpacing: 2,
+                        color: AppColors.greyText,
+                      ),
                     ),
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }

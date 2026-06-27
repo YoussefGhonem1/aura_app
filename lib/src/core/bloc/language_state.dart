@@ -11,9 +11,9 @@ class LanguageInitial extends LanguageState {
 }
 
 class LanguageChanged extends LanguageState {
-  const LanguageChanged({required Locale locale}) : super(locale: locale);
+  const LanguageChanged({required super.locale});
 }
 
 class LanguageLoading extends LanguageState {
-  const LanguageLoading({required Locale locale}) : super(locale: locale);
+  const LanguageLoading({required super.locale});
 }

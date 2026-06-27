@@ -1,4 +1,7 @@
 import 'package:aura_app/src/features/analyzes/screens/analyzes_screen.dart';
+import 'package:aura_app/src/core/network/api_client.dart';
+import 'package:aura_app/src/features/create_account/bloc/bloc_exports.dart';
+import 'package:aura_app/src/features/create_account/repository/create_account_repository_impl.dart';
 import 'package:aura_app/src/features/create_account/screens/create_account_screen.dart';
 import 'package:aura_app/src/features/forget_password/screens/create_new_password.dart';
 import 'package:aura_app/src/features/forget_password/screens/forget_password_screen.dart';
@@ -11,6 +14,8 @@ import 'package:aura_app/src/features/legal_screens/screens/privacy_policy_scree
 import 'package:aura_app/src/features/legal_screens/screens/terms_of_service_screen.dart';
 import 'package:aura_app/src/features/legal_support/screens/legal_support_screen.dart';
 import 'package:aura_app/src/features/login/screens/login_screen.dart';
+import 'package:aura_app/src/features/login/bloc/bloc_exports.dart';
+import 'package:aura_app/src/features/login/repository/login_repository_impl.dart';
 import 'package:aura_app/src/features/no_internet/screens/no_internet_screen.dart';
 import 'package:aura_app/src/features/notification_settings/screens/notification_settings_screen.dart';
 import 'package:aura_app/src/features/notifications/screens/notification_screen.dart';
@@ -28,6 +33,7 @@ import 'package:aura_app/src/features/support_screens/screens/help_center_screen
 import 'package:aura_app/src/features/support_screens/screens/report_bug_screen.dart';
 import 'package:aura_app/src/features/transaction_history/screens/transaction_history_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:aura_app/src/shared/routing/route_strings.dart';
 
 class AppRoutes {
@@ -40,10 +46,24 @@ class AppRoutes {
         return MaterialPageRoute(builder: (_) => const OnboardingScreen());
 
       case Routes.createAccount:
-        return MaterialPageRoute(builder: (_) => CreateAccount());
+        return MaterialPageRoute(
+          builder: (context) => BlocProvider(
+            create: (_) => CreateAccountBloc(
+              CreateAccountRepositoryImpl(context.read<ApiClient>()),
+              LoginRepositoryImpl(context.read<ApiClient>()),
+            ),
+            child: const CreateAccount(),
+          ),
+        );
 
       case Routes.login:
-        return MaterialPageRoute(builder: (_) => LoginScreen());
+        return MaterialPageRoute(
+          builder: (context) => BlocProvider(
+            create: (_) =>
+                LoginBloc(LoginRepositoryImpl(context.read<ApiClient>())),
+            child: const LoginScreen(),
+          ),
+        );
 
       case Routes.forgetPassword:
         return MaterialPageRoute(builder: (_) => const ForgotPasswordScreen());
@@ -78,56 +98,76 @@ class AppRoutes {
           ),
         );
 
-       case Routes.recommendationReasonScreen:
+      case Routes.recommendationReasonScreen:
         final args = settings.arguments as StockModel;
         return MaterialPageRoute(
           builder: (_) => RecommendationReasonScreen(stock: args),
         );
 
       case Routes.notificationsScreen:
-        return MaterialPageRoute(builder: (_) => const NotificationsScreen());  
+        return MaterialPageRoute(builder: (_) => const NotificationsScreen());
 
       case Routes.riskDisclaimerScreen:
         return MaterialPageRoute(builder: (_) => const RiskDisclaimerScreen());
 
       case Routes.transactionHistoryScreen:
-        return MaterialPageRoute(builder: (_) => const TransactionHistoryScreen());
-        
+        return MaterialPageRoute(
+          builder: (_) => const TransactionHistoryScreen(),
+        );
+
       case Routes.personalInfoScreen:
         return MaterialPageRoute(builder: (_) => const PersonalInfoScreen());
 
-        case Routes.investmentPreferencesScreen:
-         return MaterialPageRoute(builder: (_) => const InvestmentPreferencesScreen());
+      case Routes.investmentPreferencesScreen:
+        return MaterialPageRoute(
+          builder: (_) => const InvestmentPreferencesScreen(),
+        );
 
-         case Routes.analysisScreen:
+      case Routes.analysisScreen:
         return MaterialPageRoute(builder: (_) => const AnalyzesScreen());
 
       case Routes.smartAutomationScreen:
         return MaterialPageRoute(builder: (_) => const SmartAutomationScreen());
 
       case Routes.notificationSettingsScreen:
-        return MaterialPageRoute(builder: (_) => const NotificationSettingsScreen());
+        return MaterialPageRoute(
+          builder: (_) => const NotificationSettingsScreen(),
+        );
 
       case Routes.legalSupportScreenEnhanced:
-        return MaterialPageRoute(builder: (_) => const LegalSupportScreenEnhanced());
+        return MaterialPageRoute(
+          builder: (_) => const LegalSupportScreenEnhanced(),
+        );
 
       case Routes.disclaimerScreenEnhanced:
-        return MaterialPageRoute(builder: (_) => const DisclaimerScreenEnhanced());
+        return MaterialPageRoute(
+          builder: (_) => const DisclaimerScreenEnhanced(),
+        );
 
       case Routes.termsOfServiceScreenEnhanced:
-        return MaterialPageRoute(builder: (_) => const TermsOfServiceScreenEnhanced());
+        return MaterialPageRoute(
+          builder: (_) => const TermsOfServiceScreenEnhanced(),
+        );
 
       case Routes.privacyPolicyScreenEnhanced:
-        return MaterialPageRoute(builder: (_) => const PrivacyPolicyScreenEnhanced());
+        return MaterialPageRoute(
+          builder: (_) => const PrivacyPolicyScreenEnhanced(),
+        );
 
       case Routes.helpCenterScreenEnhanced:
-        return MaterialPageRoute(builder: (_) => const HelpCenterScreenEnhanced());
+        return MaterialPageRoute(
+          builder: (_) => const HelpCenterScreenEnhanced(),
+        );
 
       case Routes.reportBugScreenEnhanced:
-        return MaterialPageRoute(builder: (_) => const ReportBugScreenEnhanced());
+        return MaterialPageRoute(
+          builder: (_) => const ReportBugScreenEnhanced(),
+        );
 
       case Routes.contactUsScreenEnhanced:
-       return MaterialPageRoute(builder: (_) => const ContactUsScreenEnhanced());
+        return MaterialPageRoute(
+          builder: (_) => const ContactUsScreenEnhanced(),
+        );
 
       default:
         return MaterialPageRoute(

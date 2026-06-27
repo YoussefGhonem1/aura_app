@@ -3,16 +3,15 @@ import 'package:aura_app/src/shared/themes/app_colors.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 
-class TermsAndConditionsWidget extends StatefulWidget {
-  const TermsAndConditionsWidget({super.key});
+class TermsAndConditionsWidget extends StatelessWidget {
+  const TermsAndConditionsWidget({
+    required this.isAccepted,
+    required this.onChanged,
+    super.key,
+  });
 
-  @override
-  State<TermsAndConditionsWidget> createState() =>
-      _TermsAndConditionsWidgetState();
-}
-
-class _TermsAndConditionsWidgetState extends State<TermsAndConditionsWidget> {
-  bool _isAccepted = false;
+  final bool isAccepted;
+  final ValueChanged<bool> onChanged;
 
   @override
   Widget build(BuildContext context) {
@@ -20,20 +19,16 @@ class _TermsAndConditionsWidgetState extends State<TermsAndConditionsWidget> {
       children: [
         Theme(
           data: ThemeData(
-            unselectedWidgetColor: AppColors.greyText.withOpacity(0.5),
+            unselectedWidgetColor: AppColors.greyText.withValues(alpha: 0.5),
           ),
           child: Checkbox(
-            value: _isAccepted,
+            value: isAccepted,
             activeColor: AppColors.secondaryColor,
             checkColor: AppColors.primaryColor,
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(4),
             ),
-            onChanged: (value) {
-              setState(() {
-                _isAccepted = value ?? false;
-              });
-            },
+            onChanged: (value) => onChanged(value ?? false),
           ),
         ),
 
@@ -51,10 +46,10 @@ class _TermsAndConditionsWidgetState extends State<TermsAndConditionsWidget> {
                   ),
                   recognizer: TapGestureRecognizer()
                     ..onTap = () {
-                    Navigator.pushNamed(
-                            context,
-                            Routes.termsOfServiceScreenEnhanced,
-                          );
+                      Navigator.pushNamed(
+                        context,
+                        Routes.termsOfServiceScreenEnhanced,
+                      );
                     },
                 ),
                 const TextSpan(text: " and "),
@@ -67,9 +62,9 @@ class _TermsAndConditionsWidgetState extends State<TermsAndConditionsWidget> {
                   recognizer: TapGestureRecognizer()
                     ..onTap = () {
                       Navigator.pushNamed(
-                            context,
-                            Routes.privacyPolicyScreenEnhanced,
-                          );
+                        context,
+                        Routes.privacyPolicyScreenEnhanced,
+                      );
                     },
                 ),
                 const TextSpan(text: "."),

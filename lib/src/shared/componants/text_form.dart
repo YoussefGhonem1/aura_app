@@ -9,6 +9,9 @@ class AuraTextField extends StatefulWidget {
   final IconData? suffixIcon;
   final TextEditingController? controller;
   final Widget? tooltipContent;
+  final ValueChanged<String>? onChanged;
+  final bool? obscureText;
+  final VoidCallback? onToggleObscure;
 
   const AuraTextField({
     required this.label,
@@ -18,6 +21,9 @@ class AuraTextField extends StatefulWidget {
     this.suffixIcon,
     this.controller,
     this.tooltipContent,
+    this.onChanged,
+    this.obscureText,
+    this.onToggleObscure,
     super.key,
   });
 
@@ -26,14 +32,7 @@ class AuraTextField extends StatefulWidget {
 }
 
 class _AuraTextFieldState extends State<AuraTextField> {
-  late bool _obscureText;
   final GlobalKey<TooltipState> _tooltipKey = GlobalKey<TooltipState>();
-
-  @override
-  void initState() {
-    super.initState();
-    _obscureText = widget.isPassword;
-  }
 
   void _showTooltip() {
     _tooltipKey.currentState?.ensureTooltipVisible();
@@ -43,7 +42,7 @@ class _AuraTextFieldState extends State<AuraTextField> {
   Widget build(BuildContext context) {
     final Color infoIconColor = widget.hasError
         ? Colors.redAccent
-        : AppColors.secondaryColor.withOpacity(0.8);
+        : AppColors.secondaryColor.withValues(alpha: 0.8);
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -70,7 +69,7 @@ class _AuraTextFieldState extends State<AuraTextField> {
                   border: Border.all(
                     color: widget.hasError
                         ? Colors.redAccent
-                        : AppColors.secondaryColor.withOpacity(0.3),
+                        : AppColors.secondaryColor.withValues(alpha: 0.3),
                   ),
                 ),
                 richMessage: WidgetSpan(
@@ -93,8 +92,9 @@ class _AuraTextFieldState extends State<AuraTextField> {
         const SizedBox(height: 8),
         TextFormField(
           controller: widget.controller,
-          obscureText: _obscureText,
+          obscureText: widget.obscureText ?? widget.isPassword,
           onChanged: (value) {
+            widget.onChanged?.call(value);
             setState(() {});
           },
           style: const TextStyle(color: Colors.white),
@@ -112,15 +112,13 @@ class _AuraTextFieldState extends State<AuraTextField> {
             suffixIcon: widget.isPassword
                 ? IconButton(
                     icon: Icon(
-                      _obscureText
+                      (widget.obscureText ?? widget.isPassword)
                           ? Icons.visibility_off_outlined
                           : Icons.visibility_outlined,
                       color: AppColors.greyText,
                     ),
                     onPressed: () {
-                      setState(() {
-                        _obscureText = !_obscureText;
-                      });
+                      widget.onToggleObscure?.call();
                     },
                   )
                 : widget.suffixIcon != null
