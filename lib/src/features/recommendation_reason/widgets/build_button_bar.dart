@@ -1,7 +1,8 @@
+import 'package:aura_app/src/features/stock_details/models/stock_details_model.dart';
 import 'package:aura_app/src/shared/themes/app_colors.dart';
 import 'package:flutter/material.dart';
 
-Widget buildBottomBar() {
+Widget buildBottomBar(StockModel stock) {
   return Container(
     padding: const EdgeInsets.all(16),
     color: AppColors.primaryColor,
@@ -30,7 +31,7 @@ Widget buildBottomBar() {
                 ),
                 SizedBox(width: 6),
                 const Text(
-                  "Watch",
+                  "مشاهدة",
                   style: TextStyle(
                     color: AppColors.white,
                     fontSize: 16,
@@ -55,9 +56,9 @@ Widget buildBottomBar() {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                const Text(
-                  "Trade AAPL",
-                  style: TextStyle(
+                Text(
+                  "تداول ${stock.symbol}",
+                  style: const TextStyle(
                     color: AppColors.primaryColor,
                     fontSize: 16,
                     fontWeight: FontWeight.bold,

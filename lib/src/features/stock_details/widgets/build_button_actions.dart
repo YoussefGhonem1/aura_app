@@ -19,27 +19,6 @@ Widget buildBottomActions(StockModel stock, BuildContext context) {
     child: Row(
       children: [
         Expanded(
-          child: OutlinedButton(
-            onPressed: () {},
-            style: OutlinedButton.styleFrom(
-              side: BorderSide(color: AppColors.errorColor),
-              padding: const EdgeInsets.symmetric(vertical: 14),
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(14),
-              ),
-            ),
-            child: Text(
-              'Sell',
-              style: TextStyle(
-                fontSize: 16,
-                color: AppColors.errorColor,
-                fontWeight: FontWeight.bold,
-              ), // Added red text
-            ),
-          ),
-        ),
-        const SizedBox(width: 14),
-        Expanded(
           child: ElevatedButton(
             onPressed: () {
               Navigator.pushNamed(
@@ -57,12 +36,33 @@ Widget buildBottomActions(StockModel stock, BuildContext context) {
               ),
             ),
             child: Text(
-              'Buy ${stock.symbol}',
+              'شراء ${stock.symbol}',
               style: const TextStyle(
                 fontSize: 16,
                 color: AppColors.primaryColor,
                 fontWeight: FontWeight.bold,
               ), // Ensured white text
+            ),
+          ),
+        ),
+        const SizedBox(width: 14),
+        Expanded(
+          child: OutlinedButton(
+            onPressed: () {},
+            style: OutlinedButton.styleFrom(
+              side: BorderSide(color: AppColors.errorColor),
+              padding: const EdgeInsets.symmetric(vertical: 14),
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(14),
+              ),
+            ),
+            child: Text(
+              'بيع ${stock.symbol}',
+              style: TextStyle(
+                fontSize: 16,
+                color: AppColors.errorColor,
+                fontWeight: FontWeight.bold,
+              ), // Added red text
             ),
           ),
         ),

@@ -23,7 +23,7 @@ class StockDetailsScreen extends StatefulWidget {
 
 class _StockDetailsScreenState extends State<StockDetailsScreen> {
   int _selectedTimeFrame = 4;
-  List<String> timeFrames = ['1D', '1W', '1M', '1Y', 'All'];
+  List<String> timeFrames = ['يوم', 'أسبوع', 'شهر', 'سنة', 'الكل'];
 
   List<FlSpot> _generateLineData(int timeFrameIndex) {
     final List<FlSpot> data = [];
@@ -80,16 +80,16 @@ class _StockDetailsScreenState extends State<StockDetailsScreen> {
       isPositive ? AppColors.accentColor : AppColors.errorColor;
 
   Color getAuraSignalColor(String signal) {
-    switch (signal.toUpperCase()) {
-      case 'STRONG BUY':
+    switch (signal) {
+      case 'شراء قوي':
         return AppColors.accentColor;
-      case 'BUY':
+      case 'شراء':
         return AppColors.accentColor.withOpacity(0.8);
-      case 'HOLD':
+      case 'احتفاظ':
         return Colors.orange;
-      case 'SELL':
+      case 'بيع':
         return AppColors.errorColor.withOpacity(0.8);
-      case 'STRONG SELL':
+      case 'بيع قوي':
         return AppColors.errorColor;
       default:
         return Colors.grey;
@@ -124,28 +124,36 @@ class _StockDetailsScreenState extends State<StockDetailsScreen> {
     switch (timeFrameIndex) {
       case 0:
         final hour = value.toInt();
-        final period = hour >= 12 ? 'PM' : 'AM';
+        final period = hour >= 12 ? 'م' : 'ص';
         final displayHour = hour % 12 == 0 ? 12 : hour % 12;
         return '$displayHour$period';
       case 1:
-        final days = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
+        final days = [
+          'الإثنين',
+          'الثلاثاء',
+          'الأربعاء',
+          'الخميس',
+          'الجمعة',
+          'السبت',
+          'الأحد',
+        ];
         return days[value.toInt() % days.length];
       case 2:
         return '${value.toInt() + 1}';
       case 3:
         final months = [
-          'Jan',
-          'Feb',
-          'Mar',
-          'Apr',
-          'May',
-          'Jun',
-          'Jul',
-          'Aug',
-          'Sep',
-          'Oct',
-          'Nov',
-          'Dec',
+          'يناير',
+          'فبراير',
+          'مارس',
+          'أبريل',
+          'مايو',
+          'يونيو',
+          'يوليو',
+          'أغسطس',
+          'سبتمبر',
+          'أكتوبر',
+          'نوفمبر',
+          'ديسمبر',
         ];
         return months[value.toInt() % months.length];
       case 4:

@@ -60,7 +60,7 @@ Widget buildPriceSection(StockModel stock) {
 
               // "Today" Label
               Text(
-                'Today',
+                'اليوم',
                 style: TextStyle(
                   color: stock.isPositive
                       ? AppColors.accentColor

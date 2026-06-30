@@ -5,12 +5,8 @@ import 'package:aura_app/src/shared/themes/app_colors.dart';
 class AIPickTabs extends StatefulWidget {
   final ValueChanged<int>? onTabChanged;
   final int initialIndex;
-  
-  const AIPickTabs({
-    super.key, 
-    this.onTabChanged,
-    this.initialIndex = 0,
-  });
+
+  const AIPickTabs({super.key, this.onTabChanged, this.initialIndex = 0});
 
   @override
   State<AIPickTabs> createState() => _AIPickTabsState();
@@ -18,12 +14,8 @@ class AIPickTabs extends StatefulWidget {
 
 class _AIPickTabsState extends State<AIPickTabs> {
   late int _selectedIndex;
-  
-  final List<String> _tabs = [
-    "All Picks",
-    "Long Term", 
-    "Short Squeeze",
-  ];
+
+  final List<String> _tabs = ["جميع الترشيحات", "المدى الطويل", "المدى القصير"];
 
   @override
   void initState() {
@@ -35,7 +27,7 @@ class _AIPickTabsState extends State<AIPickTabs> {
     setState(() {
       _selectedIndex = index;
     });
-    
+
     widget.onTabChanged?.call(index);
   }
 
@@ -45,7 +37,7 @@ class _AIPickTabsState extends State<AIPickTabs> {
       children: [
         for (int i = 0; i < _tabs.length; i++)
           Padding(
-            padding: EdgeInsets.only(right: i < _tabs.length - 1 ? 8 : 0),
+            padding: EdgeInsets.only(left: i < _tabs.length - 1 ? 8 : 0),
             child: GestureDetector(
               onTap: () => _selectTab(i),
               child: _buildTabChip(_tabs[i], i == _selectedIndex),

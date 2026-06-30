@@ -10,19 +10,11 @@ Widget buildDailyAIInsightCard(BuildContext context) {
       borderRadius: BorderRadius.circular(24),
       border: Border.all(color: AppColors.secondaryColor.withOpacity(0.1)),
       boxShadow: [
-        // Outer shadow
         BoxShadow(
           color: AppColors.secondaryColor.withOpacity(0.15),
           blurRadius: 15,
           offset: const Offset(0, 4),
           spreadRadius: 2,
-        ),
-        // Inner shadow effect
-        BoxShadow(
-          color: AppColors.secondaryColor.withOpacity(0.1),
-          blurRadius: 10,
-          offset: const Offset(0, 4),
-          spreadRadius: -5,
         ),
       ],
     ),
@@ -46,7 +38,7 @@ Widget buildDailyAIInsightCard(BuildContext context) {
                   ),
                   const SizedBox(width: 4),
                   const Text(
-                    "Daily AI Insight",
+                    "رؤية أورا الذكية",
                     style: TextStyle(
                       color: AppColors.secondaryColor,
                       fontWeight: FontWeight.bold,
@@ -58,21 +50,21 @@ Widget buildDailyAIInsightCard(BuildContext context) {
             ),
             const Spacer(),
             const Text(
-              "Confidence 87%",
+              "نسبة الثقة 87%",
               style: TextStyle(color: AppColors.greyText, fontSize: 12),
             ),
           ],
         ),
         const SizedBox(height: 16),
         Text(
-          "Tech Sector Rally Predicted",
+          "توقعات صعود قطاع العقارات",
           style: Theme.of(
             context,
           ).textTheme.headlineSmall?.copyWith(color: Colors.white),
         ),
         const SizedBox(height: 8),
         Text(
-          "AI models indicate a strong bullish trend in semiconductor stocks today based on pre-market volume.",
+          "تشير نماذج الذكاء الاصطناعي إلى اتجاه صعودي قوي لأسهم قطاع العقارات في البورصة المصرية اليوم، بناءً على أحجام التداول الأخيرة.",
           style: Theme.of(context).textTheme.bodySmall?.copyWith(
             color: AppColors.greyText,
             height: 1.5,
@@ -94,7 +86,7 @@ Widget buildDailyAIInsightCard(BuildContext context) {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Text(
-                  "Read Analysis",
+                  "قراءة التحليل",
                   style: TextStyle(
                     color: AppColors.secondaryColor,
                     fontWeight: FontWeight.bold,

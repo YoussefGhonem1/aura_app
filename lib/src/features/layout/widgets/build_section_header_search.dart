@@ -21,7 +21,7 @@ Widget buildSectionHeader(
       ),
       if (hasClear)
         const Text(
-          "Clear",
+          "حذف",
           style: TextStyle(color: AppColors.secondaryColor, fontSize: 14),
         ),
       if (hasFilters)

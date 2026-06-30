@@ -25,7 +25,9 @@ Widget buildAuraInsightCard(BuildContext context) {
         Container(
           padding: const EdgeInsets.all(10),
           decoration: BoxDecoration(
-            color: Colors.blue.withOpacity(0.2),
+            color: Colors.white.withOpacity(
+              0.2,
+            ), // تم تعديل اللون ليتناسب مع الخلفية
             borderRadius: BorderRadius.circular(10),
           ),
           child: const Icon(
@@ -40,7 +42,7 @@ Widget buildAuraInsightCard(BuildContext context) {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               const Text(
-                "Aura Insight",
+                "رؤية Aura الاستثمارية", // تم التعريب
                 style: TextStyle(
                   color: Colors.white,
                   fontWeight: FontWeight.bold,
@@ -49,7 +51,7 @@ Widget buildAuraInsightCard(BuildContext context) {
               ),
               const SizedBox(height: 4),
               Text(
-                "Your portfolio is heavily weighted in Tech (65%). Consider diversifying into Energy or Bonds to reduce volatility risk.",
+                "محفظتك تتركز بنسبة 65% في أسهم قطاع العقارات. ننصحك بالتنويع في أسهم قطاع البنوك أو الأسمدة لتقليل مخاطر التذبذب.", // تم التعريب وملاءمة السوق المصري
                 style: Theme.of(context).textTheme.bodySmall?.copyWith(
                   color: Colors.white.withOpacity(0.8),
                   height: 1.4,
@@ -60,7 +62,7 @@ Widget buildAuraInsightCard(BuildContext context) {
               InkWell(
                 onTap: () {},
                 child: Text(
-                  "View Analysis →",
+                  "عرض التحليل ←", // تم التعريب (السهم يعكس الاتجاه للعربية)
                   style: TextStyle(
                     color: Colors.blue[300],
                     fontWeight: FontWeight.w600,

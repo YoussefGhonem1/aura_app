@@ -11,6 +11,13 @@ Widget auraSignalSection({
   final Color signalColor = getAuraSignalColor(stock.auraSignal);
   double progress = stock.auraScore / 100;
 
+  final String signalText = stock.auraSignal
+      .replaceAll('STRONG BUY', 'شراء قوي')
+      .replaceAll('BUY', 'شراء')
+      .replaceAll('HOLD', 'احتفاظ')
+      .replaceAll('SELL', 'بيع')
+      .replaceAll('STRONG SELL', 'بيع قوي');
+
   return Container(
     margin: const EdgeInsets.symmetric(horizontal: 20, vertical: 12),
     padding: const EdgeInsets.only(top: 20, left: 20, right: 20, bottom: 10),
@@ -37,7 +44,7 @@ Widget auraSignalSection({
                 Icon(Icons.auto_awesome, color: AppColors.white, size: 18),
                 const SizedBox(width: 8),
                 Text(
-                  'Aura Signal',
+                  'إشارة الذكاء الاصطناعي',
                   style: TextStyle(
                     color: AppColors.white,
                     fontSize: 18,
@@ -47,7 +54,7 @@ Widget auraSignalSection({
               ],
             ),
 
-            /// Signal Badge
+            /// شارة التوصية
             Container(
               padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
               decoration: BoxDecoration(
@@ -56,7 +63,7 @@ Widget auraSignalSection({
                 border: Border.all(color: signalColor.withOpacity(0.4)),
               ),
               child: Text(
-                stock.auraSignal,
+                signalText,
                 style: TextStyle(
                   color: signalColor,
                   fontSize: 12,
@@ -78,7 +85,6 @@ Widget auraSignalSection({
               child: Stack(
                 alignment: Alignment.center,
                 children: [
-                  /// Background Circle using CustomPaint
                   CustomPaint(
                     size: const Size(78, 78),
                     painter: _CirclePainter(
@@ -88,7 +94,6 @@ Widget auraSignalSection({
                     ),
                   ),
 
-                  /// Progress Circle using CustomPaint
                   CustomPaint(
                     size: const Size(78, 78),
                     painter: _CirclePainter(
@@ -98,7 +103,6 @@ Widget auraSignalSection({
                     ),
                   ),
 
-                  /// Center Text
                   Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
@@ -112,7 +116,7 @@ Widget auraSignalSection({
                       ),
                       const SizedBox(height: 2),
                       Text(
-                        'Score',
+                        'التقييم',
                         style: TextStyle(
                           color: AppColors.white.withOpacity(0.6),
                           fontSize: 11,
@@ -126,7 +130,6 @@ Widget auraSignalSection({
 
             const SizedBox(width: 16),
 
-            /// Confidence Text
             Expanded(
               child: Text(
                 stock.auraConfidence,
@@ -142,9 +145,8 @@ Widget auraSignalSection({
 
         const SizedBox(height: 22),
 
-        /// ===== Why Section =====
         Text(
-          'WHY THIS RECOMMENDATION?',
+          'سبب هذه التوصية',
           style: TextStyle(
             color: AppColors.white.withOpacity(0.5),
             fontSize: 12,
@@ -168,38 +170,40 @@ Widget auraSignalSection({
                     fontSize: 14,
                     height: 1.5,
                   ),
-                  children: const [
-                    TextSpan(text: 'Revenue growth exceeds sector average by '),
-                    TextSpan(
+                  children: [
+                    TextSpan(text: stock.auraReason),
+                    const TextSpan(
                       text: '15%',
                       style: TextStyle(
                         color: Colors.greenAccent,
                         fontWeight: FontWeight.bold,
                       ),
                     ),
-                    TextSpan(text: '.'),
+                    const TextSpan(
+                      text: '، مع تحسن في مؤشرات الأداء المالي والسيولة.',
+                    ),
                   ],
                 ),
               ),
             ),
           ],
         ),
+
         const SizedBox(height: 10),
 
         Align(
           alignment: Alignment.centerRight,
           child: TextButton.icon(
             onPressed: () {
-
-                Navigator.pushNamed(
-                  context,
-                  Routes.recommendationReasonScreen,
-                  arguments: stock,
-                );
+              Navigator.pushNamed(
+                context,
+                Routes.recommendationReasonScreen,
+                arguments: stock,
+              );
             },
             icon: Icon(Icons.arrow_forward_ios, size: 14, color: signalColor),
             label: Text(
-              'View full analysis',
+              'عرض التحليل الكامل',
               style: TextStyle(
                 color: signalColor,
                 fontWeight: FontWeight.w600,
@@ -238,11 +242,10 @@ class _CirclePainter extends CustomPainter {
     final center = Offset(size.width / 2, size.height / 2);
     final radius = (size.width - strokeWidth) / 2;
 
-    // Draw arc
     canvas.drawArc(
       Rect.fromCircle(center: center, radius: radius),
-      -90 * (3.1415926535 / 180), // Start from top
-      2 * 3.1415926535 * progress, // Sweep angle
+      -90 * (3.1415926535 / 180),
+      2 * 3.1415926535 * progress,
       false,
       paint,
     );

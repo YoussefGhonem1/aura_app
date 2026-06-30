@@ -31,7 +31,7 @@ Widget buildHeadRecommendationWidget(BuildContext context, StockModel stock) {
             Column(
               children: [
                 Text(
-                  "Insight Details",
+                  "تفاصيل الرؤى",
                   style: TextStyle(
                     color: AppColors.white,
                     fontSize: 18,

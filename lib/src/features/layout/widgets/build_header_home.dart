@@ -39,14 +39,14 @@ Widget buildHeader(BuildContext context) {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            "Good Morning, Youssef",
+            "صباح الخير , Youssef",
             style: Theme.of(context).textTheme.headlineMedium?.copyWith(
               fontSize: 22,
               fontWeight: FontWeight.bold,
             ),
           ),
           Text(
-            "Your portfolio is up 2.4% today",
+            "ارتفعت محفظتك الاستثمارية بنسبة 2.4% اليوم",
             style: Theme.of(
               context,
             ).textTheme.bodySmall?.copyWith(color: AppColors.greyText),
@@ -61,7 +61,7 @@ Widget buildNotificationIcon(BuildContext context) {
   return InkWell(
     borderRadius: BorderRadius.circular(30),
     onTap: () {
-Navigator.pushNamed(context, Routes.notificationsScreen);
+      Navigator.pushNamed(context, Routes.notificationsScreen);
     },
     child: Stack(
       children: [
@@ -89,4 +89,3 @@ Navigator.pushNamed(context, Routes.notificationsScreen);
     ),
   );
 }
-

@@ -24,7 +24,7 @@ class _AboutSectionState extends State<AboutSection> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            'About ${widget.stock.name}',
+            'عن (${widget.stock.name})',
             style: TextStyle(
               color: AppColors.white,
               fontSize: 20,
@@ -67,7 +67,7 @@ class _AboutSectionState extends State<AboutSection> {
                 });
               },
               child: Text(
-                isExpanded ? '[Show less]' : '[Read more]',
+                isExpanded ? '[إظهار أقل]' : '[قراءة المزيد]',
                 style: TextStyle(
                   color: AppColors.secondaryColor,
                   fontSize: 14,

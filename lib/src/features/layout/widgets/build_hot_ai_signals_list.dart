@@ -9,9 +9,9 @@ Widget buildQuickPicks() {
       scrollDirection: Axis.horizontal,
       gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
         crossAxisCount: 1,
-        mainAxisSpacing: 12, 
+        mainAxisSpacing: 12,
         crossAxisSpacing: 0,
-        childAspectRatio: 0.7, 
+        childAspectRatio: 0.7,
       ),
       itemCount: stockPicks.length,
       itemBuilder: (context, index) {

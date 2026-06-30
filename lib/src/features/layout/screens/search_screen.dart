@@ -19,55 +19,53 @@ class AuraSearchExploreScreen extends StatefulWidget {
 }
 
 class _AuraSearchExploreScreenState extends State<AuraSearchExploreScreen> {
+  // تحويل عمليات البحث الأخيرة لتكون باللغة العربية ومنطقية مع السوق المصري
   final List<String> recentSearches = [
-    'NVDA',
-    'AI Sector',
-    'Crypto',
-    'Tesla',
-    'NVIDIA',
-    'AI',
-    'Cryptocurrency',
-    'Tesla',
+    'البنك التجاري الدولي',
+    'قطاع العقارات',
+    'فوري',
+    'طلعت مصطفى',
+    'السويدي إليكتريك',
+    'الذكاء الاصطناعي',
+    'حديد عز',
+    'البورصة المصرية',
   ];
 
-  List<Map<String, dynamic>> trendingStocks = [
-    {
-      'symbol': 'AAPL',
-      'name': 'Apple Inc.',
-      'price': 182.40,
-      'change': '+1.25%',
-      'isPositive': true,
-      'isSelected': false,
-    },
-    {
-      'symbol': 'MSFT',
-      'name': 'Microsoft Corp',
-      'price': 402.10,
-      'change': '+0.82%',
-      'isPositive': true,
-      'isSelected': false,
-    },
-    {
-      'symbol': 'AMD',
-      'name': 'Adv Micro Dev',
-      'price': 160.50,
-      'change': '-0.54%',
-      'isPositive': false,
-      'isSelected': false,
-    },
-    {
-      'symbol': 'TSLA',
-      'name': 'Tesla Inc.',
-      'price': 198.80,
-      'change': '+2.15%',
-      'isPositive': true,
-      'isSelected': false,
-    },
-  ];
+  // تجهيز القائمة فارغة ليتم ملؤها من الموديل الخاص بنا
+  List<Map<String, dynamic>> trendingStocks = [];
 
   bool _showCompareBar = false;
   int _selectedCount = 0;
   bool _isCompareMode = false;
+
+  @override
+  void initState() {
+    super.initState();
+    _loadTrendingFromModel();
+  }
+
+  // دالة لتحميل البيانات من الموديل الذي قمنا بإنشائه بدلاً من البيانات الثابتة
+  void _loadTrendingFromModel() {
+    final List<String> symbols = [
+      'COMI',
+      'TMGH',
+      'FWRY',
+      'ESRS',
+    ]; // أسهم من السوق المصري
+
+    trendingStocks = symbols.map((symbol) {
+      final stock = StockModel.dummy(symbol); // جلب البيانات من Factory Method
+      return {
+        'symbol': stock.symbol,
+        'name': stock.name,
+        'price': stock.currentPrice,
+        'change': '${stock.isPositive ? '+' : ''}${stock.priceChangePercent}%',
+        'isPositive': stock.isPositive,
+        'isSelected': false,
+        'stockModel': stock, // نحتفظ بالموديل بالكامل لاستخدامه عند الانتقال
+      };
+    }).toList();
+  }
 
   void _toggleStockSelection(int index) {
     final stock = trendingStocks[index];
@@ -99,9 +97,11 @@ class _AuraSearchExploreScreenState extends State<AuraSearchExploreScreen> {
   }
 
   void _openStockDetails(int index) {
-    final stock = trendingStocks[index];
-    print('فتح تفاصيل السهم: ${stock['symbol']}');
-    final stockModel = StockModel.dummy(stock['symbol']);
+    final stockInfo = trendingStocks[index];
+    print('فتح تفاصيل السهم: ${stockInfo['symbol']}');
+
+    // استدعاء الموديل المخزن مباشرة
+    final stockModel = stockInfo['stockModel'] as StockModel;
 
     Navigator.pushNamed(
       context,
@@ -199,8 +199,11 @@ class _AuraSearchExploreScreenState extends State<AuraSearchExploreScreen> {
                 if (selectedStocks.length != 2) {
                   return;
                 }
-                final stock1 = StockModel.dummy(selectedStocks[0]['symbol']);
-                final stock2 = StockModel.dummy(selectedStocks[1]['symbol']);
+
+                // جلب بيانات الموديل الخاص بالسهمين المختارين وتمريرهم للمقارنة
+                final stock1 = selectedStocks[0]['stockModel'] as StockModel;
+                final stock2 = selectedStocks[1]['stockModel'] as StockModel;
+
                 Navigator.pushNamed(
                   context,
                   Routes.stocksCompareScreen,

@@ -290,7 +290,7 @@ class _HelpCenterScreenEnhancedState extends State<HelpCenterScreenEnhanced> {
                           physics: const NeverScrollableScrollPhysics(),
                           crossAxisSpacing: 10,
                           mainAxisSpacing: 16,
-                          childAspectRatio: 1.4,
+                          childAspectRatio: 1.3,
                           children: [
                             _buildEnhancedCategoryCard(
                               title: context.tr('Getting Started', 'البدء'),
@@ -313,7 +313,7 @@ class _HelpCenterScreenEnhancedState extends State<HelpCenterScreenEnhanced> {
                               ),
                               description: context.tr(
                                 'Understand predictions',
-                                'افهم التوقعات',
+                                'افهم التنبؤات',
                               ),
                               icon: Icons.insights_rounded,
                               gradient: LinearGradient(

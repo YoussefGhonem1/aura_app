@@ -25,46 +25,29 @@ class RecommendationReasonScreen extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               buildHeadRecommendationWidget(context, stock),
-              SizedBox(height: 20),
-              buildHeadRecommendationTextWidget(),
+              const SizedBox(height: 20),
+              buildHeadRecommendationTextWidget(), // إذا كانت هذه الـ widget تحتاج الـ stock مرره لها أيضاً
               const SizedBox(height: 16),
-              analysisCard(),
+              analysisCard(stock),
               const SizedBox(height: 30),
-              sentimentCard(),
+              sentimentCard(stock),
               const SizedBox(height: 24),
-              _technicalIndicator(context),
+              _technicalIndicator(context, stock),
               const SizedBox(height: 12),
-              _technicalGrid(context),
+              _technicalGrid(context, stock),
               const SizedBox(height: 24),
-              _priceDriver(context),
+              _priceDriver(context, stock),
               const SizedBox(height: 12),
 
-              driverTile(
-                icon: Icons.bar_chart,
-                title: context.tr('Sector Momentum', 'زخم القطاع'),
-                subtitle: context.tr(
-                  'Tech stocks are outperforming the S&P 500 this week, creating a tailwind for AAPL.',
-                  'أسهم التكنولوجيا تتفوق على مؤشر S&P 500 هذا الأسبوع مما يدعم AAPL.',
-                ),
-              ),
-
-              driverTile(
-                icon: Icons.volume_up,
-                title: context.tr('News Volume', 'حجم الأخبار'),
-                subtitle: context.tr(
-                  'Mention volume has increased 200% in the last 24 hours driven by new product launches.',
-                  'زاد حجم الإشارات بنسبة 200% خلال آخر 24 ساعة بسبب إطلاق منتجات جديدة.',
-                ),
-              ),
-
-              driverTile(
-                icon: Icons.attach_money,
-                title: context.tr('Institutional Flow', 'تدفق المؤسسات'),
-                subtitle: context.tr(
-                  'Significant block buying detected in dark pools over the last 3 trading sessions.',
-                  'تم رصد عمليات شراء كبيرة في الأسواق المظلمة خلال آخر 3 جلسات.',
-                ),
-              ),
+              // بناء محركات السعر ديناميكياً من الموديل
+              ...stock.priceDrivers.map((driver) {
+                return driverTile(
+                  icon: Icons
+                      .analytics, // أيقونة افتراضية أو يمكنك تمريرها من الموديل إذا أضفتها لاحقاً
+                  title: driver.title,
+                  subtitle: driver.description,
+                );
+              }),
 
               const SizedBox(height: 80),
             ],
@@ -73,11 +56,11 @@ class RecommendationReasonScreen extends StatelessWidget {
       ),
 
       /// BOTTOM BAR
-      bottomNavigationBar: buildBottomBar(),
+      bottomNavigationBar: buildBottomBar(stock),
     );
   }
 
-  Widget _technicalIndicator(BuildContext context) {
+  Widget _technicalIndicator(BuildContext context, StockModel stock) {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 8.0),
       child: Row(
@@ -85,7 +68,7 @@ class RecommendationReasonScreen extends StatelessWidget {
         children: [
           Text(
             context.tr('Technical Indicators', 'المؤشرات الفنية'),
-            style: TextStyle(
+            style: const TextStyle(
               color: AppColors.white,
               fontSize: 17,
               fontWeight: FontWeight.w600,
@@ -95,7 +78,10 @@ class RecommendationReasonScreen extends StatelessWidget {
             onTap: () {},
             child: Text(
               context.tr('View Chart', 'عرض الرسم البياني'),
-              style: TextStyle(color: AppColors.secondaryColor, fontSize: 14),
+              style: const TextStyle(
+                color: AppColors.secondaryColor,
+                fontSize: 14,
+              ),
             ),
           ),
         ],
@@ -103,12 +89,12 @@ class RecommendationReasonScreen extends StatelessWidget {
     );
   }
 
-  Widget _priceDriver(BuildContext context) {
+  Widget _priceDriver(BuildContext context, StockModel stock) {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 8.0),
       child: Text(
         context.tr('Price Drivers', 'محركات السعر'),
-        style: TextStyle(
+        style: const TextStyle(
           color: AppColors.white,
           fontSize: 16,
           fontWeight: FontWeight.w600,
@@ -118,7 +104,7 @@ class RecommendationReasonScreen extends StatelessWidget {
   }
 
   /// TECHNICAL GRID
-  Widget _technicalGrid(BuildContext context) {
+  Widget _technicalGrid(BuildContext context, StockModel stock) {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 8.0),
       child: GridView.count(
@@ -131,24 +117,27 @@ class RecommendationReasonScreen extends StatelessWidget {
         children: [
           indicatorCard(
             title: "RSI (14)",
-            value: "65.4",
-            subtitle: context.tr('Neutral-High', 'محايد-مرتفع'),
-            valueColor: Colors.yellowAccent,
+            value: stock.rsi.toStringAsFixed(1),
+            subtitle: stock.rsiStatus,
+            // تغيير لون الـ RSI بناءً على القيمة إذا أردت (اختياري)
+            valueColor: stock.rsi > 70
+                ? Colors.redAccent
+                : (stock.rsi < 30 ? Colors.greenAccent : Colors.yellowAccent),
           ),
           indicatorCard(
             title: "MACD",
-            value: "Crossover",
-            subtitle: context.tr('Bullish Signal', 'إشارة صعودية'),
+            value: stock.macd,
+            subtitle: stock.macdStatus,
           ),
           indicatorCard(
             title: "MA (50)",
-            value: "\$172.40",
-            subtitle: context.tr('Above MA', 'أعلى من المتوسط'),
+            value: stock.ma50.toStringAsFixed(2),
+            subtitle: stock.ma50Status,
           ),
           indicatorCard(
             title: context.tr('VOL VOLATILITY', 'تقلب الحجم'),
-            value: "+24%",
-            subtitle: context.tr('High interest', 'اهتمام مرتفع'),
+            value: stock.volumeVolatility,
+            subtitle: stock.volumeStatus,
           ),
         ],
       ),

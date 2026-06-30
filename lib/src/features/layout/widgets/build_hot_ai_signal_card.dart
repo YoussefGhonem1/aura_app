@@ -1,4 +1,3 @@
-
 import 'package:aura_app/src/shared/themes/app_colors.dart';
 import 'package:flutter/material.dart';
 
@@ -46,7 +45,7 @@ Widget smallPick(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  "P/E Ratio",
+                  "مكرر الربحية",
                   style: TextStyle(color: AppColors.greyText, fontSize: 10),
                 ),
                 const SizedBox(height: 2),
@@ -64,7 +63,8 @@ Widget smallPick(
               crossAxisAlignment: CrossAxisAlignment.end,
               children: [
                 Text(
-                  "Upside",
+                  "العائد المتوقع",
+
                   style: TextStyle(color: AppColors.greyText, fontSize: 10),
                 ),
                 const SizedBox(height: 2),

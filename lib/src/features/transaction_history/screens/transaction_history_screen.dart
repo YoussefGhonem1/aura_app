@@ -19,8 +19,7 @@ class TransactionHistoryScreen extends StatelessWidget {
         child: Column(
           children: [
             _buildFilterTabs(context),
-            SizedBox(height: 8),
-            // Transaction List
+            const SizedBox(height: 8),
             _buildTransactionList(context),
           ],
         ),
@@ -74,40 +73,44 @@ class TransactionHistoryScreen extends StatelessWidget {
       child: Column(
         children: [
           _buildMonthSection(
-            month: context.tr('OCTOBER 2023', 'أكتوبر 2023'),
+            month: context.tr('OCTOBER 2025', 'أكتوبر 2025'),
+
             transactions: [
               buildTransactionItem(
-                symbol: "AAPL",
+                symbol: "COMI",
                 auraPick: true,
-                amount: -145.22,
-                type: "Buy Market Order",
-                date: "Oct 24",
-                status: "Filled",
+                amount: -8250.00,
+                type: "شراء بسعر السوق",
+                date: "24 أكتوبر",
+                status: "تم التنفيذ",
                 statusColor: Colors.green,
               ),
+
               buildTransactionItem(
-                symbol: "TSLA",
-                amount: 3200.00,
-                type: "Sell Limit Order",
-                date: "Oct 22",
-                status: "Filled",
+                symbol: "TMGH",
+                amount: 9400.00,
+                type: "بيع بأمر محدد",
+                date: "22 أكتوبر",
+                status: "تم التنفيذ",
                 statusColor: Colors.green,
               ),
+
               buildTransactionItem(
-                symbol: "NVDA",
+                symbol: "FWRY",
                 auraPick: true,
-                amount: -840.50,
-                type: "Buy Market Order",
-                date: "Oct 18",
-                status: "Filled",
+                amount: -1820.00,
+                type: "شراء بسعر السوق",
+                date: "18 أكتوبر",
+                status: "تم التنفيذ",
                 statusColor: Colors.green,
               ),
+
               buildTransactionItem(
-                symbol: "AMZN",
-                amount: -125.00,
-                type: "Buy Limit Order",
-                date: "Oct 15",
-                status: "Pending",
+                symbol: "SWDY",
+                amount: -4250.00,
+                type: "شراء بأمر محدد",
+                date: "15 أكتوبر",
+                status: "قيد الانتظار",
                 statusColor: Colors.orange,
               ),
             ],
@@ -115,32 +118,34 @@ class TransactionHistoryScreen extends StatelessWidget {
 
           const SizedBox(height: 24),
 
-          // SEPTEMBER 2023 Section
           _buildMonthSection(
-            month: context.tr('SEPTEMBER 2023', 'سبتمبر 2023'),
+            month: context.tr('SEPTEMBER 2025', 'سبتمبر 2025'),
+
             transactions: [
               buildTransactionItem(
-                symbol: "MSFT",
-                amount: 12.45,
-                type: "Dividend Received",
-                date: "Sep 28",
-                status: "Completed",
+                symbol: "ETEL",
+                amount: 350.00,
+                type: "استلام توزيعات نقدية",
+                date: "28 سبتمبر",
+                status: "مكتمل",
                 statusColor: Colors.green,
               ),
+
               buildTransactionItem(
-                symbol: "Deposit",
-                amount: 5000.00,
-                type: "Bank Transfer",
-                date: "Sep 20",
-                status: "Success",
+                symbol: "إيداع",
+                amount: 50000.00,
+                type: "تحويل بنكي",
+                date: "20 سبتمبر",
+                status: "ناجح",
                 statusColor: Colors.green,
               ),
+
               buildTransactionItem(
-                symbol: "COIN",
-                amount: 1450.00,
-                type: "Sell Market Order",
-                date: "Sep 12",
-                status: "Filled",
+                symbol: "EFIH",
+                amount: 2450.00,
+                type: "بيع بسعر السوق",
+                date: "12 سبتمبر",
+                status: "تم التنفيذ",
                 statusColor: Colors.green,
               ),
             ],
@@ -169,6 +174,7 @@ class TransactionHistoryScreen extends StatelessWidget {
             ),
           ),
         ),
+
         ...transactions,
       ],
     );

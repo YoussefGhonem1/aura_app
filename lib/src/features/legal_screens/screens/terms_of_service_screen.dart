@@ -16,7 +16,7 @@ class TermsOfServiceScreenEnhanced extends StatelessWidget {
           children: [
             // Header with gradient
             Container(
-              margin: EdgeInsets.all(16),
+              margin: const EdgeInsets.all(16),
               padding: const EdgeInsets.all(16),
               width: double.infinity,
               decoration: BoxDecoration(
@@ -45,7 +45,7 @@ class TermsOfServiceScreenEnhanced extends StatelessWidget {
                     ),
                     child: Row(
                       children: [
-                        Icon(
+                        const Icon(
                           Icons.gavel_rounded,
                           color: AppColors.secondaryColor,
                           size: 24,
@@ -60,19 +60,19 @@ class TermsOfServiceScreenEnhanced extends StatelessWidget {
                                   'Aura Terms of Service',
                                   'شروط خدمة Aura',
                                 ),
-                                style: TextStyle(
+                                style: const TextStyle(
                                   color: AppColors.white,
                                   fontSize: 18,
                                   fontWeight: FontWeight.bold,
                                 ),
                               ),
-                              SizedBox(height: 4),
+                              const SizedBox(height: 4),
                               Text(
                                 context.tr(
                                   'Last Updated: October 2023 - Version 2.4',
                                   'آخر تحديث: أكتوبر 2023 - الإصدار 2.4',
                                 ),
-                                style: TextStyle(
+                                style: const TextStyle(
                                   color: AppColors.greyText,
                                   fontSize: 12,
                                 ),
@@ -124,7 +124,10 @@ class TermsOfServiceScreenEnhanced extends StatelessWidget {
                       ),
                       const SizedBox(height: 16),
                       _buildNoteCard(
-                        "Note: Continued use of the app constitutes your ongoing agreement to any future modifications of these terms.",
+                        context.tr(
+                          "Note: Continued use of the app constitutes your ongoing agreement to any future modifications of these terms.",
+                          "ملاحظة: استمرار استخدامك للتطبيق يشكل موافقة مستمرة منك على أي تعديلات مستقبلية على هذه الشروط.",
+                        ),
                       ),
                     ],
                   ),
@@ -137,9 +140,12 @@ class TermsOfServiceScreenEnhanced extends StatelessWidget {
                     title: context.l10n.privacyPolicy,
                     icon: Icons.privacy_tip_rounded,
                     children: [
-                      const Text(
-                        "Your privacy is important to us. Our Privacy Policy, which describes how we handle the personal information you provide to us, is incorporated into these Terms. By using Aura, you consent to the collection and use of this information as set forth in the Privacy Policy.",
-                        style: TextStyle(
+                      Text(
+                        context.tr(
+                          "Your privacy is important to us. Our Privacy Policy, which describes how we handle the personal information you provide to us, is incorporated into these Terms. By using Aura, you consent to the collection and use of this information as set forth in the Privacy Policy.",
+                          "خصوصيتك مهمة بالنسبة لنا. تم تضمين سياسة الخصوصية الخاصة بنا، والتي تصف كيفية تعاملنا مع المعلومات الشخصية التي تقدمها لنا، في هذه الشروط. باستخدام Aura، فإنك توافق على جمع واستخدام هذه المعلومات كما هو منصوص عليه في سياسة الخصوصية.",
+                        ),
+                        style: const TextStyle(
                           color: AppColors.white,
                           fontSize: 14,
                           height: 1.6,
@@ -162,7 +168,7 @@ class TermsOfServiceScreenEnhanced extends StatelessWidget {
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
-                              Icon(
+                              const Icon(
                                 Icons.description_rounded,
                                 color: AppColors.secondaryColor,
                                 size: 18,
@@ -173,7 +179,7 @@ class TermsOfServiceScreenEnhanced extends StatelessWidget {
                                   'View Privacy Policy',
                                   'عرض سياسة الخصوصية',
                                 ),
-                                style: TextStyle(
+                                style: const TextStyle(
                                   color: AppColors.secondaryColor,
                                   fontSize: 14,
                                   fontWeight: FontWeight.w600,
@@ -194,9 +200,12 @@ class TermsOfServiceScreenEnhanced extends StatelessWidget {
                     title: context.tr('User Conduct', 'سلوك المستخدم'),
                     icon: Icons.rule_rounded,
                     children: [
-                      const Text(
-                        "You agree not to engage in any of the following prohibited activities:",
-                        style: TextStyle(
+                      Text(
+                        context.tr(
+                          "You agree not to engage in any of the following prohibited activities:",
+                          "أنت توافق على عدم المشاركة في أي من الأنشطة المحظورة التالية:",
+                        ),
+                        style: const TextStyle(
                           color: AppColors.white,
                           fontSize: 14,
                           height: 1.6,
@@ -205,18 +214,24 @@ class TermsOfServiceScreenEnhanced extends StatelessWidget {
                       const SizedBox(height: 12),
                       _buildConductItem(
                         icon: Icons.copy_rounded,
-                        text:
-                            "Copying, distributing, or disclosing any part of the Service in any medium.",
+                        text: context.tr(
+                          "Copying, distributing, or disclosing any part of the Service in any medium.",
+                          "نسخ أو توزيع أو الكشف عن أي جزء من الخدمة بأي وسيلة كانت.",
+                        ),
                       ),
                       _buildConductItem(
                         icon: Icons.security_rounded,
-                        text:
-                            "Attempting to interfere with, compromise the system integrity or security of the Service.",
+                        text: context.tr(
+                          "Attempting to interfere with, compromise the system integrity or security of the Service.",
+                          "محاولة التدخل أو المساس بسلامة النظام أو أمان الخدمة.",
+                        ),
                       ),
                       _buildConductItem(
                         icon: Icons.speed_rounded,
-                        text:
-                            "Taking any action that imposes an unreasonable or disproportionately large load on our infrastructure.",
+                        text: context.tr(
+                          "Taking any action that imposes an unreasonable or disproportionately large load on our infrastructure.",
+                          "اتخاذ أي إجراء يفرض حملاً غير معقول أو كبيراً بشكل غير متناسب على بنيتنا التحتية.",
+                        ),
                       ),
                     ],
                   ),
@@ -232,9 +247,12 @@ class TermsOfServiceScreenEnhanced extends StatelessWidget {
                     ),
                     icon: Icons.copyright_rounded,
                     children: [
-                      const Text(
-                        "The Service and its original content, features, and functionality are and will remain the exclusive property of Aura Inc. and its licensors. The Service is protected by copyright, trademark, and other laws of both the United States and foreign countries.",
-                        style: TextStyle(
+                      Text(
+                        context.tr(
+                          "The Service and its original content, features, and functionality are and will remain the exclusive property of Aura Inc. and its licensors. The Service is protected by copyright, trademark, and other laws of both the United States and foreign countries.",
+                          "الخدمة ومحتواها الأصلي وميزاتها ووظائفها هي وستظل الملكية الحصرية لشركة Aura Inc. والجهات المرخصة لها. الخدمة محمية بموجب حقوق الطبع والنشر والعلامات التجارية وغيرها من القوانين في كل من الولايات المتحدة والبلدان الأجنبية.",
+                        ),
+                        style: const TextStyle(
                           color: AppColors.white,
                           fontSize: 14,
                           height: 1.6,
@@ -254,9 +272,12 @@ class TermsOfServiceScreenEnhanced extends StatelessWidget {
                     ),
                     icon: Icons.warning_amber_rounded,
                     children: [
-                      const Text(
-                        "In no event shall Aura Inc., nor its directors, employees, partners, agents, suppliers, or affiliates, be liable for any indirect, incidental, special, consequential or punitive damages, including without limitation, loss of profits, data, use, goodwill, or other intangible losses.",
-                        style: TextStyle(
+                      Text(
+                        context.tr(
+                          "In no event shall Aura Inc., nor its directors, employees, partners, agents, suppliers, or affiliates, be liable for any indirect, incidental, special, consequential or punitive damages, including without limitation, loss of profits, data, use, goodwill, or other intangible losses.",
+                          "لا تتحمل شركة Aura Inc.، ولا مديروها أو موظفوها أو شركاؤها أو وكلاؤها أو موردوها أو الشركات التابعة لها، بأي حال من الأحوال المسؤولية عن أي أضرار غير مباشرة أو عرضية أو خاصة أو تبعية أو عقابية، بما في ذلك على سبيل المثال لا الحصر، خسارة الأرباح أو البيانات أو الاستخدام أو الشهرة أو غيرها من الخسائر غير الملموسة.",
+                        ),
+                        style: const TextStyle(
                           color: AppColors.white,
                           fontSize: 14,
                           height: 1.6,
@@ -313,7 +334,7 @@ class TermsOfServiceScreenEnhanced extends StatelessWidget {
               const SizedBox(width: 12),
               Text(
                 number,
-                style: TextStyle(
+                style: const TextStyle(
                   color: AppColors.secondaryColor,
                   fontSize: 32,
                   fontWeight: FontWeight.bold,
@@ -352,7 +373,7 @@ class TermsOfServiceScreenEnhanced extends StatelessWidget {
       ),
       child: Row(
         children: [
-          Icon(
+          const Icon(
             Icons.info_outline_rounded,
             color: AppColors.secondaryColor,
             size: 20,
@@ -361,7 +382,7 @@ class TermsOfServiceScreenEnhanced extends StatelessWidget {
           Expanded(
             child: Text(
               text,
-              style: TextStyle(
+              style: const TextStyle(
                 color: AppColors.white,
                 fontSize: 13,
                 height: 1.5,
@@ -441,7 +462,7 @@ class TermsOfServiceScreenEnhanced extends StatelessWidget {
               'Our legal team is here to help clarify any terms or conditions.',
               'فريقنا القانوني هنا للمساعدة في توضيح أي شروط أو بنود.',
             ),
-            style: TextStyle(
+            style: const TextStyle(
               color: AppColors.greyText,
               fontSize: 14,
               height: 1.5,

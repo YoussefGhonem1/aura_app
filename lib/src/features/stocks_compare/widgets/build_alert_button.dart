@@ -24,7 +24,7 @@ Widget alertButton(VoidCallback onPressed) {
         borderRadius: BorderRadius.circular(16),
         child: Center(
           child: Text(
-            'Set Price Alert for Both',
+            'ضبط تنبيه السعر لكليهما',
             style: TextStyle(
               color: AppColors.primaryColor,
               fontSize: 16,

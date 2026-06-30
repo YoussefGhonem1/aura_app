@@ -11,7 +11,7 @@ Widget buildHeadRecommendationTextWidget() {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             const Text(
-              "Why this",
+              "لماذا هذه التوصيه؟",
               style: TextStyle(
                 color: AppColors.white,
                 fontSize: 28,
@@ -20,14 +20,6 @@ Widget buildHeadRecommendationTextWidget() {
             ),
             Icon(Icons.auto_awesome, color: AppColors.secondaryColor, size: 28),
           ],
-        ),
-        const Text(
-          " recommendation?",
-          style: TextStyle(
-            color: AppColors.white,
-            fontSize: 28,
-            fontWeight: FontWeight.bold,
-          ),
         ),
       ],
     ),

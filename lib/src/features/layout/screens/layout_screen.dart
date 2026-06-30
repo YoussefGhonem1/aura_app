@@ -63,16 +63,12 @@ class _MainLayoutScreenState extends State<MainLayoutScreen> {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              _buildNavItem(Icons.home_filled, "Home", 0),
-              _buildNavItem(
-                Icons.account_balance_wallet_rounded,
-                "Portfolio",
-                1,
-              ),
+              _buildNavItem(Icons.home_filled, "الرئيسية", 0),
+              _buildNavItem(Icons.account_balance_wallet_rounded, "المحفظة", 1),
 
               const SizedBox(width: 40),
-              _buildNavItem(Icons.search, "Search", 3),
-              _buildNavItem(Icons.person_rounded, "Profile", 4),
+              _buildNavItem(Icons.search, "بحث", 3),
+              _buildNavItem(Icons.person_rounded, "الملف الشخصي", 4),
             ],
           ),
         ),

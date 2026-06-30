@@ -82,7 +82,7 @@ class _MainAICardState extends State<MainAICard> with TickerProviderStateMixin {
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              // AI PICK OF THE DAY
+              // اختيار الذكاء الاصطناعي اليوم
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
@@ -107,7 +107,7 @@ class _MainAICardState extends State<MainAICard> with TickerProviderStateMixin {
                         ),
                         const SizedBox(width: 6),
                         Text(
-                          "AI PICK OF THE DAY",
+                          "اختيار الذكاء الاصطناعي اليوم",
                           style: TextStyle(
                             color: AppColors.secondaryColor,
                             fontSize: 11,
@@ -136,7 +136,7 @@ class _MainAICardState extends State<MainAICard> with TickerProviderStateMixin {
 
               const SizedBox(height: 120),
 
-              // STRONG BUY SIGNAL
+              // إشارة شراء
               Row(
                 children: [
                   AnimatedBuilder(
@@ -162,7 +162,7 @@ class _MainAICardState extends State<MainAICard> with TickerProviderStateMixin {
                   ),
                   const SizedBox(width: 5),
                   Text(
-                    "Strong Buy Signal",
+                    "إشارة شراء",
                     style: TextStyle(
                       color: AppColors.accentColor,
                       fontSize: 16,
@@ -174,19 +174,20 @@ class _MainAICardState extends State<MainAICard> with TickerProviderStateMixin {
 
               const SizedBox(height: 12),
 
-              // NVIDIA CORP
+              // البنك التجاري الدولي
               Text(
-                "NVIDIA Corp",
+                "البنك التجاري الدولي",
                 style: const TextStyle(
-                  fontSize: 26,
+                  fontSize: 24,
                   fontWeight: FontWeight.w900,
                   color: Colors.white,
                 ),
               ),
+
               Row(
                 children: [
                   Text(
-                    "(NVDA)",
+                    "(COMI)",
                     style: TextStyle(
                       fontSize: 16,
                       color: Colors.white,
@@ -195,7 +196,7 @@ class _MainAICardState extends State<MainAICard> with TickerProviderStateMixin {
                   ),
                   const Spacer(),
                   Text(
-                    "+4.2%",
+                    "+1.85%",
                     style: TextStyle(
                       fontSize: 20,
                       fontWeight: FontWeight.bold,
@@ -204,13 +205,15 @@ class _MainAICardState extends State<MainAICard> with TickerProviderStateMixin {
                   ),
                   const SizedBox(width: 6),
                   Icon(
-                    Icons.arrow_upward,
+                    Icons.show_chart,
                     color: AppColors.accentColor,
                     size: 20,
                   ),
                 ],
               ),
+
               const SizedBox(height: 10),
+
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
@@ -218,7 +221,7 @@ class _MainAICardState extends State<MainAICard> with TickerProviderStateMixin {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        "AI Confidence Score",
+                        "مؤشر ثقة الذكاء الاصطناعي",
                         style: TextStyle(
                           fontSize: 14,
                           color: Colors.white.withOpacity(0.6),
@@ -228,7 +231,7 @@ class _MainAICardState extends State<MainAICard> with TickerProviderStateMixin {
                       Row(
                         children: [
                           Text(
-                            "99%",
+                            "92%",
                             style: TextStyle(
                               fontSize: 20,
                               fontWeight: FontWeight.bold,
@@ -243,6 +246,7 @@ class _MainAICardState extends State<MainAICard> with TickerProviderStateMixin {
                                   0.5 +
                                   0.5 *
                                       sin(_animationController.value * 2 * pi);
+
                               return Container(
                                 width: 8 + pulse * 2,
                                 height: 8 + pulse * 2,
@@ -263,7 +267,7 @@ class _MainAICardState extends State<MainAICard> with TickerProviderStateMixin {
                           ),
                           const SizedBox(width: 6),
                           Text(
-                            "Bullish",
+                            "اتجاه صاعد",
                             style: TextStyle(
                               color: AppColors.accentColor,
                               fontWeight: FontWeight.bold,
@@ -329,7 +333,7 @@ class _MainAICardState extends State<MainAICard> with TickerProviderStateMixin {
                                     ),
                                     const SizedBox(width: 5),
                                     Text(
-                                      "View Analysis",
+                                      "عرض التحليل",
                                       style: TextStyle(
                                         color: Colors.white,
                                         fontSize: 16,

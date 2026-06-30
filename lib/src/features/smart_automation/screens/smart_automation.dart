@@ -13,8 +13,8 @@ class SmartAutomationScreen extends StatefulWidget {
 }
 
 class _SmartAutomationScreenState extends State<SmartAutomationScreen> {
-  String _selectedStock = "NVIDIA Corp (NVDA)";
-  String _action = "Buy";
+  String _selectedStock = "البنك التجاري الدولي (COMI)";
+  String _action = "شراء"; // Default action is "Buy"
 
   final TextEditingController _priceController = TextEditingController();
   final TextEditingController _quantityController = TextEditingController();
@@ -113,8 +113,12 @@ class _SmartAutomationScreenState extends State<SmartAutomationScreen> {
             color: AppColors.greyText,
           ),
           style: const TextStyle(color: AppColors.white),
-          items: ["NVIDIA Corp (NVDA)", "Apple Inc (AAPL)", "Tesla Inc (TSLA)"]
-              .map((e) {
+          items:
+              [
+                "البنك التجاري الدولي (COMI)",
+                "فوري لتكنولوجيا البنوك والمدفوعات (FWRY)",
+                "مجموعة طلعت مصطفى القابضة (TMGH)",
+              ].map((e) {
                 return DropdownMenuItem<String>(
                   value: e,
                   child: Container(
@@ -128,8 +132,7 @@ class _SmartAutomationScreenState extends State<SmartAutomationScreen> {
                     ),
                   ),
                 );
-              })
-              .toList(),
+              }).toList(),
           onChanged: (value) => setState(() => _selectedStock = value!),
 
           borderRadius: BorderRadius.circular(12),
@@ -139,9 +142,9 @@ class _SmartAutomationScreenState extends State<SmartAutomationScreen> {
 
           selectedItemBuilder: (BuildContext context) {
             return [
-              "NVIDIA Corp (NVDA)",
-              "Apple Inc (AAPL)",
-              "Tesla Inc (TSLA)",
+              "البنك التجاري الدولي (COMI)",
+              "فوري لتكنولوجيا البنوك والمدفوعات (FWRY)",
+              "مجموعة طلعت مصطفى القابضة (TMGH)",
             ].map<Widget>((String item) {
               return Container(
                 alignment: Alignment.centerLeft,
@@ -168,7 +171,7 @@ class _SmartAutomationScreenState extends State<SmartAutomationScreen> {
         borderRadius: BorderRadius.circular(14),
       ),
       child: Row(
-        children: ["Buy", "Sell"].map((e) {
+        children: ["شراء", "بيع"].map((e) {
           final selected = _action == e;
           return Expanded(
             child: GestureDetector(

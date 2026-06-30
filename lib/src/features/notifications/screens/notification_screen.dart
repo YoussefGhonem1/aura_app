@@ -29,6 +29,7 @@ class _NotificationsScreenState extends State<NotificationsScreen> {
               const SizedBox(height: 12),
               _buildTabs(),
               const SizedBox(height: 24),
+
               Text(
                 context.tr('TODAY', 'اليوم'),
                 style: TextStyle(
@@ -37,9 +38,13 @@ class _NotificationsScreenState extends State<NotificationsScreen> {
                   letterSpacing: 1.2,
                 ),
               ),
+
               const SizedBox(height: 16),
+
               _alertsSection(),
+
               const SizedBox(height: 32),
+
               Text(
                 context.tr('YESTERDAY', 'الأمس'),
                 style: TextStyle(
@@ -48,9 +53,13 @@ class _NotificationsScreenState extends State<NotificationsScreen> {
                   letterSpacing: 1.2,
                 ),
               ),
+
               const SizedBox(height: 16),
+
               _disabledCardsSection(),
+
               const SizedBox(height: 40),
+
               Center(
                 child: Text(
                   context.tr('End of notifications', 'نهاية الإشعارات'),
@@ -71,6 +80,7 @@ class _NotificationsScreenState extends State<NotificationsScreen> {
       backgroundColor: AppColors.primaryColor,
       elevation: 0,
       scrolledUnderElevation: 0,
+
       leading: Padding(
         padding: const EdgeInsets.all(10.0),
         child: GestureDetector(
@@ -91,6 +101,7 @@ class _NotificationsScreenState extends State<NotificationsScreen> {
           ),
         ),
       ),
+
       title: Text(
         context.l10n.notifications,
         style: TextStyle(
@@ -99,6 +110,7 @@ class _NotificationsScreenState extends State<NotificationsScreen> {
           fontWeight: FontWeight.bold,
         ),
       ),
+
       actions: [
         TextButton(
           onPressed: () {},
@@ -118,42 +130,52 @@ class _NotificationsScreenState extends State<NotificationsScreen> {
     return Column(
       children: [
         alertCard(
-          symbol: "TSLA",
+          symbol: "COMI",
           badge: "STRONG BUY",
           badgeColor: Colors.green,
+
           description: context.tr(
-            'AI detects a bullish breakout pattern. Volume spike confirmed.',
-            'اكتشف الذكاء الاصطناعي نمط اختراق صاعد. تم تأكيد ارتفاع حجم التداول.',
+            'AI detects strong accumulation in CIB stock with positive banking sector momentum.',
+            'اكتشف الذكاء الاصطناعي تجميعًا قويًا على سهم البنك التجاري الدولي مع تحسن أداء القطاع المصرفي.',
           ),
-          match: "98% Match",
+
+          match: "96% Match",
           time: "2m ago",
           icon: Icons.trending_up,
         ),
+
         const SizedBox(height: 16),
+
         alertCard(
-          symbol: "NVDA",
-          badge: "STOPLOSS",
-          badgeColor: Colors.red,
+          symbol: "FWRY",
+          badge: "BUY",
+          badgeColor: Colors.greenAccent,
+
           description: context.tr(
-            'Price dropped below \$450 support level. Recommended exit.',
-            'انخفض السعر أسفل مستوى الدعم 450 دولارًا. يوصى بالخروج.',
+            'Digital payments growth supports positive momentum in Fawry stock.',
+            'نمو المدفوعات الرقمية يدعم الاتجاه الإيجابي لسهم فوري.',
           ),
-          match: "92% Match",
+
+          match: "91% Match",
           time: "1h ago",
-          icon: Icons.trending_down,
+          icon: Icons.account_balance_wallet,
         ),
+
         const SizedBox(height: 16),
+
         alertCard(
-          symbol: "AMD",
+          symbol: "ESRS",
           badge: "VOLATILE",
           badgeColor: Colors.orange,
+
           description: context.tr(
-            'Unusual options activity detected...',
-            'تم اكتشاف نشاط غير معتاد في عقود الخيارات...',
+            'High volatility detected due to steel sector price movements.',
+            'تم رصد تقلبات مرتفعة بسبب تحركات أسعار قطاع الحديد.',
           ),
+
           match: null,
           time: "4h ago",
-          icon: Icons.notifications_active,
+          icon: Icons.warning_amber,
         ),
       ],
     );
@@ -163,18 +185,21 @@ class _NotificationsScreenState extends State<NotificationsScreen> {
     return Column(
       children: [
         disabledCard(
-          "SPY",
+          "EGX30",
           context.tr(
-            'Market closed with bearish sentiment. Moving averages crossing.',
-            'أغلق السوق بمشاعر هبوطية مع تقاطع المتوسطات المتحركة.',
+            'Egyptian market closed with mixed sentiment and sector rotation.',
+            'أنهى مؤشر EGX30 الجلسة وسط أداء متباين وتغيرات بين القطاعات.',
           ),
         ),
-        SizedBox(height: 16),
+
+        const SizedBox(height: 16),
+
         disabledCard(
           context.tr('Watchlist', 'قائمة المتابعة'),
+
           context.tr(
-            'Weekly report available for your AI...',
-            'التقرير الأسبوعي متاح لذكائك الاصطناعي...',
+            'Weekly AI market report is available for your Egyptian stocks.',
+            'التقرير الأسبوعي للذكاء الاصطناعي متاح لأسهمك المصرية.',
           ),
         ),
       ],
@@ -184,13 +209,16 @@ class _NotificationsScreenState extends State<NotificationsScreen> {
   Widget _buildTabs() {
     return Container(
       padding: const EdgeInsets.all(4),
+
       decoration: BoxDecoration(
         color: AppColors.surfaceColor,
         borderRadius: BorderRadius.circular(12),
       ),
+
       child: Row(
         children: [
           _tabItem(context.tr('AI Alerts', 'تنبيهات الذكاء الاصطناعي'), 0),
+
           _tabItem(context.tr('Market News', 'أخبار السوق'), 1),
         ],
       ),
@@ -203,17 +231,23 @@ class _NotificationsScreenState extends State<NotificationsScreen> {
     return Expanded(
       child: GestureDetector(
         onTap: () => setState(() => selectedTab = index),
+
         child: Container(
           padding: const EdgeInsets.symmetric(vertical: 10),
+
           decoration: BoxDecoration(
             color: isSelected ? AppColors.secondaryColor : Colors.transparent,
+
             borderRadius: BorderRadius.circular(10),
           ),
+
           child: Center(
             child: Text(
               text,
+
               style: TextStyle(
                 color: isSelected ? AppColors.primaryColor : AppColors.greyText,
+
                 fontWeight: FontWeight.w600,
               ),
             ),

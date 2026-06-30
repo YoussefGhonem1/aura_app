@@ -106,15 +106,15 @@ Widget buildStockCard(StockModel stock) {
 
 Color _getSignalColor(String signal) {
   switch (signal.toUpperCase()) {
-    case 'STRONG BUY':
+    case 'شراء قوي':
       return AppColors.accentColor;
-    case 'BUY':
+    case 'شراء':
       return AppColors.accentColor.withOpacity(0.9);
-    case 'HOLD':
+    case 'حفظ':
       return Colors.orange;
-    case 'SELL':
+    case 'بيع':
       return AppColors.errorColor.withOpacity(0.9);
-    case 'STRONG SELL':
+    case ' بيع قوي':
       return AppColors.errorColor;
     default:
       return AppColors.greyText;

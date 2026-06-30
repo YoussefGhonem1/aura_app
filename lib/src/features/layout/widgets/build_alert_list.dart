@@ -20,30 +20,33 @@ Widget buildAlertsList() {
   );
 }
 
-// Example data
+// بيانات تجريبية للبورصة المصرية
 final List<HighVolatilityAlert> examples = [
   HighVolatilityAlert(
-    symbol: 'GME',
-    title: 'Unusual Volume Detected',
-    subtitle: 'Volume is 450% above average',
-    alertLabel: 'ALERT',
+    symbol: 'COMI',
+    title: 'ارتفاع ملحوظ في أحجام التداول',
+    subtitle: 'حجم التداول أعلى من متوسط آخر 30 جلسة',
+    alertLabel: 'تنبيه',
   ),
-  // HighVolatilityAlert(
-  //   symbol: 'NVDA',
-  //   title: 'High Volatility Alert',
-  //   subtitle: 'Price swing of 5.2% in 15 minutes',
-  //   alertLabel: 'HIGH RISK',
-  // ),
-  // HighVolatilityAlert(
-  //   symbol: 'TSLA',
-  //   title: 'Earnings Surprise',
-  //   subtitle: 'Unexpected earnings announcement',
-  //   alertLabel: 'BREAKING',
-  // ),
-  // HighVolatilityAlert(
-  //   symbol: 'AAPL',
-  //   title: 'Unusual Options Activity',
-  //   subtitle: 'Large block trades detected',
-  //   alertLabel: 'WATCH',
-  // ),
+
+  HighVolatilityAlert(
+    symbol: 'FWRY',
+    title: 'تحرك سعري قوي',
+    subtitle: 'السهم يشهد نشاطًا شرائيًا ملحوظًا',
+    alertLabel: 'مراقبة',
+  ),
+
+  HighVolatilityAlert(
+    symbol: 'TMGH',
+    title: 'اختراق مستوى مقاومة',
+    subtitle: 'السهم أغلق أعلى من مستوى المقاومة الرئيسي',
+    alertLabel: 'إشارة شراء',
+  ),
+
+  HighVolatilityAlert(
+    symbol: 'HRHO',
+    title: 'زيادة في السيولة',
+    subtitle: 'ارتفاع قيمة التداول مقارنة بالجلسة السابقة',
+    alertLabel: 'متابعة',
+  ),
 ];

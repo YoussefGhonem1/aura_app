@@ -28,7 +28,7 @@ Widget buildTopBar(BuildContext context) {
       ),
       const SizedBox(height: 10),
       Text(
-        "MARKET ANALYSIS UPDATED 2M AGO",
+        "تحليل السوق - تم التحديث قبل دقيقتين",
         style: TextStyle(
           color: AppColors.secondaryColor.withOpacity(0.7),
           fontSize: 11,

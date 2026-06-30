@@ -52,8 +52,8 @@ Widget buildAuraInsight(BuildContext context) {
                     ),
                   ),
                   const SizedBox(width: 8),
-                  Text(
-                    "AURA INSIGHT",
+                  const Text(
+                    "رؤية AURA الذكية",
                     style: TextStyle(
                       color: AppColors.secondaryColor,
                       fontSize: 11,
@@ -68,7 +68,7 @@ Widget buildAuraInsight(BuildContext context) {
 
               // Title
               Text(
-                "Watch Tech Hardware",
+                "راقب قطاع العقارات",
                 style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                   color: AppColors.white,
                   fontWeight: FontWeight.w700,
@@ -79,7 +79,7 @@ Widget buildAuraInsight(BuildContext context) {
 
               // Description
               Text(
-                "Sector momentum is up 4.2% today driven by new chip announcements.",
+                "زخم القطاع ارتفع بنسبة 4.2% اليوم بدعم من إعلانات المشروعات الجديدة والمبيعات القياسية للشركات.",
                 style: Theme.of(context).textTheme.bodySmall?.copyWith(
                   color: AppColors.greyText,
                   height: 1.4,
@@ -113,7 +113,8 @@ Widget buildAuraInsight(BuildContext context) {
             ],
           ),
           child: const Icon(
-            Icons.memory_rounded,
+            Icons
+                .domain_rounded, // تم التغيير لأيقونة مباني لتناسب قطاع العقارات
             color: Colors.black,
             size: 40,
           ),

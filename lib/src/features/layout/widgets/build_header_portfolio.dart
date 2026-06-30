@@ -29,13 +29,13 @@ Widget buildHeaderPortfolio(BuildContext context) {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                "Welcome back,",
+                "مرحبا بعودتك,",
                 style: Theme.of(
                   context,
                 ).textTheme.bodySmall?.copyWith(color: AppColors.greyText),
               ),
               Text(
-                "Alex",
+                "Youssef",
                 style: Theme.of(context).textTheme.headlineSmall?.copyWith(
                   fontWeight: FontWeight.bold,
                   fontSize: 18,

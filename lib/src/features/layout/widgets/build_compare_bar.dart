@@ -53,7 +53,7 @@ Widget buildCompareBar({
               ),
               const SizedBox(width: 12),
               const Text(
-                "Stocks Selected",
+                "الأسهم المختارة",
                 style: TextStyle(
                   color: AppColors.white,
                   fontSize: 16,
@@ -65,7 +65,7 @@ Widget buildCompareBar({
                 GestureDetector(
                   onTap: onClearAll,
                   child: Text(
-                    "Clear All",
+                    "مسح الكل",
                     style: TextStyle(
                       color: AppColors.secondaryColor,
                       fontSize: 14,
@@ -121,7 +121,7 @@ Widget buildCompareBar({
                     ),
                     SizedBox(width: 8),
                     Text(
-                      "Compare Now",
+                      "قارن الآن",
                       style: TextStyle(
                         color: AppColors.primaryColor,
                         fontSize: 16,

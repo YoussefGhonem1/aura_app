@@ -7,11 +7,16 @@ Widget buildMarketOverview() {
     child: ListView(
       scrollDirection: Axis.horizontal,
       children: [
-        buildMarketCard("S&P 500", "4,500.00", "+1.2%", true),
+        // EGX 30: المؤشر الرئيسي للبورصة المصرية
+        buildMarketCard("EGX 30", "30,450.50", "+1.2%", true),
         const SizedBox(width: 12),
-        buildMarketCard("Nasdaq", "14,200.00", "-0.8%", false),
+
+        // EGX 70: مؤشر الأسهم الصغيرة والمتوسطة
+        buildMarketCard("EGX 70", "7,820.25", "-0.4%", false),
         const SizedBox(width: 12),
-        buildMarketCard("BTC", "65,430.00", "+0.6%", true),
+
+        // EGX 100: المؤشر الأوسع نطاقاً
+        buildMarketCard("EGX 100", "11,150.80", "+0.9%", true),
       ],
     ),
   );

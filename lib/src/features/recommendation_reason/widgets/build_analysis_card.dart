@@ -1,8 +1,9 @@
+import 'package:aura_app/src/features/stock_details/models/stock_details_model.dart';
 import 'package:aura_app/src/shared/themes/app_colors.dart';
 import 'package:flutter/material.dart';
 
 /// ANALYSIS CARD
-Widget analysisCard() {
+Widget analysisCard(StockModel stock) {
   return Container(
     margin: const EdgeInsets.symmetric(horizontal: 8),
     padding: const EdgeInsets.all(18),
@@ -56,7 +57,7 @@ Widget analysisCard() {
                   ),
                   const SizedBox(width: 8),
                   const Text(
-                    "AURA AI ANALYSIS",
+                    "تحليل AURA AI",
                     style: TextStyle(
                       color: AppColors.secondaryColor,
                       fontSize: 12,
@@ -65,8 +66,9 @@ Widget analysisCard() {
                     ),
                   ),
                   const Spacer(),
+                  // استخدام حقل وقت التحديث من الموديل
                   Text(
-                    "Updated 2m ago",
+                    stock.analysisUpdated,
                     style: TextStyle(
                       color: AppColors.secondaryColor,
                       fontSize: 11,
@@ -77,27 +79,13 @@ Widget analysisCard() {
 
               const SizedBox(height: 16),
 
-              RichText(
-                text: TextSpan(
-                  style: const TextStyle(
-                    color: AppColors.white,
-                    fontSize: 15,
-                    height: 1.4,
-                  ),
-                  children: const [
-                    TextSpan(text: "Aura AI detects "),
-                    TextSpan(
-                      text: "a strong breakout pattern",
-                      style: TextStyle(
-                        color: AppColors.secondaryColor,
-                        fontWeight: FontWeight.w600,
-                      ),
-                    ),
-                    TextSpan(
-                      text:
-                          " for AAPL combined with unusually positive institutional sentiment. Volume surge confirms the uptrend validity.",
-                    ),
-                  ],
+              // استخدام حقل التحليل من الموديل
+              Text(
+                stock.aiAnalysis,
+                style: const TextStyle(
+                  color: AppColors.white,
+                  fontSize: 15,
+                  height: 1.5, // لزيادة المسافة بين السطور لتسهيل القراءة
                 ),
               ),
             ],

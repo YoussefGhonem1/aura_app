@@ -9,7 +9,7 @@ Widget keyStatisticsSection({required StockModel stock}) {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
-          'Key Statistics',
+          'إحصاءات رئيسية',
           style: TextStyle(
             color: AppColors.white,
             fontSize: 20,
@@ -21,14 +21,14 @@ Widget keyStatisticsSection({required StockModel stock}) {
           children: [
             Expanded(
               child: _buildStatCard(
-                title: 'Market Cap',
+                title: 'القيمة السوقية',
                 value: '${stock.marketCap.toStringAsFixed(1)}T',
               ),
             ),
             const SizedBox(width: 16),
             Expanded(
               child: _buildStatCard(
-                title: 'P/E Ratio',
+                title: 'مكرر الربحية',
                 value: stock.peRatio.toStringAsFixed(1),
               ),
             ),
@@ -39,14 +39,14 @@ Widget keyStatisticsSection({required StockModel stock}) {
           children: [
             Expanded(
               child: _buildStatCard(
-                title: 'Div Yield',
+                title: 'عائد الأرباح',
                 value: '${stock.dividendYield.toStringAsFixed(2)}%',
               ),
             ),
             const SizedBox(width: 16),
             Expanded(
               child: _buildStatCard(
-                title: 'Avg Volume',
+                title: 'متوسط الحجم',
                 value: '${stock.avgVolume.toStringAsFixed(1)}M',
               ),
             ),
